@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://6d0ffg54l3do"]
+
+[ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
+
+[node name="Main" type="Node2D"]
+
+[node name="IntroSequence" parent="." instance=ExtResource("1_p3dy8")]

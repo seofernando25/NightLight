@@ -1,0 +1,53 @@
+[gd_scene load_steps=14 format=3 uid="uid://h58vpf4gagvx"]
+
+[ext_resource type="Script" path="res://Scenes/IntroSequence/IntroSequence.gd" id="1_hngcd"]
+[ext_resource type="PackedScene" uid="uid://d34txy4282cyd" path="res://Components/UI/SimpleDialogSlide/simple_dialog_slide.tscn" id="2_grdrp"]
+[ext_resource type="SpriteFrames" uid="uid://ps1bkp8i1v58" path="res://Assets/Sprites/Intro/intro.aseprite" id="3_cdko5"]
+[ext_resource type="AudioStream" uid="uid://dhqdjeaqp5agg" path="res://Scenes/IntroSequence/afraid_of_the_dark.wav" id="4_b4l0l"]
+[ext_resource type="AudioStream" uid="uid://bg4dmd41wfku5" path="res://Scenes/IntroSequence/the_silence_bounces.wav" id="5_2cb7x"]
+[ext_resource type="SpriteFrames" uid="uid://3v5556obvegc" path="res://Assets/Sprites/Intro/intro_b.aseprite" id="5_g3srx"]
+[ext_resource type="SpriteFrames" uid="uid://b44i78ibrp0as" path="res://Assets/Sprites/Intro/intro_c.aseprite" id="7_bwioh"]
+[ext_resource type="AudioStream" uid="uid://bmxn8mdu2ruid" path="res://Audio/Ambient1/ambient1.wav" id="7_cvgyd"]
+[ext_resource type="AudioStream" uid="uid://cmgcuinhg6ijl" path="res://Scenes/IntroSequence/reverberating_of_my_skull.wav" id="7_lwy46"]
+[ext_resource type="SpriteFrames" uid="uid://c7x80680oa53q" path="res://Assets/Sprites/Intro/intro_d.aseprite" id="9_2ys6l"]
+[ext_resource type="AudioStream" uid="uid://olys7baa30q7" path="res://Scenes/IntroSequence/it_consumes_me.wav" id="10_o3iff"]
+[ext_resource type="SpriteFrames" uid="uid://cq2wf3mstkhcg" path="res://Assets/Sprites/Intro/intro_e.aseprite" id="11_cteis"]
+[ext_resource type="AudioStream" uid="uid://bh2a0sje52nmm" path="res://Scenes/IntroSequence/vade_retro.wav" id="12_42sya"]
+
+[node name="IntroSequence" type="Node2D" node_paths=PackedStringArray("slides")]
+script = ExtResource("1_hngcd")
+slides = [NodePath("DialogSlideA"), NodePath("DialogSlideB"), NodePath("DialogSlideC"), NodePath("DialogSlideD"), NodePath("DialogSlideE")]
+
+[node name="DialogSlideA" parent="." instance=ExtResource("2_grdrp")]
+dialog_text = "I've always been afraid of the dark..."
+sprite_frames = ExtResource("3_cdko5")
+audio_stream = ExtResource("4_b4l0l")
+
+[node name="DialogSlideB" parent="." instance=ExtResource("2_grdrp")]
+visible = false
+dialog_text = "The silence bounces off the walls of my room..."
+sprite_frames = ExtResource("5_g3srx")
+audio_stream = ExtResource("5_2cb7x")
+
+[node name="DialogSlideC" parent="." instance=ExtResource("2_grdrp")]
+visible = false
+dialog_text = "It echoes in the back of my brain,reverberating off my skull..."
+sprite_frames = ExtResource("7_bwioh")
+audio_stream = ExtResource("7_lwy46")
+
+[node name="DialogSlideD" parent="." instance=ExtResource("2_grdrp")]
+visible = false
+dialog_text = "It Consumes me..."
+sprite_frames = ExtResource("9_2ys6l")
+audio_stream = ExtResource("10_o3iff")
+
+[node name="DialogSlideE" parent="." instance=ExtResource("2_grdrp")]
+visible = false
+dialog_text = "..."
+sprite_frames = ExtResource("11_cteis")
+audio_stream = ExtResource("12_42sya")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cvgyd")
+autoplay = true
+bus = &"BGM"
