@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0qw2vjrt6odj"]
+
+[ext_resource type="Script" path="res://Components/Camera/PixelCamera/PixelCamera.gd" id="1_7vfgk"]
+
+[node name="PixelCamera" type="Camera2D"]
+script = ExtResource("1_7vfgk")

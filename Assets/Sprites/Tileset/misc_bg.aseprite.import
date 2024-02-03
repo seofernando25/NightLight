@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://0gu343we4yav"
+path="res://.godot/imported/misc_bg.aseprite-2475c25b7ef4ccf39d3f297c3ee5eb21.res"
+
+[deps]
+
+source_file="res://Assets/Sprites/Tileset/misc_bg.aseprite"
+dest_files=["res://.godot/imported/misc_bg.aseprite-2475c25b7ef4ccf39d3f297c3ee5eb21.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

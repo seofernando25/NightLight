@@ -13,6 +13,7 @@ config_version=5
 config/name="NightLight"
 run/main_scene="res://Scenes/Main/Main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=24
 config/icon="res://icon.svg"
 
 [audio]
@@ -21,9 +22,8 @@ buses/default_bus_layout="res://Configurations/audio_bus.tres"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=480
-window/size/resizable=false
+window/size/viewport_width=320
+window/size/viewport_height=240
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 window/stretch/scale_mode="integer"
@@ -41,9 +41,15 @@ theme/default_font_hinting=0
 theme/default_font_subpixel_positioning=0
 theme/lcd_subpixel_layout=0
 
+[physics]
+
+common/physics_ticks_per_second=24
+common/physics_jitter_fix=0.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/default_filters/anisotropic_filtering_level=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
