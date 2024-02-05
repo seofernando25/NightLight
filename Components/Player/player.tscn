@@ -14,12 +14,13 @@ position = Vector2(10, 30)
 shape = SubResource("RectangleShape2D_xu4tc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, 6)
 sprite_frames = ExtResource("1_e786p")
-animation = &"walk_back"
-centered = false
+animation = &"walk_forward"
 
 [node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_0bgta")]
 player = NodePath("..")
+speed = 2500.0
 
 [node name="DirectionalPlayerSpriteController" parent="." node_paths=PackedStringArray("animated_sprite", "rigid_body") instance=ExtResource("3_38oqt")]
 animated_sprite = NodePath("../AnimatedSprite2D")

@@ -1,7 +1,7 @@
 extends Node
 
 @export var player: CharacterBody2D
-var speed: float =  20 * 100
+@export var speed: float =  20 * 100
 
 func _ready():
 	pass # Replace with function body.
