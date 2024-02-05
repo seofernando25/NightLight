@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ambient2.wav-6e8884812f75f5ef5dee7a003c349d1d
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

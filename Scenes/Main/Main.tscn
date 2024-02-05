@@ -1,7 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=9 format=3 uid="uid://6d0ffg54l3do"]
 
+[ext_resource type="TileSet" uid="uid://cw6pqqaaq7lh" path="res://Assets/Sprites/Tileset/misc.tres" id="1_6xhp3"]
+[ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
+[ext_resource type="TileSet" uid="uid://b1gqgh5dyo33r" path="res://Assets/Sprites/Tileset/misc_bg.tres" id="2_dt8kj"]
+[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="3_7qu7y"]
+[ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="4_xivpw"]
+[ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olqiw"]
+size = Vector2(60, 40)
 
 [node name="Main" type="Node2D"]
+position = Vector2(5, 1)
+script = ExtResource("1_51ueg")
+introScene = ExtResource("1_p3dy8")
 
-[node name="IntroSequence" parent="." instance=ExtResource("1_p3dy8")]
+[node name="Walls" type="TileMap" parent="."]
+tile_set = ExtResource("1_6xhp3")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131065, 458752, 0, -196601, 458752, 0, -262137, 458752, 0, -327673, 65536, 805306368, -65542, 458752, 0, -131078, 458752, 0, -196614, 393216, 0, -327687, 65536, 536870912, -327686, 196608, 1342177280, -262150, 393216, 0, -262149, 196608, 805306368, -262151, 196608, 0, -327685, 196608, 1342177280, -196613, 65536, 1610612736, -196615, 65536, 0, -393216, 196608, 1073741824, -393215, 196608, 1073741824, -393214, 196608, 1073741824, -393213, 196608, 1073741824, -393212, 65536, 805306368, -327681, 196608, 1073741824, -327682, 458752, 1342177280, -327683, 458752, 1342177280, -327684, 458752, 1342177280, -262144, 327680, 0, -262143, 327680, 0, -262142, 327680, 0, -262141, 327680, 0, -262145, 196608, 0, -196609, 262144, 0, -262140, 262144, 268435456, -327680, 393216, 0, -327679, 393216, 0, -327678, 393216, 0, -327677, 393216, 0, -327676, 393216, 0, 196601, 65536, 536870912, 262137, 196608, 0, 196602, 393216, 0, 262138, 393216, 0, 196603, 65536, 805306368, 262139, 393216, 0, 196606, 65536, 536870912, 262142, 393216, 0, 196607, 196608, 1342177280, 262143, 393216, 0, 131072, 196608, 1342177280, 196608, 393216, 0, 131073, 65536, 805306368, 196609, 393216, 0, 131078, 65536, 536870912, 196614, 393216, 0, 131079, 393216, 0, 196615, 393216, 0, 131080, 65536, 805306368, 196616, 196608, 805306368, 327673, 196608, 0, 393209, 65536, 0, 327674, 393216, 0, 393210, 196608, 1610612736, 327675, 393216, 0, 393211, 65536, 268435456, 262140, 196608, 1342177280, 327676, 196608, 1610612736, 262141, 196608, 1342177280, 327677, 196608, 1610612736, 327678, 393216, 0, 393214, 65536, 0, 327679, 393216, 0, 393215, 196608, 1610612736, 262144, 393216, 0, 327680, 196608, 1610612736, 262145, 393216, 0, 327681, 65536, 1610612736, 196610, 196608, 1342177280, 262146, 196608, 1610612736, 196611, 196608, 1342177280, 262147, 196608, 1610612736, 196612, 196608, 1342177280, 262148, 196608, 1610612736, 196613, 196608, 1342177280, 262149, 196608, 1610612736, 262150, 393216, 0, 327686, 65536, 0, 262151, 393216, 0, 327687, 196608, 1610612736, 262152, 196608, 805306368, 327688, 65536, 268435456, 131066, 458752, 0, 65530, 458752, 0, -6, 458752, 0, -65529, 458752, 0, 7, 458752, 0, 65543, 458752, 0, -327675, 458752, 1342177280, -327674, 458752, 1342177280)
+
+[node name="Bg" type="TileMap" parent="."]
+tile_set = ExtResource("2_dt8kj")
+format = 2
+layer_0/tile_data = PackedInt32Array(65539, 131072, 1, -65543, 0, 1, -327688, 0, 1, -393220, 65536, 1, -458752, 65536, 1, 5, 131072, 1, -131068, 131072, 1, -131070, 131072, 1, 1, 131072, 1, -131069, 65536, 1, -327678, 0, 1342177281, -327680, 65536, 1610612737, 327679, 65536, 1610612737, 262138, 65536, 1, 196615, 0, 1342177281, 65533, 0, 0, 65534, 65536, 0, 65535, 131072, 0, 0, 196608, 0, -196611, 262144, 0)
+
+[node name="PixelCamera" parent="." instance=ExtResource("4_xivpw")]
+position = Vector2(-5, -21)
+zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("3_7qu7y")]
+position = Vector2(-63, -81)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(60, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_olqiw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -45.0
+offset_top = -101.0
+offset_right = 85.0
+offset_bottom = -71.0
+rotation = -0.196519
+text = "sprites wip"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_urald")
+autoplay = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.tileset-texture"
+type="AtlasTexture"
+uid="uid://xnevrtkvly07"
+path="res://.godot/imported/misc.aseprite-18316067f8eee3f236b7441378834dfb.res"
+
+[deps]
+
+source_file="res://Assets/Sprites/Tileset/misc.aseprite"
+dest_files=["res://.godot/imported/misc.aseprite-18316067f8eee3f236b7441378834dfb.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

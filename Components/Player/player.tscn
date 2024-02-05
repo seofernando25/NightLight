@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtd6vp73kwf0s"]
+
+[ext_resource type="SpriteFrames" uid="uid://dd7gyjdkfsxah" path="res://Assets/Sprites/Player/player.aseprite" id="1_e786p"]
+[ext_resource type="PackedScene" uid="uid://cuyfmkj1vmxad" path="res://Components/Misc/PlayerController/PlayerController.tscn" id="2_0bgta"]
+[ext_resource type="PackedScene" uid="uid://xrqr75oiowfu" path="res://Components/Misc/DirectionalPlayerSpriteController/DirectionalPlayerSpriteController.tscn" id="3_38oqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu4tc"]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 30)
+shape = SubResource("RectangleShape2D_xu4tc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_e786p")
+animation = &"walk_back"
+centered = false
+
+[node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_0bgta")]
+player = NodePath("..")
+
+[node name="DirectionalPlayerSpriteController" parent="." node_paths=PackedStringArray("animated_sprite", "rigid_body") instance=ExtResource("3_38oqt")]
+animated_sprite = NodePath("../AnimatedSprite2D")
+rigid_body = NodePath("..")
