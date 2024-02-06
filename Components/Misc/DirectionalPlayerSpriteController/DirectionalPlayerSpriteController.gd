@@ -12,8 +12,14 @@ func is_moving(val):
 
 
 func _process(_delta):
-	if is_moving(rigid_body.velocity.y):
+	var running = Input.is_action_pressed("ui_accept")
+
+	if running:
+		animated_sprite.speed_scale = 2
+	else:
 		animated_sprite.speed_scale = 1
+
+	if is_moving(rigid_body.velocity.y):
 		last_side = 0
 		if rigid_body.velocity.y < 0:
 			animated_sprite.play("walk_up")
@@ -23,7 +29,6 @@ func _process(_delta):
 			flip_y = 1
 		return
 	if is_moving(rigid_body.velocity.x):
-		animated_sprite.speed_scale = 1
 		last_side = 1
 		if rigid_body.velocity.x > 0:
 			animated_sprite.flip_h = true

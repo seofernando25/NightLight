@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=15 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
 [ext_resource type="PackedScene" uid="uid://we13u3gvw2e2" path="res://Components/UI/Textbox/textbox.tscn" id="8_axfum"]
 [ext_resource type="PackedScene" uid="uid://ddpglmi01eeah" path="res://Levels/level_2.tscn" id="9_orfn7"]
+[ext_resource type="PackedScene" uid="uid://cterbkvwpnclm" path="res://Levels/level_3.tscn" id="10_ymg2r"]
+[ext_resource type="PackedScene" uid="uid://cxio1r8gqenn2" path="res://Levels/level_4.tscn" id="11_ghnft"]
 
 [sub_resource type="Animation" id="Animation_y0tb3"]
 resource_name = "fade_in"
@@ -66,15 +68,12 @@ bus = &"BGM"
 position = Vector2(640, 0)
 
 [node name="Level2" parent="." instance=ExtResource("9_orfn7")]
-position = Vector2(640, 480)
+position = Vector2(640, 960)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
 color = Color(0.258824, 0.258824, 0.258824, 1)
 blend_mode = 2
-
-[node name="Player" parent="." instance=ExtResource("8_527hk")]
-position = Vector2(960, 320)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -100,3 +99,12 @@ visible = false
 libraries = {
 "": SubResource("AnimationLibrary_yqn6y")
 }
+
+[node name="Level3" parent="." instance=ExtResource("10_ymg2r")]
+position = Vector2(640, 480)
+
+[node name="Level4" parent="." instance=ExtResource("11_ghnft")]
+position = Vector2(1280, 480)
+
+[node name="Player" parent="." instance=ExtResource("8_527hk")]
+position = Vector2(1380, 740)

@@ -7,15 +7,16 @@ func _ready():
 	pass # Replace with function body.
 
 var motion = Vector2.ZERO
-
+var running = false
 func _process(__delta):
 	if not PlayerFlags.movement_enabled:
 		return
+	running = Input.is_action_pressed("ui_accept")
 	motion.x = Input.get_action_strength("direction_right") - Input.get_action_strength("direction_left")
 	motion.y = Input.get_action_strength("direction_down") - Input.get_action_strength("direction_up")
 
 func _physics_process(delta):
-	player.velocity = motion.normalized() * speed * delta
+	player.velocity = motion.normalized() * delta * (speed * (1 + int(running)))
 	player.move_and_slide()
 	motion = Vector2.ZERO
 
