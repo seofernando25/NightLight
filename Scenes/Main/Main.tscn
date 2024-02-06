@@ -67,8 +67,8 @@ autoplay = true
 position = Vector2(640, 0)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-enabled = false
-color = Color(0.290196, 0.290196, 0.290196, 1)
+visible = false
+color = Color(0.258824, 0.258824, 0.258824, 1)
 blend_mode = 2
 
 [node name="TeleportZone" parent="." node_paths=PackedStringArray("teleport_to", "animation_player") instance=ExtResource("7_yk3s6")]
@@ -84,7 +84,7 @@ shape = SubResource("RectangleShape2D_ka4sp")
 position = Vector2(20, 140)
 
 [node name="Player" parent="." instance=ExtResource("8_527hk")]
-position = Vector2(760, 260)
+position = Vector2(980, 340)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
