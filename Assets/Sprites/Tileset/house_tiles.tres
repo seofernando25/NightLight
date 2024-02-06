@@ -1,7 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c1bkkldsib3b8"]
 
 [ext_resource type="Texture2D" uid="uid://cu2ugk3fytf2e" path="res://Assets/Sprites/Tileset/house_tiles.png" id="1_v01l3"]
-[ext_resource type="Texture2D" uid="uid://xone0mhaxmpk" path="res://Assets/Sprites/Tileset/furniture_1.png" id="2_xu7q7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nr0sv"]
 texture = ExtResource("1_v01l3")
@@ -70,8 +69,11 @@ texture_region_size = Vector2i(20, 20)
 1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7w1te"]
+load_path = "res://.godot/imported/furniture_1.png-cc4bafd3b2c8e30bd13c57c99528d325.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t31cb"]
-texture = ExtResource("2_xu7q7")
+texture = SubResource("CompressedTexture2D_7w1te")
 texture_region_size = Vector2i(20, 20)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
