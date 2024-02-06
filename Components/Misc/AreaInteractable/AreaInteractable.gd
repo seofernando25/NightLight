@@ -1,7 +1,6 @@
 extends Area2D
 
-@export var text: String = "Hello, World!"
+@export var dialog  = Dialog.new("Hello, World!", ["Ok?", "Hello world!"])
 
-
-func _on_body_entered(body:Node2D):
-	print("Hello, World!")
+func _on_body_entered(_body:Node2D):
+	PlayerFlags.dialog_start.emit(dialog)

@@ -11,8 +11,8 @@ var motion = Vector2.ZERO
 func _process(__delta):
 	if not PlayerFlags.movement_enabled:
 		return
-	motion.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	motion.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	motion.x = Input.get_action_strength("direction_right") - Input.get_action_strength("direction_left")
+	motion.y = Input.get_action_strength("direction_down") - Input.get_action_strength("direction_up")
 
 func _physics_process(delta):
 	player.velocity = motion.normalized() * speed * delta

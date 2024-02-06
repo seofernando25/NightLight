@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6bhfgkf5q6e5" path="res://Levels/level_1.tscn" id="6_lhp7k"]
 [ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
 [ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
-[ext_resource type="Texture2D" uid="uid://s13k8te8vy7f" path="res://Tools/sam_tts/static/favicon.png" id="8_atq3m"]
+[ext_resource type="PackedScene" uid="uid://we13u3gvw2e2" path="res://Components/UI/Textbox/textbox.tscn" id="8_axfum"]
 [ext_resource type="PackedScene" path="res://Levels/level_2.tscn" id="9_orfn7"]
 
 [sub_resource type="Animation" id="Animation_y0tb3"]
@@ -58,6 +58,7 @@ follow = NodePath("../Player")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_urald")
 autoplay = true
+bus = &"BGM"
 
 [node name="Level0" parent="." instance=ExtResource("5_nkdhs")]
 
@@ -89,40 +90,8 @@ offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 0)
 
-[node name="Textbox" type="ColorRect" parent="CanvasLayer"]
-offset_top = 340.0
-offset_right = 640.0
-offset_bottom = 480.0
-color = Color(0, 0, 0, 0.678431)
-
-[node name="Label" type="Label" parent="CanvasLayer/Textbox"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 140.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Oh no, sweetie... that was me, Dad got called into work today... He'll be here later, he'd never miss his angel's birthday party
-"
-autowrap_mode = 2
-
-[node name="Label2" type="Label" parent="CanvasLayer/Textbox"]
-layout_mode = 0
-offset_left = 120.0
-offset_right = 140.0
-offset_bottom = 30.0
-text = "*"
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Textbox"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 120.0
-offset_bottom = 120.0
-texture = ExtResource("8_atq3m")
-expand_mode = 1
+[node name="Textbox" parent="CanvasLayer" instance=ExtResource("8_axfum")]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
