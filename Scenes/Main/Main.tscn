@@ -1,33 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=7 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
-[ext_resource type="TileSet" uid="uid://b1gqgh5dyo33r" path="res://Assets/Sprites/Tileset/misc_bg.tres" id="2_dt8kj"]
-[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="3_7qu7y"]
 [ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="4_xivpw"]
+[ext_resource type="PackedScene" uid="uid://dlmf6msfj7h0g" path="res://Levels/level_0.tscn" id="5_5hcmb"]
 [ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olqiw"]
 size = Vector2(60, 40)
 
 [node name="Main" type="Node2D"]
-position = Vector2(5, 1)
 script = ExtResource("1_51ueg")
 introScene = ExtResource("1_p3dy8")
 
-[node name="Bg" type="TileMap" parent="."]
-tile_set = ExtResource("2_dt8kj")
-format = 2
-layer_0/tile_data = PackedInt32Array(65539, 131072, 1, -65543, 0, 1, -327688, 0, 1, -393220, 65536, 1, -458752, 65536, 1, 5, 131072, 1, -131068, 131072, 1, -131070, 131072, 1, 1, 131072, 1, -131069, 65536, 1, -327678, 0, 1342177281, -327680, 65536, 1610612737, 327679, 65536, 1610612737, 262138, 65536, 1, 196615, 0, 1342177281, 65533, 0, 0, 65534, 65536, 0, 65535, 131072, 0, 0, 196608, 0, -196611, 262144, 0, -458745, 262144, 0, 65546, 65536, 1, -327668, 65536, 1, -458758, 0, 1, 589810, 0, 1, 65523, 0, 1, -458765, 0, 1, -393229, 0, 1, -655373, 0, 1, 196599, 0, 1, 262135, 0, 1, 589818, 0, 1, 393224, 0, 1, 524300, 0, 1342177281, 589827, 0, 1342177281, 458752, 0, 805306369, -655361, 65536, 1342177281, -720888, 65536, 1342177281, -720907, 262144, 1342177280)
-
 [node name="PixelCamera" parent="." instance=ExtResource("4_xivpw")]
-position = Vector2(-5, -21)
-
-[node name="Player" parent="." instance=ExtResource("3_7qu7y")]
-position = Vector2(-63, -81)
+anchor_mode = 0
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(60, 0)
+position = Vector2(-175, -131)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(10, 0)
@@ -44,5 +34,7 @@ text = "sprites wip"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_urald")
 autoplay = true
+
+[node name="Level0" parent="." instance=ExtResource("5_5hcmb")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

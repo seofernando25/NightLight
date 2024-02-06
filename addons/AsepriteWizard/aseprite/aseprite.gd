@@ -198,7 +198,7 @@ func test_command():
 
 
 func is_valid_spritesheet(content):
-	return content.has("frames") and content.has("meta") and content.meta.has('image')
+	return content != null and content.has("frames") and content.has("meta") and content.meta.has('image')
 
 
 func get_content_frames(content):
