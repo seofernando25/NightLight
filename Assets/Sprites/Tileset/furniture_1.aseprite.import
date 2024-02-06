@@ -1,16 +1,14 @@
 [remap]
 
-importer="aseprite_wizard.plugin.static-texture"
-type="AtlasTexture"
-uid="uid://b1remjnt4b6fq"
-path="res://.godot/imported/furniture_1.aseprite-49b2110305cec49be1ee07dd877926d9.res"
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cf1mlp22cxh3i"
+path="res://.godot/imported/furniture_1.aseprite-9e119309f40dd760dde80cfb09e1e96b.res"
 
 [deps]
 
-source_file="res://Assets/Sprites/Tileset/furniture_1.aseprite"
-dest_files=["res://.godot/imported/furniture_1.aseprite-49b2110305cec49be1ee07dd877926d9.res"]
+source_file="res://Tiled/House/furniture_1.aseprite"
+dest_files=["res://.godot/imported/furniture_1.aseprite-9e119309f40dd760dde80cfb09e1e96b.res"]
 
 [params]
 
-exclude_layers_pattern=""
-only_visible_layers=false

@@ -1,16 +1,14 @@
 [remap]
 
-importer="aseprite_wizard.plugin.static-texture"
-type="AtlasTexture"
-uid="uid://c3f0bxau6wwu7"
-path="res://.godot/imported/house_tiles.aseprite-18fe4bb881b891396083691c79127213.res"
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bqrqu46456ref"
+path="res://.godot/imported/house_tiles.aseprite-770886980261dae2dab4d795c3ee3a1b.res"
 
 [deps]
 
-source_file="res://Assets/Sprites/Tileset/house_tiles.aseprite"
-dest_files=["res://.godot/imported/house_tiles.aseprite-18fe4bb881b891396083691c79127213.res"]
+source_file="res://Tiled/House/house_tiles.aseprite"
+dest_files=["res://.godot/imported/house_tiles.aseprite-770886980261dae2dab4d795c3ee3a1b.res"]
 
 [params]
 
-exclude_layers_pattern=""
-only_visible_layers=false
