@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=13 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
@@ -6,12 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dlmf6msfj7h0g" path="res://Levels/level_0.tscn" id="5_nkdhs"]
 [ext_resource type="PackedScene" uid="uid://c6bhfgkf5q6e5" path="res://Levels/level_1.tscn" id="6_lhp7k"]
 [ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
-[ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="7_yk3s6"]
 [ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
-[ext_resource type="PackedScene" uid="uid://ddpglmi01eeah" path="res://Levels/level_2.tscn" id="9_orfn7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka4sp"]
-size = Vector2(60, 20)
+[ext_resource type="Texture2D" uid="uid://s13k8te8vy7f" path="res://Tools/sam_tts/static/favicon.png" id="8_atq3m"]
+[ext_resource type="PackedScene" path="res://Levels/level_2.tscn" id="9_orfn7"]
 
 [sub_resource type="Animation" id="Animation_y0tb3"]
 resource_name = "fade_in"
@@ -72,20 +69,8 @@ visible = false
 color = Color(0.258824, 0.258824, 0.258824, 1)
 blend_mode = 2
 
-[node name="TeleportZone" parent="." node_paths=PackedStringArray("teleport_to", "animation_player") instance=ExtResource("7_yk3s6")]
-position = Vector2(840, 381)
-teleport_to = NodePath("../Bedroom-LivingRoom")
-animation_player = NodePath("../CanvasLayer/AnimationPlayer")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone"]
-position = Vector2(30, 10)
-shape = SubResource("RectangleShape2D_ka4sp")
-
-[node name="Bedroom-LivingRoom" type="Node2D" parent="."]
-position = Vector2(20, 140)
-
 [node name="Player" parent="." instance=ExtResource("8_527hk")]
-position = Vector2(980, 340)
+position = Vector2(960, 320)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -103,6 +88,41 @@ horizontal_alignment = 2
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 0)
+
+[node name="Textbox" type="ColorRect" parent="CanvasLayer"]
+offset_top = 340.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0.678431)
+
+[node name="Label" type="Label" parent="CanvasLayer/Textbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Oh no, sweetie... that was me, Dad got called into work today... He'll be here later, he'd never miss his angel's birthday party
+"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Textbox"]
+layout_mode = 0
+offset_left = 120.0
+offset_right = 140.0
+offset_bottom = 30.0
+text = "*"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Textbox"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 120.0
+texture = ExtResource("8_atq3m")
+expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
