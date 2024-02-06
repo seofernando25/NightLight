@@ -9,6 +9,8 @@ func _ready():
 var motion = Vector2.ZERO
 
 func _process(__delta):
+	if not PlayerFlags.movement_enabled:
+		return
 	motion.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	motion.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 

@@ -1,14 +1,11 @@
 extends Camera2D
 
-var pixel_size: int = 1
-
+@export var follow: Node2D = null
+var step_x = 640
+var step_y = 480
 
 func _process(_delta):
-	position = Vector2.ZERO
-	var top_left = global_position - get_viewport_rect().size / 2
-	top_left.x = int(top_left.x)
-	top_left.y = int(top_left.y)
-
-	# Set the camera position to the rounded top left corner
-	global_position = top_left + get_viewport_rect().size / 2
-
+	if follow:
+		global_position = follow.global_position
+		global_position.x = step_x * int(global_position.x / step_x)
+		global_position.y = step_y * int(global_position.y / step_y)

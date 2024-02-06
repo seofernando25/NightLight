@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://c3f0bxau6wwu7"
+path="res://.godot/imported/house_tiles.aseprite-18fe4bb881b891396083691c79127213.res"
+
+[deps]
+
+source_file="res://Assets/Sprites/Tileset/house_tiles.aseprite"
+dest_files=["res://.godot/imported/house_tiles.aseprite-18fe4bb881b891396083691c79127213.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

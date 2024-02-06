@@ -8,10 +8,6 @@
 
 config_version=5
 
-[addons]
-
-metroidvania_system/settings_file="res://Levels/MetSysSettings.tres"
-
 [application]
 
 config/name="NightLight"
@@ -24,7 +20,7 @@ buses/default_bus_layout="res://Configurations/audio_bus.tres"
 
 [autoload]
 
-MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
+PlayerFlags="*res://Components/Globals/PlayerFlags.gd"
 
 [display]
 

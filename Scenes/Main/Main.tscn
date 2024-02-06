@@ -1,40 +1,109 @@
-[gd_scene load_steps=7 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=13 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
 [ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="4_xivpw"]
-[ext_resource type="PackedScene" uid="uid://dlmf6msfj7h0g" path="res://Levels/level_0.tscn" id="5_5hcmb"]
+[ext_resource type="PackedScene" uid="uid://dlmf6msfj7h0g" path="res://Levels/level_0.tscn" id="5_nkdhs"]
+[ext_resource type="PackedScene" uid="uid://c6bhfgkf5q6e5" path="res://Levels/level_1.tscn" id="6_lhp7k"]
 [ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
+[ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="7_yk3s6"]
+[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_olqiw"]
-size = Vector2(60, 40)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka4sp"]
+size = Vector2(60, 20)
+
+[sub_resource type="Animation" id="Animation_y0tb3"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_30o7y"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqn6y"]
+_data = {
+"fade_in": SubResource("Animation_y0tb3"),
+"fade_out": SubResource("Animation_30o7y")
+}
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_51ueg")
 introScene = ExtResource("1_p3dy8")
 
-[node name="PixelCamera" parent="." instance=ExtResource("4_xivpw")]
+[node name="PixelCamera" parent="." node_paths=PackedStringArray("follow") instance=ExtResource("4_xivpw")]
+position = Vector2(760, 260)
 anchor_mode = 0
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-175, -131)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(10, 0)
-shape = SubResource("RectangleShape2D_olqiw")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -45.0
-offset_top = -101.0
-offset_right = 85.0
-offset_bottom = -71.0
-rotation = -0.196519
-text = "sprites wip"
+follow = NodePath("../Player")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_urald")
 autoplay = true
 
-[node name="Level0" parent="." instance=ExtResource("5_5hcmb")]
+[node name="Level0" parent="." instance=ExtResource("5_nkdhs")]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="Level1" parent="." instance=ExtResource("6_lhp7k")]
+position = Vector2(640, 0)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+enabled = false
+color = Color(0.290196, 0.290196, 0.290196, 1)
+blend_mode = 2
+
+[node name="TeleportZone" parent="." node_paths=PackedStringArray("teleport_to", "animation_player") instance=ExtResource("7_yk3s6")]
+position = Vector2(840, 381)
+teleport_to = NodePath("../Bedroom-LivingRoom")
+animation_player = NodePath("../CanvasLayer/AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone"]
+position = Vector2(30, 10)
+shape = SubResource("RectangleShape2D_ka4sp")
+
+[node name="Bedroom-LivingRoom" type="Node2D" parent="."]
+position = Vector2(20, 140)
+
+[node name="Player" parent="." instance=ExtResource("8_527hk")]
+position = Vector2(760, 260)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 30.0
+grow_horizontal = 0
+text = "room name"
+horizontal_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_yqn6y")
+}

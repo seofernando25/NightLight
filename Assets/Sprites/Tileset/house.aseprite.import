@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://chts0htcgbmmk"
+path="res://.godot/imported/house.aseprite-c96821a7a8889a4b90ab6123ccc640f0.res"
+
+[deps]
+
+source_file="res://Assets/Sprites/Tileset/house.aseprite"
+dest_files=["res://.godot/imported/house.aseprite-c96821a7a8889a4b90ab6123ccc640f0.res"]
+
+[params]
+
