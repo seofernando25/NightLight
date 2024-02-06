@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=14 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="7_yk3s6"]
 [ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
+[ext_resource type="PackedScene" uid="uid://ddpglmi01eeah" path="res://Levels/level_2.tscn" id="9_orfn7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka4sp"]
 size = Vector2(60, 20)
@@ -107,3 +108,6 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_yqn6y")
 }
+
+[node name="Level2" parent="." instance=ExtResource("9_orfn7")]
+position = Vector2(640, 480)
