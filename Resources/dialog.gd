@@ -3,6 +3,7 @@ class_name  Dialog
 
 @export_multiline var text = "..."
 @export var options: Array[String]
+@export var name: String = ""
 @export var portrait: Texture2D = null
 @export var voice_set: VoiceSet = null
 

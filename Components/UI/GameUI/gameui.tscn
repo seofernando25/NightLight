@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf85vr1gcj5us"]
+[gd_scene load_steps=9 format=3 uid="uid://cf85vr1gcj5us"]
 
 [ext_resource type="Script" path="res://Components/UI/GameUI/gameui.gd" id="1_4xm33"]
 [ext_resource type="PackedScene" uid="uid://we13u3gvw2e2" path="res://Components/UI/Textbox/textbox.tscn" id="1_uhic6"]
+[ext_resource type="Script" path="res://Components/UI/GameUI/UIAnimationPlayer.gd" id="2_ucmyp"]
 [ext_resource type="Shader" path="res://Shaders/Scanlines.gdshader" id="3_8awdt"]
 
 [sub_resource type="Animation" id="Animation_y0tb3"]
@@ -64,15 +65,17 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.004
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_4xm33")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 30.0
+offset_left = -160.0
+offset_top = 20.0
+offset_right = -36.0
+offset_bottom = 50.0
 grow_horizontal = 0
 text = "room name"
 horizontal_alignment = 2
@@ -83,10 +86,10 @@ offset_bottom = 480.0
 color = Color(0, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_yqn6y")
 }
+script = ExtResource("2_ucmyp")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_7bdip")

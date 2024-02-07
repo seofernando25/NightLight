@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d27k7cgx7y21g"]
+
+[ext_resource type="PackedScene" uid="uid://cterbkvwpnclm" path="res://Levels/house/tophall.tscn" id="1_djtn3"]
+[ext_resource type="PackedScene" uid="uid://crnt0d5i06yhf" path="res://Levels/house/top_washroom.tscn" id="2_er53i"]
+[ext_resource type="PackedScene" uid="uid://ddpglmi01eeah" path="res://Levels/house/living.tscn" id="3_m66sx"]
+[ext_resource type="PackedScene" uid="uid://c6bhfgkf5q6e5" path="res://Levels/house/avery_room.tscn" id="4_jjao6"]
+
+[node name="House" type="Node2D"]
+
+[node name="tophall" parent="." instance=ExtResource("1_djtn3")]
+position = Vector2(0, 480)
+
+[node name="top_washroom" parent="." instance=ExtResource("2_er53i")]
+position = Vector2(640, 0)
+
+[node name="living" parent="." instance=ExtResource("3_m66sx")]
+position = Vector2(0, 960)
+
+[node name="avery_room" parent="." instance=ExtResource("4_jjao6")]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtd6vp73kwf0s"]
 
 [ext_resource type="SpriteFrames" uid="uid://dd7gyjdkfsxah" path="res://Assets/Sprites/Player/player.aseprite" id="1_e786p"]
-[ext_resource type="PackedScene" uid="uid://cuyfmkj1vmxad" path="res://Components/Misc/PlayerController/PlayerController.tscn" id="2_0bgta"]
+[ext_resource type="PackedScene" uid="uid://cuyfmkj1vmxad" path="res://Components/Misc/PlayerMovement/PlayerMovement.tscn" id="2_xhh1x"]
 [ext_resource type="PackedScene" uid="uid://xrqr75oiowfu" path="res://Components/Misc/DirectionalPlayerSpriteController/DirectionalPlayerSpriteController.tscn" id="3_38oqt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu4tc"]
@@ -19,9 +19,8 @@ position = Vector2(0, -34)
 sprite_frames = ExtResource("1_e786p")
 animation = &"walk_forward"
 
-[node name="PlayerController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_0bgta")]
+[node name="PlayerMovement" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_xhh1x")]
 player = NodePath("..")
-speed = 2500.0
 
 [node name="DirectionalPlayerSpriteController" parent="." node_paths=PackedStringArray("animated_sprite", "rigid_body") instance=ExtResource("3_38oqt")]
 animated_sprite = NodePath("../AnimatedSprite2D")

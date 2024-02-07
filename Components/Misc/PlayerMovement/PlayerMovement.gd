@@ -1,7 +1,10 @@
 extends Node
+class_name PlayerMovement
 
 @export var player: CharacterBody2D
 @export var speed: float =  20 * 100
+
+static var controller_enabled = true
 
 func _ready():
 	pass # Replace with function body.
@@ -9,7 +12,7 @@ func _ready():
 var motion = Vector2.ZERO
 var running = false
 func _process(__delta):
-	if not PlayerFlags.movement_enabled:
+	if not controller_enabled:
 		return
 	running = Input.is_action_pressed("ui_accept")
 	motion.x = Input.get_action_strength("direction_right") - Input.get_action_strength("direction_left")

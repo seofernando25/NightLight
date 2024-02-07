@@ -97,14 +97,14 @@ func _on_dialog_start(dialog: Dialog):
 	is_dialoging = true
 	portrait.texture = dialog.portrait
 	visible = true
-	PlayerFlags.movement_enabled = false
+	PlayerMovement.controller_enabled = false
 	typewriter.text = ""
 	typewriter.to_type = dialog.text
 	typewriter.stop_typing()
 	typewriter.start_typing()
 	await typewriter.typing_finished
 	await req_end_current_dialog
-	PlayerFlags.movement_enabled = true
+	PlayerMovement.controller_enabled = true
 	typewriter.set_char_delay(0.05)
 	visible = false
 	is_dialoging = false

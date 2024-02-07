@@ -1,17 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=11 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
 [ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="4_xivpw"]
-[ext_resource type="PackedScene" uid="uid://dlmf6msfj7h0g" path="res://Levels/level_0.tscn" id="5_nkdhs"]
-[ext_resource type="PackedScene" uid="uid://c6bhfgkf5q6e5" path="res://Levels/avery_room.tscn" id="6_lhp7k"]
+[ext_resource type="PackedScene" uid="uid://d27k7cgx7y21g" path="res://Levels/house/house.tscn" id="7_0r3ks"]
 [ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
 [ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
 [ext_resource type="PackedScene" uid="uid://cf85vr1gcj5us" path="res://Components/UI/GameUI/gameui.tscn" id="8_s6he6"]
-[ext_resource type="PackedScene" uid="uid://ddpglmi01eeah" path="res://Levels/living.tscn" id="9_orfn7"]
-[ext_resource type="PackedScene" uid="uid://cterbkvwpnclm" path="res://Levels/tophall.tscn" id="10_ymg2r"]
-[ext_resource type="PackedScene" uid="uid://cxio1r8gqenn2" path="res://Levels/level_4.tscn" id="11_ghnft"]
-[ext_resource type="PackedScene" uid="uid://crnt0d5i06yhf" path="res://Levels/top_washroom/top_washroom.tscn" id="12_0r6da"]
 
 [sub_resource type="Gradient" id="Gradient_xooqq"]
 offsets = PackedFloat32Array(0, 0.414868, 0.527578, 0.642686)
@@ -41,27 +36,16 @@ stream = ExtResource("7_urald")
 autoplay = true
 bus = &"BGM"
 
-[node name="Level0" parent="." instance=ExtResource("5_nkdhs")]
+[node name="GameUI" parent="." instance=ExtResource("8_s6he6")]
 
-[node name="avery_room" parent="." instance=ExtResource("6_lhp7k")]
-position = Vector2(640, 0)
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.396078, 0.396078, 0.396078, 1)
 
-[node name="Level2" parent="." instance=ExtResource("9_orfn7")]
-position = Vector2(640, 960)
-
-[node name="CanvasLayer" parent="." instance=ExtResource("8_s6he6")]
-
-[node name="tophall" parent="." instance=ExtResource("10_ymg2r")]
-position = Vector2(640, 480)
-
-[node name="Level4" parent="." instance=ExtResource("11_ghnft")]
-position = Vector2(1280, 480)
-
-[node name="top_washroom" parent="." instance=ExtResource("12_0r6da")]
-position = Vector2(1280, 0)
+[node name="House" parent="." instance=ExtResource("7_0r3ks")]
 
 [node name="Player" parent="." instance=ExtResource("8_527hk")]
-position = Vector2(975, 374)
+position = Vector2(315, 336)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 visible = false
@@ -69,16 +53,13 @@ position = Vector2(0, -16)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_gualm")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.396078, 0.396078, 0.396078, 1)
-
 [node name="CutsceneTrigger" type="Area2D" parent="."]
+position = Vector2(279, 1238)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
-position = Vector2(884, 1249)
+position = Vector2(-4, 1)
 shape = SubResource("RectangleShape2D_ynwes")
 
 [connection signal="body_entered" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_body_entered"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://crnt0d5i06yhf"]
 
-[ext_resource type="Script" path="res://Levels/top_washroom/top_washroom.gd" id="1_oc8xj"]
+[ext_resource type="Script" path="res://Levels/house/top_washroom.gd" id="1_oc8xj"]
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="2_fsobs"]
-[ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/Misc/AreaInteractable/AreaInteractable.tscn" id="3_vuwm7"]
+[ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/DialogHelpers/AreaInteractable/AreaInteractable.tscn" id="3_vuwm7"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="4_ewxte"]
 [ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Assets/Sprites/Portraits/avery.png" id="4_fj0d7"]
 [ext_resource type="Script" path="res://Resources/dialog.gd" id="4_wmd5t"]
