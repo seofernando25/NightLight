@@ -1,65 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=4 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
-[ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="4_xivpw"]
-[ext_resource type="PackedScene" uid="uid://d27k7cgx7y21g" path="res://Levels/house/house.tscn" id="7_0r3ks"]
-[ext_resource type="AudioStream" uid="uid://cyrbrkr344mre" path="res://Audio/Ambient2/ambient2.wav" id="7_urald"]
-[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="8_527hk"]
-[ext_resource type="PackedScene" uid="uid://cf85vr1gcj5us" path="res://Components/UI/GameUI/gameui.tscn" id="8_s6he6"]
-
-[sub_resource type="Gradient" id="Gradient_xooqq"]
-offsets = PackedFloat32Array(0, 0.414868, 0.527578, 0.642686)
-colors = PackedColorArray(0.611765, 0.388235, 0.345098, 0.270588, 0.0991127, 0.0628985, 0.0559097, 0.881827, 0.0144929, 0.00919742, 0.00817548, 0.98272, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gualm"]
-gradient = SubResource("Gradient_xooqq")
-width = 320
-height = 320
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynwes"]
-size = Vector2(20, 114)
+[ext_resource type="PackedScene" uid="uid://57f4sgtmtu7g" path="res://Scenes/Menu/menu.tscn" id="4_vb80l"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_51ueg")
 introScene = ExtResource("1_p3dy8")
 
-[node name="PixelCamera" parent="." node_paths=PackedStringArray("follow") instance=ExtResource("4_xivpw")]
-position = Vector2(760, 260)
-anchor_mode = 0
-follow = NodePath("../Player")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_urald")
-autoplay = true
-bus = &"BGM"
-
-[node name="GameUI" parent="." instance=ExtResource("8_s6he6")]
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.396078, 0.396078, 0.396078, 1)
-
-[node name="House" parent="." instance=ExtResource("7_0r3ks")]
-
-[node name="Player" parent="." instance=ExtResource("8_527hk")]
-position = Vector2(315, 336)
-
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
-visible = false
-position = Vector2(0, -16)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_gualm")
-
-[node name="CutsceneTrigger" type="Area2D" parent="."]
-position = Vector2(279, 1238)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
-position = Vector2(-4, 1)
-shape = SubResource("RectangleShape2D_ynwes")
-
-[connection signal="body_entered" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_body_entered"]
+[node name="Menu" parent="." instance=ExtResource("4_vb80l")]

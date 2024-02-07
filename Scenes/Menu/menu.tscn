@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://57f4sgtmtu7g"]
+
+[ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Assets/Sprites/UI/menu_bg.png" id="1_fkt7h"]
+[ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_gttxn"]
+[ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Assets/Sprites/UI/floating_girl.png" id="2_6g6wh"]
+[ext_resource type="PackedScene" uid="uid://d27k7cgx7y21g" path="res://Levels/house/house.tscn" id="2_kpdr4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_priya"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.968734, 0.81973, 0.678553, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xh7ea"]
+font_size = 96
+font_color = Color(0.968734, 0.81973, 0.678553, 1)
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_gttxn")
+newJourneyScene = ExtResource("2_kpdr4")
+
+[node name="MenuBg" type="Sprite2D" parent="."]
+position = Vector2(320, 240)
+texture = ExtResource("1_fkt7h")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.031
+anchor_top = 0.042
+anchor_right = 0.969
+anchor_bottom = 0.958
+offset_left = 0.16
+offset_top = -0.160002
+offset_right = -0.160034
+offset_bottom = 0.159973
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_priya")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+anchor_right = 0.967
+anchor_bottom = 0.955
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 19.8
+offset_bottom = 19.8
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Night Light"
+label_settings = SubResource("LabelSettings_xh7ea")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 16
+
+[node name="New Journey" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "NEW JOURNEY"
+
+[node name="Options" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[node name="FloatingGirl" type="Sprite2D" parent="."]
+position = Vector2(381, 291)
+scale = Vector2(0.572754, 0.572754)
+texture = ExtResource("2_6g6wh")
+
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/New Journey" to="." method="_on_new_journey_pressed"]
