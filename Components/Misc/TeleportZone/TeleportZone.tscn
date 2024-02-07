@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Components/Misc/TeleportZone/TeleportZone.gd" id="1_extuu"]
 
 [node name="TeleportZone" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_extuu")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

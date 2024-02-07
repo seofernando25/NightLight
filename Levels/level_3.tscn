@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cterbkvwpnclm"]
+[gd_scene load_steps=6 format=3 uid="uid://cterbkvwpnclm"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_xxovt"]
+[ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="2_7gaid"]
 
 [sub_resource type="Gradient" id="Gradient_ty3co"]
 offsets = PackedFloat32Array(0.025974, 1)
@@ -12,6 +13,9 @@ width = 640
 height = 480
 fill_from = Vector2(0.486239, 0.642202)
 fill_to = Vector2(0.46789, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61278"]
+size = Vector2(40, 26)
 
 [node name="Level3" type="Node2D"]
 
@@ -43,3 +47,12 @@ layer_0/tile_data = PackedInt32Array(524295, 262147, 1, 589831, 262147, 2, 52429
 tile_set = ExtResource("1_xxovt")
 format = 2
 layer_0/tile_data = PackedInt32Array(458761, 524291, 4, 524297, 524291, 5, 327697, 524291, 4, 393233, 524291, 5, 393234, 458755, 4, 393236, 262147, 0, 393224, 327683, 0, 393241, 327683, 0, 983051, 458755, 5, 983047, 458755, 5, 851994, 458755, 5)
+
+[node name="TeleportZone" parent="." instance=ExtResource("2_7gaid")]
+position = Vector2(240, 200)
+zone_name = "top_hall"
+teleport_to = "avery_room"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_61278")

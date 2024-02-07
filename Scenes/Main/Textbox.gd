@@ -12,9 +12,10 @@ func _ready():
 	PlayerFlags.dialog_start.connect(_on_dialog_start)
 	typewriter.on_type_char.connect(_on_type_char)
 
+var speaking = false
 func _on_type_char(character):
 	# Ignore \n and space 
-	if character == "\n" or character == " ":
+	if character == "\n" or character == " " or speaking:
 		return
 
 	# If current_dialog doesn't have a voice
@@ -30,6 +31,9 @@ func _on_type_char(character):
 	# Set a random pitch between 0.8 and 1.6
 	audioPlayer.pitch_scale = randf_range(0.8, 1.6)
 	audioPlayer.play()
+	# speaking = true
+	await audioPlayer.finished
+	# speaking = false
 
 signal req_end_current_dialog
 func _unhandled_input(event):
