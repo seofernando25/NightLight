@@ -5,7 +5,7 @@ class_name TeleportZone
 @export var teleport_to: String = "default"
 
 func _ready():
-	TeleportManager.setTeleportZone(zone_name, self)
+	TeleportManager.setTeleportZone(zone_name + "_" + teleport_to, self)
 
 
 func _on_body_entered(body:Node2D):
@@ -14,7 +14,7 @@ func _on_body_entered(body:Node2D):
 		print("TeleportZone: Teleport on cooldown")
 		return
 	PlayerFlags.last_teleport_time = Time.get_ticks_msec()
-	var targetLocation = TeleportManager.getTeleportZone(teleport_to)
+	var targetLocation = TeleportManager.getTeleportZone(teleport_to + "_" + zone_name)
 	if not targetLocation:
 		print("TeleportZone: No teleport zone found with name: " + teleport_to)
 		return

@@ -53,8 +53,8 @@ layer_0/tile_data = PackedInt32Array(458761, 524291, 4, 524297, 524291, 5, 32769
 
 [node name="TeleportZone" parent="." instance=ExtResource("2_7gaid")]
 position = Vector2(240, 200)
-zone_name = "tophall_averyroom"
-teleport_to = "averyroom_"
+zone_name = "tophall"
+teleport_to = "avery_room"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone"]
 position = Vector2(0, -26)
@@ -62,8 +62,8 @@ shape = SubResource("RectangleShape2D_61278")
 
 [node name="TeleportZone2" parent="." instance=ExtResource("2_7gaid")]
 position = Vector2(180, 300)
-zone_name = "tophall_living"
-teleport_to = "living_tophall"
+zone_name = "tophall"
+teleport_to = "living"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone2"]
 position = Vector2(10, 30)

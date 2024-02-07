@@ -96,8 +96,8 @@ shape = SubResource("RectangleShape2D_xqipe")
 
 [node name="TeleportZone" parent="." instance=ExtResource("6_8754k")]
 position = Vector2(240, 340)
-zone_name = "averyroom_tophall"
-teleport_to = "tophall_averyroom"
+zone_name = "avery_room"
+teleport_to = "tophall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone"]
 position = Vector2(-10, 50)

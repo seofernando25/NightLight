@@ -54,8 +54,8 @@ format = 2
 
 [node name="TeleportZone2" parent="." instance=ExtResource("2_6f3n2")]
 position = Vector2(180, 220)
-zone_name = "living_tophall"
-teleport_to = "tophall_living"
+zone_name = "living"
+teleport_to = "tophall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone2"]
 position = Vector2(0, -100)
