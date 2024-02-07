@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6bhfgkf5q6e5"]
+[gd_scene load_steps=10 format=3 uid="uid://c6bhfgkf5q6e5"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_8bsq8"]
 [ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/Misc/AreaInteractable/AreaInteractable.tscn" id="2_nsc1t"]
+[ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Assets/Sprites/Portraits/avery.png" id="3_0bvw8"]
 [ext_resource type="Script" path="res://Resources/dialog.gd" id="3_pdh8c"]
+[ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="5_lwvcv"]
 
 [sub_resource type="Gradient" id="Gradient_mjn3o"]
 colors = PackedColorArray(0, 0, 0, 1, 0.0110876, 0.0110876, 0.0110876, 1)
@@ -17,7 +19,9 @@ fill_to = Vector2(0.967949, 0)
 [sub_resource type="Resource" id="Resource_bxreq"]
 script = ExtResource("3_pdh8c")
 text = "Hmm, there are so many books here. Some of them have pictures on the covers, and others have lots of words."
-options = ["Option 1", "Option 2", "Option 3"]
+options = ["SAVE", "NEVERMIND"]
+portrait = ExtResource("3_0bvw8")
+voice_set = ExtResource("5_lwvcv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wu7uw"]
 

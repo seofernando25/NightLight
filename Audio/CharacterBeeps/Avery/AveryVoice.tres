@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="VoiceSet" load_steps=12 format=3 uid="uid://ckg7uhojvepab"]
+
+[ext_resource type="Script" path="res://Resources/voice_set.gd" id="1_fhptu"]
+[ext_resource type="AudioStream" uid="uid://d3ew1rfluhkn4" path="res://Audio/CharacterBeeps/Avery/a.mp3" id="1_nkpi4"]
+[ext_resource type="AudioStream" uid="uid://jw25twyn0qur" path="res://Audio/CharacterBeeps/Avery/b.mp3" id="2_oufio"]
+[ext_resource type="AudioStream" uid="uid://cl3dx38fvn3tk" path="res://Audio/CharacterBeeps/Avery/c.mp3" id="3_f0pu8"]
+[ext_resource type="AudioStream" uid="uid://dhwy7wcu2wgpf" path="res://Audio/CharacterBeeps/Avery/d.mp3" id="4_3ocgb"]
+[ext_resource type="AudioStream" uid="uid://b672vyl2x3ydr" path="res://Audio/CharacterBeeps/Avery/e.mp3" id="5_3sc4u"]
+[ext_resource type="AudioStream" uid="uid://dvld1s87tiawj" path="res://Audio/CharacterBeeps/Avery/f.mp3" id="6_t041w"]
+[ext_resource type="AudioStream" uid="uid://mabfq8rl6q8m" path="res://Audio/CharacterBeeps/Avery/g.mp3" id="7_huw21"]
+[ext_resource type="AudioStream" uid="uid://cfna04yf5bt0h" path="res://Audio/CharacterBeeps/Avery/h.mp3" id="8_xf11l"]
+[ext_resource type="AudioStream" uid="uid://dtkm8gmpautqt" path="res://Audio/CharacterBeeps/Avery/i.mp3" id="9_wk610"]
+[ext_resource type="AudioStream" uid="uid://bmwj8gb7afdyb" path="res://Audio/CharacterBeeps/Avery/j.mp3" id="10_5r5a2"]
+
+[resource]
+script = ExtResource("1_fhptu")
+name = "Avery"
+noises = Array[AudioStream]([ExtResource("1_nkpi4"), ExtResource("2_oufio"), ExtResource("3_f0pu8"), ExtResource("4_3ocgb"), ExtResource("5_3sc4u"), ExtResource("6_t041w"), ExtResource("7_huw21"), ExtResource("8_xf11l"), ExtResource("9_wk610"), ExtResource("10_5r5a2")])

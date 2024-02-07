@@ -2,6 +2,7 @@ extends Label
 class_name Typewriter
 
 signal typing_finished
+signal on_type_char(character: String)
 
 @export var char_delay = 0.2
 @export var autostart = false
@@ -43,6 +44,7 @@ func stop_typing():
 func _on_timer_timeout():
 	elapsed_chars += 1
 	text = to_type.left(elapsed_chars)
+	on_type_char.emit(to_type[elapsed_chars - 1])
 	if elapsed_chars == to_type.length():
 		typing_finished.emit()
 		timer.stop()
