@@ -40,6 +40,8 @@ func _unhandled_input(event):
 	if not current_dialog:
 		return
 	if  event.is_action_pressed("ui_left"):
+		if current_dialog.options.size() == 0:
+			return
 		# Set modulation to white
 		for i in range(hbox.get_child_count()):
 			var label = hbox.get_child(i)
@@ -54,6 +56,8 @@ func _unhandled_input(event):
 		
 
 	if event.is_action_pressed("ui_right"):
+		if current_dialog.options.size() == 0:
+			return
 		for i in range(hbox.get_child_count()):
 			var label = hbox.get_child(i)
 			label.modulate = Color(1, 1, 1, 1)

@@ -31,7 +31,7 @@ size = Vector2(60, 20)
 script = ExtResource("3_pdh8c")
 text = "I shouldn't go to bed yet...
 I just woke up"
-options = ["SAVE", "NEVERMIND"]
+options = Array[String]([])
 portrait = ExtResource("3_0bvw8")
 voice_set = ExtResource("5_lwvcv")
 
