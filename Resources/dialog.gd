@@ -1,7 +1,7 @@
 extends Resource
 class_name  Dialog
 
-@export var text = "Hello, World!"
+@export_multiline var text = "Hello, World!"
 @export var options = ["Option 1", "Option 2", "Option 3"]
 @export var portrait: Texture2D = null
 @export var voice_set: VoiceSet = null

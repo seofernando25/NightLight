@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6bhfgkf5q6e5"]
+[gd_scene load_steps=12 format=3 uid="uid://c6bhfgkf5q6e5"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_8bsq8"]
 [ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/Misc/AreaInteractable/AreaInteractable.tscn" id="2_nsc1t"]
@@ -24,6 +24,16 @@ portrait = ExtResource("3_0bvw8")
 voice_set = ExtResource("5_lwvcv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wu7uw"]
+
+[sub_resource type="Resource" id="Resource_6qko2"]
+script = ExtResource("3_pdh8c")
+text = "I shouldn't go to bed yet...
+I just woke up"
+options = ["SAVE", "NEVERMIND"]
+portrait = ExtResource("3_0bvw8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqipe"]
+size = Vector2(68, 87)
 
 [node name="Level0" type="Node2D"]
 
@@ -67,3 +77,13 @@ dialog = SubResource("Resource_bxreq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteractable"]
 position = Vector2(30, 10)
 shape = SubResource("RectangleShape2D_wu7uw")
+
+[node name="AreaInteractable2" parent="." instance=ExtResource("2_nsc1t")]
+position = Vector2(340, 340)
+collision_layer = 0
+collision_mask = 2
+dialog = SubResource("Resource_6qko2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteractable2"]
+position = Vector2(44, -3.5)
+shape = SubResource("RectangleShape2D_xqipe")
