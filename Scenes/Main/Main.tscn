@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=16 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
@@ -24,6 +24,9 @@ height = 320
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynwes"]
+size = Vector2(20, 114)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_51ueg")
 introScene = ExtResource("1_p3dy8")
@@ -40,7 +43,7 @@ bus = &"BGM"
 
 [node name="Level0" parent="." instance=ExtResource("5_nkdhs")]
 
-[node name="Level1" parent="." instance=ExtResource("6_lhp7k")]
+[node name="avery_room" parent="." instance=ExtResource("6_lhp7k")]
 position = Vector2(640, 0)
 
 [node name="Level2" parent="." instance=ExtResource("9_orfn7")]
@@ -48,17 +51,17 @@ position = Vector2(640, 960)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("8_s6he6")]
 
-[node name="Level3" parent="." instance=ExtResource("10_ymg2r")]
+[node name="tophall" parent="." instance=ExtResource("10_ymg2r")]
 position = Vector2(640, 480)
 
 [node name="Level4" parent="." instance=ExtResource("11_ghnft")]
 position = Vector2(1280, 480)
 
-[node name="TopWashroom" parent="." instance=ExtResource("12_0r6da")]
+[node name="top_washroom" parent="." instance=ExtResource("12_0r6da")]
 position = Vector2(1280, 0)
 
 [node name="Player" parent="." instance=ExtResource("8_527hk")]
-position = Vector2(940, 280)
+position = Vector2(975, 374)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 visible = false
@@ -69,3 +72,13 @@ texture = SubResource("GradientTexture2D_gualm")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.396078, 0.396078, 0.396078, 1)
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(884, 1249)
+shape = SubResource("RectangleShape2D_ynwes")
+
+[connection signal="body_entered" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crnt0d5i06yhf"]
+[gd_scene load_steps=18 format=3 uid="uid://crnt0d5i06yhf"]
 
 [ext_resource type="Script" path="res://Levels/top_washroom/top_washroom.gd" id="1_oc8xj"]
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="2_fsobs"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Assets/Sprites/Portraits/avery.png" id="4_fj0d7"]
 [ext_resource type="Script" path="res://Resources/dialog.gd" id="4_wmd5t"]
 [ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="6_pqvw1"]
+[ext_resource type="AudioStream" uid="uid://dhwy7wcu2wgpf" path="res://Audio/CharacterBeeps/Avery/d.mp3" id="7_evkfn"]
+[ext_resource type="Script" path="res://Resources/voice_set.gd" id="8_mr3wg"]
 
 [sub_resource type="Gradient" id="Gradient_ty3co"]
 offsets = PackedFloat32Array(0.025974, 1)
@@ -21,15 +23,30 @@ fill_to = Vector2(0.46789, 0)
 
 [sub_resource type="Resource" id="Resource_xmohr"]
 script = ExtResource("4_wmd5t")
-text = "...
-                           
-I should get to mom"
+text = "My hands are clean now, I should get to mom"
 options = Array[String]([])
 portrait = ExtResource("4_fj0d7")
 voice_set = ExtResource("6_pqvw1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ih1ay"]
 size = Vector2(41, 52)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cn7bp"]
+load_path = "res://.godot/imported/avery.png-6b25e3e7255b5130cdbe3be8c1b5104d.ctex"
+
+[sub_resource type="Resource" id="Resource_ixsvr"]
+script = ExtResource("8_mr3wg")
+name = "Avery"
+noises = Array[AudioStream]([ExtResource("7_evkfn")])
+
+[sub_resource type="Resource" id="Resource_6jdxe"]
+script = ExtResource("4_wmd5t")
+text = "...
+                                        
+no"
+options = Array[String]([])
+portrait = SubResource("CompressedTexture2D_cn7bp")
+voice_set = SubResource("Resource_ixsvr")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uysf5"]
 size = Vector2(41, 24)
@@ -59,9 +76,21 @@ layer_0/tile_data = PackedInt32Array(1179658, 524288, 2, 1245194, 524288, 2, 131
 
 [node name="AreaInteractable" parent="." instance=ExtResource("3_vuwm7")]
 position = Vector2(318, 229)
+collision_layer = 0
+collision_mask = 2
 dialog = SubResource("Resource_xmohr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteractable"]
+position = Vector2(1.5, -9)
+shape = SubResource("RectangleShape2D_ih1ay")
+
+[node name="AreaInteractable2" parent="." instance=ExtResource("3_vuwm7")]
+position = Vector2(240, 240)
+collision_layer = 0
+collision_mask = 2
+dialog = SubResource("Resource_6jdxe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteractable2"]
 position = Vector2(1.5, -9)
 shape = SubResource("RectangleShape2D_ih1ay")
 
@@ -75,3 +104,4 @@ position = Vector2(-0.5, 48)
 shape = SubResource("RectangleShape2D_uysf5")
 
 [connection signal="on_interact" from="AreaInteractable" to="." method="_on_sink_interact"]
+[connection signal="on_interact" from="AreaInteractable2" to="." method="_on_sink_interact"]
