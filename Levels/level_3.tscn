@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cterbkvwpnclm"]
+[gd_scene load_steps=15 format=3 uid="uid://cterbkvwpnclm"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_xxovt"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="2_7gaid"]
+[ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/Misc/AreaInteractable/AreaInteractable.tscn" id="3_4klfx"]
+[ext_resource type="Script" path="res://Resources/dialog.gd" id="4_7qyuk"]
+[ext_resource type="AudioStream" uid="uid://dhwy7wcu2wgpf" path="res://Audio/CharacterBeeps/Avery/d.mp3" id="5_iilh3"]
+[ext_resource type="Script" path="res://Resources/voice_set.gd" id="6_cyel7"]
 
 [sub_resource type="Gradient" id="Gradient_ty3co"]
 offsets = PackedFloat32Array(0.025974, 1)
@@ -19,6 +23,25 @@ size = Vector2(40, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5y33"]
 size = Vector2(60, 20)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rw0eq"]
+load_path = "res://.godot/imported/avery.png-6b25e3e7255b5130cdbe3be8c1b5104d.ctex"
+
+[sub_resource type="Resource" id="Resource_vv5vl"]
+script = ExtResource("6_cyel7")
+name = "Avery"
+noises = Array[AudioStream]([ExtResource("5_iilh3")])
+
+[sub_resource type="Resource" id="Resource_iv484"]
+script = ExtResource("4_7qyuk")
+text = "I'd better get going.
+Mom won't like if I take too long"
+options = Array[String]([])
+portrait = SubResource("CompressedTexture2D_rw0eq")
+voice_set = SubResource("Resource_vv5vl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjwg6"]
+size = Vector2(68, 52)
 
 [node name="Level3" type="Node2D"]
 
@@ -68,3 +91,13 @@ teleport_to = "living"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone2"]
 position = Vector2(10, 30)
 shape = SubResource("RectangleShape2D_u5y33")
+
+[node name="AreaInteractable2" parent="." instance=ExtResource("3_4klfx")]
+position = Vector2(322, 199)
+collision_layer = 0
+collision_mask = 2
+dialog = SubResource("Resource_iv484")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteractable2"]
+position = Vector2(26, -19)
+shape = SubResource("RectangleShape2D_gjwg6")

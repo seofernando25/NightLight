@@ -3,6 +3,7 @@ extends Node
 signal dialog_start(dialog: Dialog)
 signal dialog_end(option: int)
 
+var misc_flags = {}
 var movement_enabled = true
 
 var last_teleport_time = 0
