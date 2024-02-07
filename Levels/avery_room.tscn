@@ -40,7 +40,7 @@ noises = Array[AudioStream]([ExtResource("6_nveec")])
 [sub_resource type="Resource" id="Resource_bckbw"]
 script = ExtResource("3_pdh8c")
 text = "Mirror mirror on the wall...
-                                                                          qq
+                                                                          
 ..."
 options = Array[String]([])
 portrait = SubResource("CompressedTexture2D_hfemt")
