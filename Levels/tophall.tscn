@@ -83,6 +83,15 @@ teleport_to = "avery_room"
 position = Vector2(0, -26)
 shape = SubResource("RectangleShape2D_61278")
 
+[node name="TeleportZone3" parent="." instance=ExtResource("2_7gaid")]
+position = Vector2(459, 200)
+zone_name = "tophall"
+teleport_to = "top_washroom"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone3"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_61278")
+
 [node name="TeleportZone2" parent="." instance=ExtResource("2_7gaid")]
 position = Vector2(180, 300)
 zone_name = "tophall"

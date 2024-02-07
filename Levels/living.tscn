@@ -3,12 +3,12 @@
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_xxovt"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="2_6f3n2"]
 
-[sub_resource type="Gradient" id="Gradient_ty3co"]
+[sub_resource type="Gradient" id="Gradient_auajr"]
 offsets = PackedFloat32Array(0.025974, 1)
 colors = PackedColorArray(0.0228756, 0.0666886, 0.0565708, 1, 0.0971326, 0.1901, 0.169805, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wqfg7"]
-gradient = SubResource("Gradient_ty3co")
+gradient = SubResource("Gradient_auajr")
 width = 640
 height = 480
 fill_from = Vector2(0.486239, 0.642202)
