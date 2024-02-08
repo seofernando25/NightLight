@@ -1,12 +1,81 @@
-[gd_scene load_steps=7 format=3 uid="uid://57f4sgtmtu7g"]
+[gd_scene load_steps=13 format=3 uid="uid://57f4sgtmtu7g"]
 
 [ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Assets/Sprites/UI/menu_bg.png" id="1_fkt7h"]
 [ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_gttxn"]
 [ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Assets/Sprites/UI/floating_girl.png" id="2_6g6wh"]
 [ext_resource type="PackedScene" uid="uid://d27k7cgx7y21g" path="res://Levels/house/house.tscn" id="2_kpdr4"]
+[ext_resource type="StyleBox" uid="uid://mqa6iuwlwwnn" path="res://Scenes/Menu/menu_panel_outline.tres" id="4_gff1k"]
+[ext_resource type="AudioStream" uid="uid://dvhmsx8xnrl4a" path="res://Audio/AverySpecialSong/averyspecialsong.mp3" id="5_5x4cq"]
+[ext_resource type="PackedScene" uid="uid://dt5f8xihxxj7o" path="res://Components/UI/AutofocusOnReady/AutofocusOnReady.tscn" id="6_7v38g"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_priya"]
-draw_center = false
+[sub_resource type="LabelSettings" id="LabelSettings_xh7ea"]
+font_size = 84
+font_color = Color(0.968734, 0.81973, 0.678553, 1)
+
+[sub_resource type="Animation" id="Animation_ye1qc"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/FadeRet:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k53n1"]
+resource_name = "new_journey"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu/FadeRet:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"new_journey"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainMenu/MenuMusic:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -48.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ega4"]
+_data = {
+"fade_in": SubResource("Animation_ye1qc"),
+"new_journey": SubResource("Animation_k53n1")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2baf4"]
+bg_color = Color(0.16463, 0.172442, 0.266728, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -18,33 +87,32 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0)
 
-[sub_resource type="LabelSettings" id="LabelSettings_xh7ea"]
-font_size = 96
-font_color = Color(0.968734, 0.81973, 0.678553, 1)
-
-[node name="Menu" type="CanvasLayer"]
+[node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_gttxn")
-newJourneyScene = ExtResource("2_kpdr4")
+new_journey_scene = ExtResource("2_kpdr4")
+animation_player = NodePath("MainMenu/AnimationPlayer")
 
-[node name="MenuBg" type="Sprite2D" parent="."]
-position = Vector2(320, 240)
+[node name="MainMenu" type="Node2D" parent="."]
+
+[node name="MenuBg" type="Sprite2D" parent="MainMenu"]
 texture = ExtResource("1_fkt7h")
+centered = false
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="MainMenu"]
 anchors_preset = -1
 anchor_left = 0.031
 anchor_top = 0.042
-anchor_right = 0.969
-anchor_bottom = 0.958
-offset_left = 0.16
-offset_top = -0.160002
-offset_right = -0.160034
-offset_bottom = 0.159973
+anchor_right = 0.031
+anchor_bottom = 0.042
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 620.0
+offset_bottom = 460.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_priya")
+theme_override_styles/panel = ExtResource("4_gff1k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel"]
 layout_mode = 2
 anchor_right = 0.967
 anchor_bottom = 0.955
@@ -53,31 +121,76 @@ offset_top = 20.0
 offset_right = 19.8
 offset_bottom = 19.8
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="MainMenu/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Night Light"
 label_settings = SubResource("LabelSettings_xh7ea")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 16
 
-[node name="New Journey" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="MainMenu/Panel/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "NEW JOURNEY"
+focus_neighbor_top = NodePath("../GalleryButton")
+text = "New game"
 
-[node name="Options" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="MainMenu/Panel/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "OPTIONS"
+text = "Continue"
 
-[node name="Quit" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="GalleryButton" type="Button" parent="MainMenu/Panel/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "QUIT"
+focus_neighbor_bottom = NodePath("../NewGameButton")
+text = "Gallery"
 
-[node name="FloatingGirl" type="Sprite2D" parent="."]
-position = Vector2(381, 291)
+[node name="FloatingGirl" type="Sprite2D" parent="MainMenu"]
+position = Vector2(360, 280)
 scale = Vector2(0.572754, 0.572754)
 texture = ExtResource("2_6g6wh")
 
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/New Journey" to="." method="_on_new_journey_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_5ega4")
+}
+autoplay = "fade_in"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="MainMenu"]
+stream = ExtResource("5_5x4cq")
+autoplay = true
+bus = &"BGM"
+
+[node name="FadeRet" type="ColorRect" parent="MainMenu"]
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AutofocusOnReady" parent="MainMenu" node_paths=PackedStringArray("control") instance=ExtResource("6_7v38g")]
+control = NodePath("../Panel/VBoxContainer/VBoxContainer/NewGameButton")
+
+[node name="LoadGamePanel" type="VBoxContainer" parent="MainMenu"]
+visible = false
+offset_left = 380.0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 440.0
+
+[node name="Label" type="Label" parent="MainMenu/LoadGamePanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.968734, 0.81973, 0.678553, 1)
+text = "load"
+horizontal_alignment = 2
+
+[node name="Panel2" type="Panel" parent="MainMenu/LoadGamePanel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2baf4")
+
+[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_journey_pressed"]
+[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_new_journey_pressed"]

@@ -21,7 +21,6 @@ position = Vector2(0, 960)
 [node name="avery_room" parent="." instance=ExtResource("4_jjao6")]
 
 [node name="PixelCamera" parent="." node_paths=PackedStringArray("follow") instance=ExtResource("1_0qo2r")]
-anchor_mode = 0
 follow = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("5_rumab")]

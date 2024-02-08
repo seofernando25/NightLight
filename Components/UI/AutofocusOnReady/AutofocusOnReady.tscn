@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt5f8xihxxj7o"]
+
+[ext_resource type="Script" path="res://Components/UI/AutofocusOnReady/AutofocusOnReady.gd" id="1_i01rv"]
+
+[node name="AutofocusOnReady" type="Node"]
+script = ExtResource("1_i01rv")
