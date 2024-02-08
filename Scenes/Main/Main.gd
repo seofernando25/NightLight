@@ -15,9 +15,3 @@ func _unhandled_input(event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		
 
-func change_scene():
-	get_tree().change_scene_to_packed(introScene)
-
-
-func _on_cutscene_trigger_body_entered(_body:Node2D):
-	call_deferred("change_scene")

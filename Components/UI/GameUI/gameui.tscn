@@ -90,6 +90,7 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_yqn6y")
 }
+autoplay = "fade_in"
 script = ExtResource("2_ucmyp")
 
 [node name="ColorRect2" type="ColorRect" parent="."]

@@ -1,7 +1,14 @@
 extends Node
+class_name PlayerSprite
 
 @export var animated_sprite: AnimatedSprite2D
 @export var rigid_body: CharacterBody2D
+var player_controlled: bool = true
+
+static var instance: PlayerSprite
+
+func _ready():
+	instance = self
 
 var flip_y = -1
 var flip_x = 1
@@ -10,8 +17,40 @@ var last_side = 0
 func is_moving(val):
 	return abs(val) > 10
 
+func face_left():
+	animated_sprite.flip_h = false
+	last_side = 0
+	animated_sprite.play("walk_side")
+	animated_sprite.speed_scale = 0
+	print("face_left")
+
+
+func face_right():
+	animated_sprite.flip_h = true
+	last_side = 1
+	animated_sprite.play("walk_side")
+	animated_sprite.speed_scale = 0
+
+
+func face_up():
+	animated_sprite.flip_h = false
+	animated_sprite.flip_v = true
+	last_side = 0
+	animated_sprite.play("walk_up")
+	animated_sprite.speed_scale = 0
+
+
+func face_down():
+	animated_sprite.flip_h = false
+	animated_sprite.flip_v = false
+	last_side = 0
+	animated_sprite.play("walk_forward")
+	animated_sprite.speed_scale = 0
+
 
 func _process(_delta):
+	if not player_controlled:
+		return
 	var running = Input.is_action_pressed("ui_accept")
 
 	if running:

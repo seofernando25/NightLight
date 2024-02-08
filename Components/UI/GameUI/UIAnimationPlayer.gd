@@ -10,3 +10,8 @@ func _ready():
 		print("UIAnimationPlayer already exists")
 		queue_free()
 
+
+func _exit_tree():
+	if instance == self:
+		print("UIAnimationPlayer is exiting")
+		instance = null

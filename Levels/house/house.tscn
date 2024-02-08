@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d27k7cgx7y21g"]
+[gd_scene load_steps=6 format=3 uid="uid://d27k7cgx7y21g"]
 
-[ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="1_0qo2r"]
 [ext_resource type="PackedScene" uid="uid://cterbkvwpnclm" path="res://Levels/house/tophall.tscn" id="1_djtn3"]
+[ext_resource type="Script" path="res://Levels/house/house.gd" id="1_jiyav"]
 [ext_resource type="PackedScene" uid="uid://crnt0d5i06yhf" path="res://Levels/house/top_washroom.tscn" id="2_er53i"]
 [ext_resource type="PackedScene" uid="uid://ddpglmi01eeah" path="res://Levels/house/living.tscn" id="3_m66sx"]
 [ext_resource type="PackedScene" uid="uid://c6bhfgkf5q6e5" path="res://Levels/house/avery_room.tscn" id="4_jjao6"]
-[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="5_rumab"]
 
 [node name="House" type="Node2D"]
+script = ExtResource("1_jiyav")
 
 [node name="tophall" parent="." instance=ExtResource("1_djtn3")]
 position = Vector2(0, 480)
@@ -20,8 +20,6 @@ position = Vector2(0, 960)
 
 [node name="avery_room" parent="." instance=ExtResource("4_jjao6")]
 
-[node name="PixelCamera" parent="." node_paths=PackedStringArray("follow") instance=ExtResource("1_0qo2r")]
-follow = NodePath("../Player")
-
-[node name="Player" parent="." instance=ExtResource("5_rumab")]
-position = Vector2(300, 340)
+[node name="default_player_start" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(320, 360)

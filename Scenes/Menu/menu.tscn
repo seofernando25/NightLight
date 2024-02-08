@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://57f4sgtmtu7g"]
+[gd_scene load_steps=11 format=3 uid="uid://57f4sgtmtu7g"]
 
 [ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Assets/Sprites/UI/menu_bg.png" id="1_fkt7h"]
 [ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_gttxn"]
 [ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Assets/Sprites/UI/floating_girl.png" id="2_6g6wh"]
-[ext_resource type="PackedScene" uid="uid://d27k7cgx7y21g" path="res://Levels/house/house.tscn" id="2_kpdr4"]
 [ext_resource type="StyleBox" uid="uid://mqa6iuwlwwnn" path="res://Scenes/Menu/menu_panel_outline.tres" id="4_gff1k"]
 [ext_resource type="AudioStream" uid="uid://dvhmsx8xnrl4a" path="res://Audio/AverySpecialSong/averyspecialsong.mp3" id="5_5x4cq"]
 [ext_resource type="PackedScene" uid="uid://dt5f8xihxxj7o" path="res://Components/UI/AutofocusOnReady/AutofocusOnReady.tscn" id="6_7v38g"]
@@ -74,22 +73,8 @@ _data = {
 "new_journey": SubResource("Animation_k53n1")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2baf4"]
-bg_color = Color(0.16463, 0.172442, 0.266728, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.968734, 0.81973, 0.678553, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0)
-
 [node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_gttxn")
-new_journey_scene = ExtResource("2_kpdr4")
 animation_player = NodePath("MainMenu/AnimationPlayer")
 
 [node name="MainMenu" type="Node2D" parent="."]
@@ -174,23 +159,5 @@ color = Color(0, 0, 0, 0)
 [node name="AutofocusOnReady" parent="MainMenu" node_paths=PackedStringArray("control") instance=ExtResource("6_7v38g")]
 control = NodePath("../Panel/VBoxContainer/VBoxContainer/NewGameButton")
 
-[node name="LoadGamePanel" type="VBoxContainer" parent="MainMenu"]
-visible = false
-offset_left = 380.0
-offset_top = 40.0
-offset_right = 600.0
-offset_bottom = 440.0
-
-[node name="Label" type="Label" parent="MainMenu/LoadGamePanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.968734, 0.81973, 0.678553, 1)
-text = "load"
-horizontal_alignment = 2
-
-[node name="Panel2" type="Panel" parent="MainMenu/LoadGamePanel"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_2baf4")
-
 [connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_journey_pressed"]
-[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_new_journey_pressed"]
+[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

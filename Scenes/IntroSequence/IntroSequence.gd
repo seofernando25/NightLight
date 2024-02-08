@@ -25,6 +25,7 @@ func _ready():
 		print("Slide finished")
 	
 	print("Dialog finished")
+	PlayerFlags.set_scene("res://Levels/house/house.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

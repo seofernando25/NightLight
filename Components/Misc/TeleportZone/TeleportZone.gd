@@ -27,6 +27,6 @@ func _on_body_entered(body:Node2D):
 		body.global_position = targetLocation.global_position
 		PlayerMovement.controller_enabled = true
 		UIAnimationPlayer.instance.play("fade_in")
-
 	else:
+		print("TeleportZone: No UIAnimationPlayer found")
 		body.global_position = targetLocation.global_position

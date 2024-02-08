@@ -99,7 +99,7 @@ func _on_dialog_start(dialog: Dialog):
 	visible = true
 	PlayerMovement.controller_enabled = false
 	typewriter.text = ""
-	typewriter.to_type = dialog.text
+	typewriter.to_type = dialog.dialog_text
 	typewriter.stop_typing()
 	typewriter.start_typing()
 	await typewriter.typing_finished
