@@ -31,5 +31,3 @@ func _unhandled_input(event):
 		print("Inventory:")
 		for item in PlayerFlags.game_data.inventory:
 			print(item.name)
-			# var item_collectable = item as Colletable
-			# print(item_collectable.name)

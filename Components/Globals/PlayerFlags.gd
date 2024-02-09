@@ -49,6 +49,10 @@ func read_save():
 		print("No save file found")
 		return
 
+	var save_data_maybe = ResourceLoader.load(SAVE_GAME_PATH)
+	if save_data_maybe == null:
+		print("Failed to load save file")
+		return
 	game_data = ResourceLoader.load(SAVE_GAME_PATH)
 
 func write_save():

@@ -1,6 +1,9 @@
 extends Node
 class_name  MapCollectable
 
+signal on_interact_start
+signal on_interact_end
+
 @export var unique_id: String = "default"
 @export var collectable_info: Colletable
 
@@ -22,6 +25,7 @@ func _on_body_exited(_body:Node2D):
 
 func _unhandled_input(event):
 	if playerIn and not isCollecting and event.is_action_pressed("ui_accept"):
+		on_interact_start.emit()
 		isCollecting = true
 		print("Player collected " + collectable_info.name)
 		PlayerFlags.game_data.collected_items[unique_id] = true
@@ -32,4 +36,5 @@ func _unhandled_input(event):
 			PlayerFlags.dialog_start.emit(collectable_info.collect_dialog)
 			await PlayerFlags.dialog_end
 
+		on_interact_end.emit()
 		queue_free()

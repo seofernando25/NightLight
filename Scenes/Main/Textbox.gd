@@ -83,9 +83,9 @@ func _on_dialog_start(dialog: Dialog):
 	in_dialog = true
 	selected_option = 0
 	# Inherit previous properties
-	if dialog.voice_set == null:
+	if current_dialog and dialog.voice_set == null:
 		dialog.voice_set = current_dialog.voice_set	
-	if dialog.portrait == null:
+	if current_dialog and dialog.portrait == null:
 		dialog.portrait = current_dialog.portrait
 
 

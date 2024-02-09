@@ -35,6 +35,7 @@ region = Rect2(142.188, 121.513, 16.7562, 16.0805)
 [resource]
 script = ExtResource("1_uaemu")
 name = "Pancakes"
+description = "Cold pancakes, they've been in your pocket for more than a day now"
 icon = SubResource("AtlasTexture_dgq77")
 important = false
 collect_dialog = SubResource("Resource_1j3ef")

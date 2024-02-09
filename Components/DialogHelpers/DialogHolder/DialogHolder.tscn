@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbr0rgf1vkh5s"]
+
+[ext_resource type="Script" path="res://Components/DialogHelpers/DialogHolder/DialogHolder.gd" id="1_ft8g3"]
+
+[node name="DialogHolder" type="Node"]
+script = ExtResource("1_ft8g3")

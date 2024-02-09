@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddpglmi01eeah"]
+[gd_scene load_steps=11 format=3 uid="uid://ddpglmi01eeah"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_53rd4"]
+[ext_resource type="Script" path="res://Levels/house/living.gd" id="1_i38mq"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="2_33roe"]
 [ext_resource type="Texture2D" uid="uid://cf1mlp22cxh3i" path="res://Assets/Sprites/Tileset/furniture_1.aseprite" id="3_j4ydg"]
 [ext_resource type="PackedScene" uid="uid://6g7d07v3ocok" path="res://Components/Collectables/colletable.tscn" id="3_ujvbk"]
@@ -24,6 +25,7 @@ size = Vector2(60, 20)
 size = Vector2(23, 49)
 
 [node name="living" type="Node2D"]
+script = ExtResource("1_i38mq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_wqfg7")
@@ -50,17 +52,17 @@ teleport_to = "tophall"
 position = Vector2(9, -64)
 shape = SubResource("RectangleShape2D_ofpn0")
 
-[node name="Colletable" parent="." instance=ExtResource("3_ujvbk")]
+[node name="Pancakes" parent="." instance=ExtResource("3_ujvbk")]
 unique_id = "kitchen_pancakes"
 collectable_info = ExtResource("4_ui1ee")
 
-[node name="Pancakes" type="Sprite2D" parent="Colletable"]
+[node name="Pancakes" type="Sprite2D" parent="Pancakes"]
 z_index = 2
 texture = ExtResource("3_j4ydg")
 region_enabled = true
 region_rect = Rect2(142.106, 121.946, 16.7562, 15.54)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Colletable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pancakes"]
 z_index = 1
 position = Vector2(-0.5, 14.5)
 shape = SubResource("RectangleShape2D_ll4k0")
