@@ -6,8 +6,8 @@ signal dialog_end(option: int)
 signal enable_movement(enable: bool)
 signal on_set_scene(scene_resource: String)
 
-const SAVE_GAME_PATH = "user://save.json"
-var game_data = {}
+const SAVE_GAME_PATH = "user://save.tres"
+var game_data: GameSave = GameSave.new()
 
 var in_cutscene = false
 
@@ -31,52 +31,30 @@ func set_enable_movement(enable: bool):
 	set_scene_variable("player", "enable_movement", enable)
 	emit_signal("set_enable_movement", enable)
 
+
 func set_scene_variable(scene: String = "", variable: String = "", value = null):
-	if not game_data.has(scene):
-		game_data[scene] = {}
-	
-	game_data[scene][variable] = value
+	game_data.set_variable(scene, variable, value)
 
 func get_scene_variable(scene: String = "", variable: String = "") :
-	if not game_data.has(scene):
-		return null
-	
-	if not game_data[scene].has(variable):
-		return null
-	
-	return game_data[scene][variable]
+	return game_data.get_variable(scene, variable)
 
 func set_scene(scene: String):
-	game_data["scene"] = scene
+	game_data.current_scene = scene
 	on_set_scene.emit(scene)
 
-func get_scene() -> String:
-	return game_data["scene"]
 
 func read_save():
 	print("Reading save file")
 	if not FileAccess.file_exists(SAVE_GAME_PATH):
 		print("No save file found")
-		# Create an empty save file
-		var save_file = FileAccess.open(SAVE_GAME_PATH, FileAccess.WRITE)
-		save_file.store_string("{}")
-		save_file.close()
 		return
-	
-	var file = FileAccess.open(SAVE_GAME_PATH, FileAccess.READ)
-	var json_str = file.get_as_text()
 
-	var save_game_maybe = JSON.parse_string(json_str)
-	game_data = save_game_maybe if save_game_maybe != null else {}
+	game_data = ResourceLoader.load(SAVE_GAME_PATH)
 
 func write_save():
 	# Save player dat
 	PlayerFlags.save_position()
-
-	var file = FileAccess.open(SAVE_GAME_PATH, FileAccess.WRITE)
-	file.seek(0)
-	file.store_string(JSON.stringify(game_data))
-	file.close()
+	ResourceSaver.save(game_data, SAVE_GAME_PATH)
 
 func _ready():
 	read_save()

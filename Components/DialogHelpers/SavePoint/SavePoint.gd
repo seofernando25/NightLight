@@ -17,6 +17,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("ui_accept") and playerIn and not DialogBox.in_dialog and not PlayerFlags.in_cutscene:
 			PlayerFlags.dialog_start.emit(dialog)
 			await PlayerFlags.dialog_end
+			PlayerFlags.write_save()
 
 			# Play save sound
 			const saveSound = preload("res://Audio/Misc/save.ogg")
@@ -28,4 +29,4 @@ func _unhandled_input(event):
 			audio_player.queue_free()
 
 
-			PlayerFlags.write_save()
+			

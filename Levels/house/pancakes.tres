@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Colletable" load_steps=10 format=3 uid="uid://7olhme8lojvj"]
+
+[ext_resource type="Texture2D" uid="uid://b7wvrok8lcyuk" path="res://Assets/Sprites/Portraits/mom.png" id="1_8ddmi"]
+[ext_resource type="Texture2D" uid="uid://fb0dfhip2agy" path="res://Assets/Sprites/Tileset/furniture_1.png" id="1_qrlwp"]
+[ext_resource type="Script" path="res://Resources/colletable.gd" id="1_uaemu"]
+[ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Assets/Sprites/Portraits/avery.png" id="1_yrbl8"]
+[ext_resource type="Script" path="res://Resources/dialog.gd" id="2_47b7y"]
+[ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="3_h36mj"]
+
+[sub_resource type="Resource" id="Resource_d37w5"]
+script = ExtResource("2_47b7y")
+dialog_type = 0
+dialog_text = "Oh! And don't forget to brush your teeth before you go!"
+option_text = ""
+options = Array[ExtResource("2_47b7y")]([])
+name = ""
+portrait = ExtResource("1_8ddmi")
+
+[sub_resource type="Resource" id="Resource_1j3ef"]
+script = ExtResource("2_47b7y")
+dialog_type = 0
+dialog_text = "Pancakes...                        
+at least they're not cold"
+option_text = ""
+options = Array[ExtResource("2_47b7y")]([])
+name = ""
+portrait = ExtResource("1_yrbl8")
+voice_set = ExtResource("3_h36mj")
+next = SubResource("Resource_d37w5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgq77"]
+atlas = ExtResource("1_qrlwp")
+region = Rect2(142.188, 121.513, 16.7562, 16.0805)
+
+[resource]
+script = ExtResource("1_uaemu")
+name = "Pancakes"
+icon = SubResource("AtlasTexture_dgq77")
+important = false
+collect_dialog = SubResource("Resource_1j3ef")

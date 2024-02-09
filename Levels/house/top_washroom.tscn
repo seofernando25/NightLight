@@ -21,10 +21,11 @@ height = 480
 fill_from = Vector2(0.486239, 0.642202)
 fill_to = Vector2(0.46789, 0)
 
-[sub_resource type="Resource" id="Resource_xmohr"]
+[sub_resource type="Resource" id="Resource_lqr4q"]
 script = ExtResource("4_wmd5t")
 dialog_type = 0
-dialog_text = "..."
+dialog_text = "I should probably have breakfast before brushing my teeth.
+I don't want to waste toothpaste"
 option_text = ""
 options = Array[ExtResource("4_wmd5t")]([])
 name = ""
@@ -70,11 +71,11 @@ layer_0/tile_data = PackedInt32Array(1310731, 327680, 0, 1310732, 327680, 0, 124
 layer_1/name = "Furniture Layer"
 layer_1/tile_data = PackedInt32Array(589835, 196611, 11, 655371, 196611, 12, 720907, 196611, 13, 589836, 262147, 11, 655372, 262147, 12, 720908, 262147, 13, 589839, 3, 14, 655375, 3, 15, 720911, 3, 16, 589840, 65539, 14, 655376, 65539, 15, 720912, 65539, 16, 655373, 327683, 13, 786443, 196611, 9, 786444, 262147, 9)
 
-[node name="AreaInteractable" parent="." instance=ExtResource("3_dpl4v")]
+[node name="NoPancakes" parent="." instance=ExtResource("3_dpl4v")]
 position = Vector2(318, 229)
-dialog = SubResource("Resource_xmohr")
+dialog = SubResource("Resource_lqr4q")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteractable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoPancakes"]
 position = Vector2(1.5, -9)
 shape = SubResource("RectangleShape2D_ih1ay")
 

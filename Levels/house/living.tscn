@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddpglmi01eeah"]
+[gd_scene load_steps=10 format=3 uid="uid://ddpglmi01eeah"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_53rd4"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="2_33roe"]
+[ext_resource type="Texture2D" uid="uid://cf1mlp22cxh3i" path="res://Assets/Sprites/Tileset/furniture_1.aseprite" id="3_j4ydg"]
+[ext_resource type="PackedScene" uid="uid://6g7d07v3ocok" path="res://Components/Collectables/colletable.tscn" id="3_ujvbk"]
+[ext_resource type="Resource" uid="uid://7olhme8lojvj" path="res://Levels/house/pancakes.tres" id="4_ui1ee"]
 
 [sub_resource type="Gradient" id="Gradient_auajr"]
 offsets = PackedFloat32Array(0.025974, 1)
@@ -16,6 +19,9 @@ fill_to = Vector2(0.46789, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofpn0"]
 size = Vector2(60, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ll4k0"]
+size = Vector2(23, 49)
 
 [node name="living" type="Node2D"]
 
@@ -36,10 +42,25 @@ layer_3/name = "Misc Layer"
 layer_3/tile_data = PackedInt32Array(131088, 458755, 22, 196624, 458755, 23, 131087, 196611, 22, 196623, 196611, 23, 589851, 131075, 6, 589853, 131075, 7, 524299, 3, 22, 589835, 3, 23, 196627, 131075, 22, 262163, 131075, 23, 196621, 1179651, 0, 458776, 1179651, 1, 458775, 1179651, 268435457)
 
 [node name="TeleportZone2" parent="." instance=ExtResource("2_33roe")]
-position = Vector2(180, 220)
+position = Vector2(180, 183)
 zone_name = "living"
 teleport_to = "tophall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone2"]
-position = Vector2(0, -100)
+position = Vector2(9, -64)
 shape = SubResource("RectangleShape2D_ofpn0")
+
+[node name="Colletable" parent="." instance=ExtResource("3_ujvbk")]
+unique_id = "kitchen_pancakes"
+collectable_info = ExtResource("4_ui1ee")
+
+[node name="Pancakes" type="Sprite2D" parent="Colletable"]
+z_index = 2
+texture = ExtResource("3_j4ydg")
+region_enabled = true
+region_rect = Rect2(142.106, 121.946, 16.7562, 15.54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colletable"]
+z_index = 1
+position = Vector2(-0.5, 14.5)
+shape = SubResource("RectangleShape2D_ll4k0")
