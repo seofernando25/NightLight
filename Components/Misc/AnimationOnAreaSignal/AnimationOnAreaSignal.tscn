@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpixywytlrbju"]
+
+[ext_resource type="Script" path="res://Components/Misc/AnimationOnAreaSignal/AnimationOnAreaSignal.gd" id="1_0urud"]
+
+[node name="AnimationOnAreaSignal" type="Node"]
+script = ExtResource("1_0urud")
