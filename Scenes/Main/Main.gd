@@ -13,5 +13,7 @@ func _unhandled_input(event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		
+	if event.is_action_pressed("debug_save"):
+		print("Debug save")
+		PlayerFlags.write_save()
 

@@ -11,10 +11,21 @@ func _on_body_entered(_body:Node2D):
 func _on_body_exited(_body:Node2D):
 	playerIn = false
 
-var inDialog = false
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.is_action_pressed("ui_accept") and playerIn and not inDialog:
-			print("Save game prompt")
+		if event.is_action_pressed("ui_accept") and playerIn and not DialogBox.in_dialog and not PlayerFlags.in_cutscene:
+			PlayerFlags.dialog_start.emit(dialog)
+			await PlayerFlags.dialog_end
+
+			# Play save sound
+			const saveSound = preload("res://Audio/Misc/save.ogg")
+			var audio_player = AudioStreamPlayer.new()
+			add_child(audio_player)
+			audio_player.stream = saveSound
+			audio_player.play()
+			await audio_player.finished	
+			audio_player.queue_free()
+
+
 			PlayerFlags.write_save()

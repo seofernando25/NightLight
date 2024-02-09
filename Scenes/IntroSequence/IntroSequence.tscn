@@ -7,10 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://bg4dmd41wfku5" path="res://Scenes/IntroSequence/the_silence_bounces.wav" id="5_2cb7x"]
 [ext_resource type="SpriteFrames" uid="uid://3v5556obvegc" path="res://Assets/Sprites/Intro/intro_b.aseprite" id="5_g3srx"]
 [ext_resource type="SpriteFrames" uid="uid://b44i78ibrp0as" path="res://Assets/Sprites/Intro/intro_c.aseprite" id="7_bwioh"]
-[ext_resource type="AudioStream" uid="uid://bmxn8mdu2ruid" path="res://Audio/Ambient1/ambient1.wav" id="7_cvgyd"]
 [ext_resource type="AudioStream" uid="uid://cmgcuinhg6ijl" path="res://Scenes/IntroSequence/reverberating_of_my_skull.wav" id="7_lwy46"]
 [ext_resource type="SpriteFrames" uid="uid://c7x80680oa53q" path="res://Assets/Sprites/Intro/intro_d.aseprite" id="9_2ys6l"]
 [ext_resource type="AudioStream" uid="uid://olys7baa30q7" path="res://Scenes/IntroSequence/it_consumes_me.wav" id="10_o3iff"]
+[ext_resource type="AudioStream" uid="uid://bw7dpa8gltexg" path="res://Audio/Ambient3/ambient3.wav" id="11_l5ea2"]
 
 [node name="IntroSequence" type="Node2D" node_paths=PackedStringArray("slides")]
 script = ExtResource("1_hngcd")
@@ -40,6 +40,6 @@ sprite_frames = ExtResource("9_2ys6l")
 audio_stream = ExtResource("10_o3iff")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_cvgyd")
+stream = ExtResource("11_l5ea2")
 autoplay = true
 bus = &"BGM"

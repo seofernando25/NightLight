@@ -9,12 +9,10 @@ var gameplayManagerScene: PackedScene = preload("res://Scenes/GameplayManager/Ga
 @onready var galleryButton: Button = %GalleryButton
 
 func new_journey():
-	print("New Journey")
-	print(PlayerFlags.get_scene())
 	get_tree().change_scene_to_packed(gameplayManagerScene)
 	
 func _on_new_journey_pressed():
-	print("New Journey pressed")
+	PlayerFlags.game_data = {}
 	PlayerFlags.set_scene("res://Scenes/IntroSequence/IntroSequence.tscn")
 	animation_player.play("new_journey")
 

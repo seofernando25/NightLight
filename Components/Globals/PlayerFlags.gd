@@ -3,10 +3,33 @@ extends Node
 signal dialog_start(dialog: Dialog)
 signal dialog_end(option: int)
 
+signal enable_movement(enable: bool)
 signal on_set_scene(scene_resource: String)
 
 const SAVE_GAME_PATH = "user://save.json"
 var game_data = {}
+
+var in_cutscene = false
+
+func save_position():
+	if Player.instance == null:
+		return
+	var position = Player.instance.global_position
+	set_scene_variable("player", "position_x", position.x)
+	set_scene_variable("player", "position_y", position.y)
+
+func get_saved_position() -> Vector2:
+	var x = get_scene_variable("player", "position_x")
+	if x == null:
+		x = 0
+	var y = get_scene_variable("player", "position_y")
+	if y == null:
+		y = 0
+	return Vector2(x, y)
+
+func set_enable_movement(enable: bool):
+	set_scene_variable("player", "enable_movement", enable)
+	emit_signal("set_enable_movement", enable)
 
 func set_scene_variable(scene: String = "", variable: String = "", value = null):
 	if not game_data.has(scene):
@@ -47,6 +70,9 @@ func read_save():
 	game_data = save_game_maybe if save_game_maybe != null else {}
 
 func write_save():
+	# Save player dat
+	PlayerFlags.save_position()
+
 	var file = FileAccess.open(SAVE_GAME_PATH, FileAccess.WRITE)
 	file.seek(0)
 	file.store_string(JSON.stringify(game_data))

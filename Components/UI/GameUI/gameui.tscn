@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cf85vr1gcj5us"]
 
 [ext_resource type="Script" path="res://Components/UI/GameUI/gameui.gd" id="1_4xm33"]
-[ext_resource type="PackedScene" uid="uid://we13u3gvw2e2" path="res://Components/UI/Textbox/textbox.tscn" id="1_uhic6"]
 [ext_resource type="Script" path="res://Components/UI/GameUI/UIAnimationPlayer.gd" id="2_ucmyp"]
 [ext_resource type="Shader" path="res://Shaders/Scanlines.gdshader" id="3_8awdt"]
+[ext_resource type="PackedScene" uid="uid://we13u3gvw2e2" path="res://Components/UI/DialogBox/dialogbox.tscn" id="4_0kob7"]
 
 [sub_resource type="Animation" id="Animation_y0tb3"]
 resource_name = "fade_in"
@@ -98,5 +98,5 @@ material = SubResource("ShaderMaterial_7bdip")
 offset_right = 640.0
 offset_bottom = 480.0
 
-[node name="Textbox" parent="." instance=ExtResource("1_uhic6")]
+[node name="Textbox" parent="." instance=ExtResource("4_0kob7")]
 visible = false

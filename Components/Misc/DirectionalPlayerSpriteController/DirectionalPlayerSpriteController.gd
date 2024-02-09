@@ -3,7 +3,7 @@ class_name PlayerSprite
 
 @export var animated_sprite: AnimatedSprite2D
 @export var rigid_body: CharacterBody2D
-var player_controlled: bool = true
+@export var player_controlled: bool = true
 
 static var instance: PlayerSprite
 

@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtd6vp73kwf0s"]
+[gd_scene load_steps=6 format=3 uid="uid://dtd6vp73kwf0s"]
 
 [ext_resource type="SpriteFrames" uid="uid://dd7gyjdkfsxah" path="res://Assets/Sprites/Player/player.aseprite" id="1_e786p"]
+[ext_resource type="Script" path="res://Components/Player/player.gd" id="1_vuk5h"]
 [ext_resource type="PackedScene" uid="uid://cuyfmkj1vmxad" path="res://Components/Misc/PlayerMovement/PlayerMovement.tscn" id="2_xhh1x"]
 [ext_resource type="PackedScene" uid="uid://xrqr75oiowfu" path="res://Components/Misc/DirectionalPlayerSpriteController/DirectionalPlayerSpriteController.tscn" id="3_38oqt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu4tc"]
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
 collision_layer = 3
 motion_mode = 1
+script = ExtResource("1_vuk5h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)

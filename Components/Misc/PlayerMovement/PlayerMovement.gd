@@ -12,7 +12,7 @@ func _ready():
 var motion = Vector2.ZERO
 var running = false
 func _process(__delta):
-	if not controller_enabled:
+	if not controller_enabled or DialogBox.in_dialog or PlayerFlags.in_cutscene:
 		return
 	running = Input.is_action_pressed("ui_accept")
 	motion.x = Input.get_action_strength("direction_right") - Input.get_action_strength("direction_left")

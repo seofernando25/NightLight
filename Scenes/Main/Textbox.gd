@@ -1,4 +1,5 @@
 extends ColorRect
+class_name DialogBox
 
 @onready var typewriter: Typewriter = %Text
 @onready var portrait: TextureRect = %Portrait
@@ -7,6 +8,7 @@ extends ColorRect
 
 var current_dialog: Dialog
 var selected_option = 0
+static var in_dialog = false
 
 func _ready():
 	PlayerFlags.dialog_start.connect(_on_dialog_start)
@@ -78,7 +80,15 @@ var is_dialoging = false
 
 
 func _on_dialog_start(dialog: Dialog):
+	in_dialog = true
 	selected_option = 0
+	# Inherit previous properties
+	if dialog.voice_set == null:
+		dialog.voice_set = current_dialog.voice_set	
+	if dialog.portrait == null:
+		dialog.portrait = current_dialog.portrait
+
+
 	current_dialog = dialog
 	# Kill all children of HBoxContainer
 	for child in hbox.get_children():
@@ -97,16 +107,20 @@ func _on_dialog_start(dialog: Dialog):
 	is_dialoging = true
 	portrait.texture = dialog.portrait
 	visible = true
-	PlayerMovement.controller_enabled = false
 	typewriter.text = ""
 	typewriter.to_type = dialog.dialog_text
 	typewriter.stop_typing()
 	typewriter.start_typing()
 	await typewriter.typing_finished
 	await req_end_current_dialog
-	PlayerMovement.controller_enabled = true
 	typewriter.set_char_delay(0.05)
 	visible = false
 	is_dialoging = false
+
+	# Check if the dialog.next is not null
+	if dialog.next:
+		_on_dialog_start(dialog.next)
+		return
+	in_dialog = false
 	PlayerFlags.dialog_end.emit(selected_option)
 
