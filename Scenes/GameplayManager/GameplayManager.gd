@@ -14,20 +14,3 @@ func _on_set_scene(scene_resource: String):
 	current_scene.queue_free()
 	current_scene = instance
 	add_child(current_scene)
-
-
-func _unhandled_input(event):
-	if event.is_action_pressed("toggle_fullscreen"):
-		# DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)   
-		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	if event.is_action_pressed("debug_save"):
-		print("Debug save")
-		PlayerFlags.write_save()
-
-		# Print inventory
-		print("Inventory:")
-		for item in PlayerFlags.game_data.inventory:
-			print(item.name)

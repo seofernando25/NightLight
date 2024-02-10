@@ -30,8 +30,7 @@ func _on_type_char(character):
 	# Play the sound on the "TTS" channel
 	var stream: AudioStream = current_dialog.voice_set.noises[index]
 	audioPlayer.stream = stream
-	# Set a random pitch between 0.8 and 1.6
-	audioPlayer.pitch_scale = randf_range(0.8, 1.6)
+	audioPlayer.pitch_scale = randf_range(1, 1.6)
 	audioPlayer.play()
 	# speaking = true
 	await audioPlayer.finished

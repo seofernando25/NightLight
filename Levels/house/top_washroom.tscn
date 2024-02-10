@@ -146,12 +146,12 @@ position = Vector2(1.5, -9)
 shape = SubResource("RectangleShape2D_ih1ay")
 
 [node name="TeleportZone3" parent="." instance=ExtResource("4_ewxte")]
-position = Vector2(240, 360)
+position = Vector2(243, 378)
 zone_name = "top_washroom"
 teleport_to = "tophall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone3"]
-position = Vector2(-0.5, 48)
+position = Vector2(-4, 30)
 shape = SubResource("RectangleShape2D_uysf5")
 
 [connection signal="on_interact_start" from="Sinkteractable" to="." method="_on_sinkteractable_on_interact_start"]

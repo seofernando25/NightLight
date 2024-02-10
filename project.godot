@@ -21,14 +21,13 @@ buses/default_bus_layout="res://Configurations/audio_bus.tres"
 [autoload]
 
 PlayerFlags="*res://Components/Globals/PlayerFlags.gd"
-TeleportManager="*res://Components/Globals/TeleportManager.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=480
 window/size/always_on_top=true
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
 [editor_plugins]

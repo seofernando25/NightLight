@@ -1,17 +1,13 @@
 extends Node2D
 
 var playerPrefab = preload("res://Components/Player/player.tscn")
-var cameraPrefab = preload("res://Components/Camera/PixelCamera/PixelCamera.tscn")
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	var camera = cameraPrefab.instantiate()
 	var player = playerPrefab.instantiate() 
-	camera.follow = player
-	add_child(camera)
 	add_child(player)
 	
 	player.global_position = %default_player_start.global_position

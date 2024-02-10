@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6bhfgkf5q6e5"]
+[gd_scene load_steps=24 format=3 uid="uid://c6bhfgkf5q6e5"]
 
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_viu5h"]
 [ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/DialogHelpers/AreaInteractable/AreaInteractable.tscn" id="2_nfakd"]
@@ -23,7 +23,9 @@ fill_to = Vector2(0.967949, 0)
 [sub_resource type="Resource" id="Resource_bxreq"]
 script = ExtResource("4_vesxw")
 dialog_type = 0
-dialog_text = "..."
+dialog_text = "...
+           
+I need to clean my bookshelve at some point"
 option_text = ""
 options = Array[ExtResource("4_vesxw")]([])
 name = ""
@@ -44,7 +46,7 @@ noises = Array[AudioStream]([ExtResource("6_sa1kn")])
 [sub_resource type="Resource" id="Resource_bckbw"]
 script = ExtResource("4_vesxw")
 dialog_type = 0
-dialog_text = "..."
+dialog_text = "Mirror mirror on the wall.."
 option_text = ""
 options = Array[ExtResource("4_vesxw")]([])
 name = ""
@@ -54,9 +56,6 @@ voice_set = SubResource("Resource_8m0sc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aitia"]
 size = Vector2(39, 40)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4i5oq"]
-load_path = "res://.godot/imported/avery.png-6b25e3e7255b5130cdbe3be8c1b5104d.ctex"
-
 [sub_resource type="Resource" id="Resource_l20bh"]
 script = ExtResource("7_ujnnh")
 name = "Avery"
@@ -65,11 +64,11 @@ noises = Array[AudioStream]([ExtResource("6_sa1kn")])
 [sub_resource type="Resource" id="Resource_0oxe4"]
 script = ExtResource("4_vesxw")
 dialog_type = 0
-dialog_text = "..."
+dialog_text = "Banzai!!!                
+or is it Bonzai?"
 option_text = ""
 options = Array[ExtResource("4_vesxw")]([])
 name = ""
-portrait = SubResource("CompressedTexture2D_4i5oq")
 voice_set = SubResource("Resource_l20bh")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7asdi"]
@@ -135,12 +134,12 @@ position = Vector2(19, -24)
 shape = SubResource("RectangleShape2D_7asdi")
 
 [node name="TeleportZone" parent="." instance=ExtResource("8_f4cv3")]
-position = Vector2(240, 340)
+position = Vector2(238, 368)
 zone_name = "avery_room"
 teleport_to = "tophall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TeleportZone"]
-position = Vector2(-10, 50)
+position = Vector2(-10, 24)
 shape = SubResource("RectangleShape2D_r56pt")
 
 [node name="SavePoint" parent="." instance=ExtResource("9_tbnkc")]

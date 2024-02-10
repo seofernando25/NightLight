@@ -9,7 +9,7 @@ var gameplayManagerScene: PackedScene = preload("res://Scenes/GameplayManager/Ga
 @onready var galleryButton: Button = %GalleryButton
 
 func new_journey():
-	get_tree().change_scene_to_packed(gameplayManagerScene)
+	GameRoot.instance.change_scene(gameplayManagerScene)
 	
 func _on_new_journey_pressed():
 	# TODO: Add a confirmation dialog to avoid accidental new game

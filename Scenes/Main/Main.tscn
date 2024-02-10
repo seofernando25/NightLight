@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://6d0ffg54l3do"]
+[gd_scene load_steps=3 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
-[ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="1_p3dy8"]
-[ext_resource type="PackedScene" uid="uid://57f4sgtmtu7g" path="res://Scenes/Menu/menu.tscn" id="4_vb80l"]
+[ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="3_ufv6a"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_51ueg")
-introScene = ExtResource("1_p3dy8")
 
-[node name="Menu" parent="." instance=ExtResource("4_vb80l")]
+[node name="PixelCamera" parent="." instance=ExtResource("3_ufv6a")]

@@ -13,12 +13,12 @@
 [ext_resource type="Script" path="res://Resources/dialog.gd" id="11_gxi0b"]
 [ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="12_57a6m"]
 
-[sub_resource type="Gradient" id="Gradient_auajr"]
+[sub_resource type="Gradient" id="Gradient_udxod"]
 offsets = PackedFloat32Array(0.025974, 1)
 colors = PackedColorArray(0.0228756, 0.0666886, 0.0565708, 1, 0.0971326, 0.1901, 0.169805, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_wqfg7"]
-gradient = SubResource("Gradient_auajr")
+gradient = SubResource("Gradient_udxod")
 width = 640
 height = 480
 fill_from = Vector2(0.486239, 0.642202)
@@ -163,6 +163,7 @@ debug_color = Color(0.137255, 0.619608, 0.521569, 0.419608)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_m3gkw")
+volume_db = -48.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

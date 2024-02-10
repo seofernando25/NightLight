@@ -16,7 +16,7 @@ resource_name = "fade_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu/FadeRet:color")
+tracks/0/path = NodePath("FadeRet:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +31,7 @@ resource_name = "new_journey"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainMenu/FadeRet:color")
+tracks/0/path = NodePath("FadeRet:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +57,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainMenu/MenuMusic:volume_db")
+tracks/2/path = NodePath("MenuMusic:volume_db")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -75,29 +75,27 @@ _data = {
 
 [node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_gttxn")
-animation_player = NodePath("MainMenu/AnimationPlayer")
+animation_player = NodePath("AnimationPlayer")
 
-[node name="MainMenu" type="Node2D" parent="."]
-
-[node name="MenuBg" type="Sprite2D" parent="MainMenu"]
+[node name="MenuBg" type="Sprite2D" parent="."]
 texture = ExtResource("1_fkt7h")
 centered = false
 
-[node name="Panel" type="Panel" parent="MainMenu"]
+[node name="Panel" type="Panel" parent="."]
 anchors_preset = -1
 anchor_left = 0.031
 anchor_top = 0.042
 anchor_right = 0.031
 anchor_bottom = 0.042
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 620.0
-offset_bottom = 460.0
+offset_left = 0.16
+offset_top = -0.16
+offset_right = 600.16
+offset_bottom = 439.84
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("4_gff1k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
 anchor_right = 0.967
 anchor_bottom = 0.955
@@ -106,58 +104,57 @@ offset_top = 20.0
 offset_right = 19.8
 offset_bottom = 19.8
 
-[node name="Label" type="Label" parent="MainMenu/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Night Light"
 label_settings = SubResource("LabelSettings_xh7ea")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 16
 
-[node name="NewGameButton" type="Button" parent="MainMenu/Panel/VBoxContainer/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../GalleryButton")
 text = "New game"
 
-[node name="ContinueButton" type="Button" parent="MainMenu/Panel/VBoxContainer/VBoxContainer"]
+[node name="ContinueButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 
-[node name="GalleryButton" type="Button" parent="MainMenu/Panel/VBoxContainer/VBoxContainer"]
+[node name="GalleryButton" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../NewGameButton")
 text = "Gallery"
 
-[node name="FloatingGirl" type="Sprite2D" parent="MainMenu"]
+[node name="FloatingGirl" type="Sprite2D" parent="."]
 position = Vector2(360, 280)
 scale = Vector2(0.572754, 0.572754)
 texture = ExtResource("2_6g6wh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5ega4")
 }
 autoplay = "fade_in"
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="MainMenu"]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_5x4cq")
 autoplay = true
 bus = &"BGM"
 
-[node name="FadeRet" type="ColorRect" parent="MainMenu"]
+[node name="FadeRet" type="ColorRect" parent="."]
 offset_right = 640.0
 offset_bottom = 480.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AutofocusOnReady" parent="MainMenu" node_paths=PackedStringArray("control") instance=ExtResource("6_7v38g")]
+[node name="AutofocusOnReady" parent="." node_paths=PackedStringArray("control") instance=ExtResource("6_7v38g")]
 control = NodePath("../Panel/VBoxContainer/VBoxContainer/NewGameButton")
 
-[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_journey_pressed"]
-[connection signal="pressed" from="MainMenu/Panel/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_journey_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

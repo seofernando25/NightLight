@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceSet" load_steps=4 format=3 uid="uid://b04wggss6rnk1"]
+
+[ext_resource type="AudioStream" uid="uid://dmtbdhegira3y" path="res://Audio/CharacterBeeps/MeowMeow/a.mp3" id="1_76yqn"]
+[ext_resource type="AudioStream" uid="uid://b0n77qu5j0fbe" path="res://Audio/CharacterBeeps/MeowMeow/d.mp3" id="4_vgkpn"]
+[ext_resource type="Script" path="res://Resources/voice_set.gd" id="5_n1ui0"]
+
+[resource]
+script = ExtResource("5_n1ui0")
+name = "meowmeow"
+noises = Array[AudioStream]([ExtResource("1_76yqn"), ExtResource("4_vgkpn")])

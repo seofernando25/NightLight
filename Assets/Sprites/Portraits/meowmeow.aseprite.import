@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://fhghvmg8um55"
+path="res://.godot/imported/meowmeow.aseprite-44b155762509e5b786fc44ba748ef516.res"
+
+[deps]
+
+source_file="res://Assets/Sprites/Portraits/meowmeow.aseprite"
+dest_files=["res://.godot/imported/meowmeow.aseprite-44b155762509e5b786fc44ba748ef516.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false
