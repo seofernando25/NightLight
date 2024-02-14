@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bgtl4iygxsfyu"
+path="res://.godot/imported/speak (2).wav-f7a35e777299783cef7871b713b0c831.sample"
+
+[deps]
+
+source_file="res://Audio/TheMission/speak (2).wav"
+dest_files=["res://.godot/imported/speak (2).wav-f7a35e777299783cef7871b713b0c831.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

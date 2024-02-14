@@ -2,49 +2,26 @@ extends Label
 class_name Typewriter
 
 signal typing_finished
+signal typing_started
 signal on_type_char(character: String)
 
 @export var char_delay = 0.2
-@export var autostart = false
-@export var to_type = ""
 
-var elapsed_chars = 0
-@onready var timer: Timer = $Timer
-
-func set_char_delay(delay):
-	char_delay = delay
-	timer.wait_time = char_delay
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	timer.stop()
-	timer.wait_time = char_delay
+func type_text(text_to_type):
+	typing_started.emit()
+	var txt = text_to_type
 	text = ""
 
-	if autostart:
-		start_typing()
-
-func start_typing():
-	timer.wait_time = char_delay
-	text = ""
-	timer.start()
-
-func skip_typing():
-	timer.stop()
-	text = to_type
-
-func resume_typing():
-	timer.start()
-
-func stop_typing():
-	timer.stop()
-	elapsed_chars = 1
+	if txt.length() == 0:
+		return
 	
+	var index = 0
+
+	for i in range(txt.length()):
+		await get_tree().create_timer(char_delay).timeout
+		index += 1
+		text = txt.left(index)
+		on_type_char.emit(txt[index - 1])
+
+	typing_finished.emit()
 	
-func _on_timer_timeout():
-	elapsed_chars += 1
-	text = to_type.left(elapsed_chars)
-	on_type_char.emit(to_type[elapsed_chars - 1])
-	if elapsed_chars == to_type.length():
-		typing_finished.emit()
-		timer.stop()

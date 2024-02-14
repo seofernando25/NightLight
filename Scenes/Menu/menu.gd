@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-var gameplayManagerScene: PackedScene = preload("res://Scenes/GameplayManager/GameplayManager.tscn")
+
+@export var initial_scene: PackedScene = null
 
 @export var animation_player: AnimationPlayer
 
@@ -8,14 +9,19 @@ var gameplayManagerScene: PackedScene = preload("res://Scenes/GameplayManager/Ga
 @onready var continueButton: Button = %ContinueButton
 @onready var galleryButton: Button = %GalleryButton
 
-func new_journey():
-	GameRoot.instance.change_scene(gameplayManagerScene)
+func continue_journey():
+	var scene_instance = load(PlayerFlags.game_data.current_scene)
+	GameRoot.instance.change_scene(scene_instance)
+	GameUI.instance.show()
 	
+
+func new_journey():
+	GameRoot.instance.change_scene(initial_scene)
+		
+
 func _on_new_journey_pressed():
-	# TODO: Add a confirmation dialog to avoid accidental new game
 	PlayerFlags.game_data = GameSave.new()
-	PlayerFlags.game_data.current_scene = "res://Scenes/IntroSequence/IntroSequence.tscn"
-	animation_player.play("new_journey")
+	animation_player.play("continue_journey")
 
 
 func _on_continue_button_pressed():
@@ -25,7 +31,6 @@ func _on_continue_button_pressed():
 
 
 func _ready():
-	# Test writing to file
 	# If gameSave is empty dict, hide continue button
 	if PlayerFlags.game_data.variables == {}:
 		print("No save data")

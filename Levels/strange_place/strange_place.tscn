@@ -1,0 +1,225 @@
+[gd_scene load_steps=27 format=3 uid="uid://dms7r850ymwsf"]
+
+[ext_resource type="PackedScene" uid="uid://ckey6m1f84c15" path="res://Components/UI/SanityPixelizer/sanity_pixelizer.tscn" id="1_jhdgj"]
+[ext_resource type="PackedScene" uid="uid://c5foxfxa1nj8a" path="res://Components/UI/SanityDistortion/sanity_distortion.tscn" id="1_vvv4w"]
+[ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_xrcy0"]
+[ext_resource type="AudioStream" uid="uid://cb1lixtaum1wa" path="res://Audio/A Quiet House/a_quiet_house.mp3" id="2_mumkq"]
+[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="3_frpx7"]
+[ext_resource type="PackedScene" uid="uid://d025000gtsl0i" path="res://Components/Misc/SanityRecoverZone/sanity_recover_zone.tscn" id="4_bu57m"]
+[ext_resource type="PackedScene" uid="uid://cbr0rgf1vkh5s" path="res://Components/DialogHelpers/DialogHolder/DialogHolder.tscn" id="7_4lmpb"]
+[ext_resource type="Script" path="res://Resources/Dialog/dialog.gd" id="8_n73ly"]
+[ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Assets/Sprites/Portraits/avery.png" id="9_kbbig"]
+[ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="10_jgaux"]
+[ext_resource type="PackedScene" uid="uid://b10oft5dcq867" path="res://Components/DialogHelpers/ChoiceDialogHolder/ChoiceDialogHolder.tscn" id="11_n4ksr"]
+[ext_resource type="Script" path="res://Resources/Dialog/choice_dialog.gd" id="13_3whxy"]
+
+[sub_resource type="Gradient" id="Gradient_2im78"]
+offsets = PackedFloat32Array(0, 0.553488, 0.730233)
+colors = PackedColorArray(0.305882, 0.305882, 0.305882, 0.32549, 0.0923971, 0.0923971, 0.0923971, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vt4g"]
+gradient = SubResource("Gradient_2im78")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kv6ro"]
+
+[sub_resource type="Gradient" id="Gradient_r41uv"]
+offsets = PackedFloat32Array(0, 0.14186, 0.425581, 0.734884)
+colors = PackedColorArray(1, 1, 0.729412, 0.572549, 1, 1, 0.756863, 0.231373, 1, 1, 0.959583, 0.0497074, 1, 1, 0.988673, 0.0236388)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ywm22"]
+gradient = SubResource("Gradient_r41uv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_jxq5b"]
+resource_name = "entry"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BGM:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OverlayFade:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:player_movement_enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/DialogHolder")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"trigger_dialog"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qf4g"]
+_data = {
+"entry": SubResource("Animation_jxq5b")
+}
+
+[sub_resource type="Resource" id="Resource_sf5t7"]
+script = ExtResource("8_n73ly")
+dialog_text = "..."
+portrait = ExtResource("9_kbbig")
+voice_set = ExtResource("10_jgaux")
+
+[sub_resource type="Resource" id="Resource_uwm4g"]
+script = ExtResource("8_n73ly")
+dialog_text = "Crumb..."
+portrait = ExtResource("9_kbbig")
+voice_set = ExtResource("10_jgaux")
+
+[sub_resource type="Resource" id="Resource_u7g6p"]
+script = ExtResource("13_3whxy")
+choices = Array[String](["Yes", "Yes"])
+dialog_text = "I need to find him"
+portrait = ExtResource("9_kbbig")
+voice_set = ExtResource("10_jgaux")
+
+[sub_resource type="Resource" id="Resource_mohvh"]
+script = ExtResource("8_n73ly")
+dialog_text = "Yes!!!"
+portrait = ExtResource("9_kbbig")
+voice_set = ExtResource("10_jgaux")
+
+[sub_resource type="Resource" id="Resource_gewad"]
+script = ExtResource("8_n73ly")
+dialog_text = "Yuss!!!"
+portrait = ExtResource("9_kbbig")
+voice_set = ExtResource("10_jgaux")
+
+[sub_resource type="Gradient" id="Gradient_el1fn"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ws8t"]
+gradient = SubResource("Gradient_el1fn")
+width = 100
+height = 140
+
+[node name="StrangePlace" type="Node2D"]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="SanityDistortion" parent="CanvasLayer2" instance=ExtResource("1_vvv4w")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SanityPixelizer" parent="CanvasLayer" instance=ExtResource("1_jhdgj")]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -566.0
+offset_top = -518.0
+offset_right = 1446.0
+offset_bottom = 975.0
+color = Color(0, 0, 0, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_xrcy0")
+format = 2
+layer_0/name = "base"
+layer_0/tile_data = PackedInt32Array(786446, 327680, 0, 851982, 327680, 0, 917518, 327680, 0, 786447, 327680, 0, 851983, 327680, 0, 917519, 327680, 0, 786448, 327680, 0, 851984, 327680, 0, 917520, 327680, 0, 786449, 327680, 0, 851985, 327680, 0, 917521, 327680, 0, 786450, 327680, 0, 851986, 327680, 0, 917522, 327680, 0, 786451, 327680, 0, 851987, 327680, 0, 917523, 327680, 0, 786452, 327680, 0, 851988, 327680, 0, 917524, 327680, 0, 917517, 327680, 0, 851981, 327680, 0, 786445, 327680, 0, 720909, 327680, 0, 720910, 327680, 0, 720911, 327680, 0, 720912, 327680, 0, 720913, 327680, 0, 720914, 327680, 0, 720915, 327680, 0, 720916, 327680, 0, 983053, 65536, 0, 983054, 65536, 0, 983055, 65536, 0, 983056, 65536, 0, 983057, 65536, 0, 983058, 65536, 0, 983059, 65536, 0, 983060, 131072, 0, 1048596, 131072, 2, 1048594, 65536, 2, 1048595, 65536, 2, 1048593, 196608, 1, 1114129, 131072, 1, 655374, 327680, 0, 655375, 327680, 0, 655376, 327680, 0, 655377, 327680, 0, 655378, 327680, 0, 655379, 327680, 0, 655380, 327680, 0, 655373, 327680, 0, 655372, 327680, 0, 720908, 327680, 0, 786444, 327680, 0, 851980, 327680, 0, 917516, 327680, 0, 589835, 327680, 0, 655371, 327680, 0, 720907, 327680, 0, 786443, 327680, 0, 851979, 327680, 0, 917515, 327680, 0, 589836, 327680, 0, 589837, 327680, 0, 589838, 327680, 0, 589839, 327680, 0, 589840, 327680, 0, 589841, 327680, 0, 589842, 327680, 0, 589843, 327680, 0, 589844, 327680, 0, 983051, 65536, 0, 983052, 65536, 0, 983050, 196608, 2, 589834, 131072, 1, 655370, 131072, 1, 720906, 131072, 1, 786442, 131072, 1, 851978, 131072, 1, 917514, 131072, 1, 524298, 131072, 1, 524299, 393216, 3, 524300, 393216, 3, 524301, 393216, 3, 524302, 393216, 3, 524303, 393216, 3, 524304, 393216, 3, 524305, 393216, 3, 524306, 393216, 3, 524307, 393216, 3, 524308, 393216, 3, 524309, 262144, 0, 589845, 393216, 3, 655381, 393216, 3, 720917, 393216, 3, 786453, 393216, 3, 851989, 327680, 0, 917525, 327680, 0, 786454, 393216, 3, 851990, 327680, 0, 917526, 327680, 0, 524310, 393216, 3, 589846, 393216, 3, 655382, 393216, 3, 720918, 393216, 3, 524311, 393216, 3, 589847, 393216, 3, 655383, 393216, 3, 720919, 393216, 3, 458763, 393216, 3, 458764, 393216, 3, 458765, 393216, 3, 458766, 393216, 3, 458767, 393216, 3, 458768, 393216, 3, 458769, 393216, 3, 458770, 393216, 3, 458771, 393216, 3, 458772, 393216, 3, 393227, 393216, 3, 393228, 393216, 3, 393229, 393216, 3, 393230, 393216, 3, 393231, 393216, 3, 393232, 393216, 3, 393233, 393216, 3, 393234, 393216, 3, 393235, 393216, 3, 393236, 393216, 3, 262155, 393216, 3, 262156, 393216, 3, 262157, 393216, 3, 262158, 393216, 3, 262159, 393216, 3, 262160, 393216, 3, 262161, 393216, 3, 262162, 393216, 3, 262163, 393216, 3, 262164, 393216, 3, 327700, 393216, 3, 327699, 393216, 3, 327698, 393216, 3, 327697, 393216, 3, 327696, 393216, 3, 327695, 393216, 3, 327694, 393216, 3, 327693, 393216, 3, 327692, 393216, 3, 327691, 393216, 3, 458774, 393216, 3, 458773, 393216, 3, 458775, 393216, 3, 458776, 393216, 3, 458762, 131072, 1, 393226, 131072, 1, 327690, 131072, 1, 262154, 131072, 1, 196618, 196608, 1, 196619, 65536, 2, 196620, 65536, 2, 196621, 65536, 2, 196622, 65536, 2, 196623, 65536, 2, 196624, 65536, 2, 196625, 65536, 2, 196626, 65536, 2, 196627, 65536, 2, 196628, 65536, 2, 196629, 262144, 1, 524312, 393216, 3, 589848, 393216, 3, 655384, 393216, 3, 720920, 393216, 3, 786455, 393216, 3, 851991, 327680, 0, 917527, 327680, 0, 786456, 393216, 3, 851992, 327680, 0, 917528, 327680, 0, 262165, 0, 1, 327701, 0, 1, 393237, 0, 2, 393238, 65536, 2, 393239, 65536, 2, 393240, 65536, 2, 393241, 262144, 1, 458777, 0, 1, 524313, 0, 1, 589849, 0, 1, 655385, 0, 1, 720921, 0, 1, 786457, 0, 1, 851993, 0, 1, 917529, 0, 1, 983065, 0, 1, 1048601, 0, 1, 1114137, 0, 1, 983061, 327680, 0, 1048597, 327680, 0, 1114133, 327680, 0, 983062, 327680, 0, 1048598, 327680, 0, 1114134, 327680, 0, 983063, 327680, 0, 1048599, 327680, 0, 1114135, 327680, 0, 983064, 327680, 0, 1048600, 327680, 0, 1114136, 327680, 0, 1114130, 327680, 0, 1179666, 327680, 0, 1245202, 327680, 0, 1310738, 327680, 0, 1376274, 327680, 0, 1114131, 327680, 0, 1179667, 327680, 0, 1245203, 327680, 0, 1310739, 327680, 0, 1376275, 327680, 0, 1114132, 327680, 0, 1179668, 327680, 0, 1245204, 327680, 0, 1310740, 327680, 0, 1376276, 327680, 0, 1179669, 327680, 0, 1245205, 327680, 0, 1310741, 327680, 0, 1376277, 327680, 0, 1179670, 327680, 0, 1245206, 327680, 0, 1310742, 327680, 0, 1376278, 327680, 0, 1179671, 327680, 0, 1245207, 327680, 0, 1310743, 327680, 0, 1376279, 327680, 0, 1179672, 327680, 0, 1245208, 327680, 0, 1310744, 327680, 0, 1376280, 327680, 0, 1179665, 131072, 1, 1245201, 131072, 1, 1310737, 131072, 1, 1376273, 131072, 1, 1179673, 0, 1, 1245209, 0, 1, 1310745, 0, 1, 1376281, 0, 1)
+layer_1/name = "base2"
+layer_1/tile_data = PackedInt32Array(524305, 196611, 14, 589841, 196611, 15, 524306, 262147, 14, 589842, 262147, 15, 524307, 327683, 14, 589843, 327683, 15, 262160, 3, 0, 327696, 3, 1, 393232, 3, 2, 262161, 65539, 0, 327697, 65539, 1, 393233, 65539, 2, 262162, 131075, 0, 327698, 131075, 1, 393234, 131075, 2, 262163, 196611, 0, 327699, 196611, 1, 393235, 196611, 2, 524304, 131075, 14, 589840, 131075, 15, 524308, 458755, 4, 589844, 458755, 5, 327694, 1310723, 0, 393230, 1310723, 1, 327695, 1376259, 0, 393231, 1376259, 1, 524301, 983043, 1, 589837, 983043, 2, 524302, 1048579, 1, 589838, 1048579, 2, 524303, 1114115, 1, 589839, 1114115, 2, 458767, 524291, 22, 458765, 458755, 22)
+layer_2/name = "walls"
+layer_2/tile_data = PackedInt32Array(655381, 0, 1, 720917, 0, 1, 589845, 0, 1, 524309, 0, 1, 458773, 0, 1, 720907, 262147, 3, 786443, 262147, 4, 851979, 262147, 5, 917515, 262147, 6, 720908, 327683, 3, 786444, 327683, 4, 851980, 327683, 5, 917516, 327683, 6, 720909, 393219, 3, 786445, 393219, 4, 851981, 393219, 5, 917517, 393219, 6, 786453, 0, 1, 589843, 720899, 7, 655379, 720899, 8, 720915, 720899, 9, 786451, 720899, 10, 589844, 786435, 7, 655380, 786435, 8, 720916, 786435, 9, 786452, 786435, 10, 524307, 720899, 6, 524308, 786435, 6, 458763, 458755, 1, 524299, 458755, 2, 589835, 458755, 3, 393227, 458755, 0, 393228, 589827, 0, 458764, 589827, 1, 524300, 589827, 2, 589836, 589827, 3, 458765, 458755, 22, 524301, 458755, 23, 458767, 524291, 22, 524303, 524291, 23)
+layer_3/name = "dirt"
+layer_3/tile_data = PackedInt32Array(1114133, 1507331, 805306391, 1245206, 1572867, 1342177304, 1245203, 1572867, 23, 655374, 1310723, 23, 655375, 1376259, 23, 1310743, 1572867, 805306392, 1114131, 1310723, 268435479, 1114130, 1376259, 268435479)
+
+[node name="Player" parent="." instance=ExtResource("3_frpx7")]
+position = Vector2(350, 223)
+initialHeading = 0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -33)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Ambient" type="PointLight2D" parent="."]
+position = Vector2(320, 240)
+scale = Vector2(10, 7.5)
+texture = SubResource("GradientTexture2D_7vt4g")
+
+[node name="Area2D" parent="." instance=ExtResource("4_bu57m")]
+light_intensity = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kv6ro")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(309, 162)
+scale = Vector2(5.34375, 5.375)
+texture = SubResource("GradientTexture2D_ywm22")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_mumkq")
+autoplay = true
+bus = &"BGM"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1qf4g")
+}
+autoplay = "entry"
+
+[node name="DialogHolder" parent="AnimationPlayer" instance=ExtResource("7_4lmpb")]
+dialog = SubResource("Resource_sf5t7")
+
+[node name="DialogHolder" parent="AnimationPlayer/DialogHolder" instance=ExtResource("7_4lmpb")]
+dialog = SubResource("Resource_uwm4g")
+
+[node name="ChoiceDialogHolder" parent="AnimationPlayer/DialogHolder/DialogHolder" instance=ExtResource("11_n4ksr")]
+choice_dialog = SubResource("Resource_u7g6p")
+
+[node name="YesChoice" parent="AnimationPlayer/DialogHolder/DialogHolder/ChoiceDialogHolder" instance=ExtResource("7_4lmpb")]
+dialog = SubResource("Resource_mohvh")
+
+[node name="NoChoice" parent="AnimationPlayer/DialogHolder/DialogHolder/ChoiceDialogHolder" instance=ExtResource("7_4lmpb")]
+dialog = SubResource("Resource_gewad")
+
+[node name="OverlayFade" type="ColorRect" parent="."]
+clip_children = 2
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 0)
+
+[node name="ExitFade" type="Sprite2D" parent="."]
+position = Vector2(360, 440)
+rotation = -1.5708
+texture = SubResource("GradientTexture2D_6ws8t")
+centered = false

@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://c1bkkldsib3b8" path="res://Assets/Sprites/Tileset/house_tiles.tres" id="1_fv76y"]
 [ext_resource type="PackedScene" uid="uid://cgcevq37h3g4c" path="res://Components/Misc/TeleportZone/TeleportZone.tscn" id="2_i07fe"]
 [ext_resource type="PackedScene" uid="uid://dkuh5rwdpjem1" path="res://Components/DialogHelpers/AreaInteractable/AreaInteractable.tscn" id="3_yuywr"]
-[ext_resource type="Script" path="res://Resources/dialog.gd" id="4_ewem2"]
+[ext_resource type="Script" path="res://Resources/Dialog/dialog.gd" id="4_ewem2"]
 [ext_resource type="AudioStream" uid="uid://dhwy7wcu2wgpf" path="res://Audio/CharacterBeeps/Avery/d.mp3" id="5_6d4nw"]
 [ext_resource type="Script" path="res://Resources/voice_set.gd" id="6_hhwqr"]
 [ext_resource type="Texture2D" uid="uid://cl84hy1p1hmjf" path="res://Assets/Sprites/Portraits/meowmeow.png" id="7_74vfl"]

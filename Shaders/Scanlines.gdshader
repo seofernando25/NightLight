@@ -39,14 +39,11 @@ uniform float noise_speed = 5.0; // There is a movement in the noise pattern tha
 uniform float static_noise_intensity : hint_range(0.0, 1.0) = 0.06;
 
 uniform float aberration : hint_range(-1.0, 1.0) = 0.03; // Chromatic aberration, a distortion on each color channel.
-uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
+uniform float brightness = 1; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
 uniform bool discolor = true; // Add a discolor effect simulating a VHS
 
 uniform float warp_amount :hint_range(0.0, 5.0) = 1.0; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
-uniform bool clip_warp = false;
 
-uniform float vignette_intensity = 0.4; // Size of the vignette, how far towards the middle it should go.
-uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
 
 // Used by the noise functin to generate a pseudo random value between 0.0 and 1.0
 vec2 random(vec2 uv){
@@ -88,12 +85,7 @@ float border (vec2 uv){
 	return clamp(1.0 - square, 0.0, 1.0);
 }
 
-// Adds a vignette shadow to the edges of the image
-float vignette(vec2 uv){
-	uv *= 1.0 - uv.xy;
-	float vignette = uv.x * uv.y * 15.0;
-	return pow(vignette, vignette_intensity * vignette_opacity);
-}
+
 
 void fragment()
 {
@@ -205,12 +197,6 @@ void fragment()
 	// Apply a black border to hide imperfections caused by the warping.
 	// Also apply the vignette
 	text.rgb *= border(uv);
-	text.rgb *= vignette(uv);
-	// Hides the black border and make that area transparent. Good if you want to add the the texture on top an image of a TV or monitor.
-	if (clip_warp)
-	{
-		text.a = border(uv);
-	}
 	
 	// Apply discoloration to get a VHS look (lower saturation and higher contrast)
 	// You can play with the values below or expose them in the Inspector.

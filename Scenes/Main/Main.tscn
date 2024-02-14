@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://6d0ffg54l3do"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
-[ext_resource type="PackedScene" uid="uid://b0qw2vjrt6odj" path="res://Components/Camera/PixelCamera/PixelCamera.tscn" id="3_ufv6a"]
+[ext_resource type="PackedScene" uid="uid://57f4sgtmtu7g" path="res://Scenes/Menu/menu.tscn" id="2_iwve5"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene")]
 script = ExtResource("1_51ueg")
+current_scene = NodePath("Menu")
 
-[node name="PixelCamera" parent="." instance=ExtResource("3_ufv6a")]
+[node name="Menu" parent="." instance=ExtResource("2_iwve5")]

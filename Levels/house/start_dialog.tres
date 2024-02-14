@@ -1,46 +1,11 @@
-[gd_resource type="Resource" script_class="Dialog" load_steps=7 format=3 uid="uid://ci68ljgr7ujyc"]
+[gd_resource type="Resource" script_class="Dialog" load_steps=4 format=3 uid="uid://ci68ljgr7ujyc"]
 
 [ext_resource type="Texture2D" uid="uid://b7wvrok8lcyuk" path="res://Assets/Sprites/Portraits/mom.png" id="1_6ey86"]
-[ext_resource type="Script" path="res://Resources/dialog.gd" id="1_gd1wy"]
+[ext_resource type="Script" path="res://Resources/Dialog/dialog.gd" id="1_gd1wy"]
 [ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="3_ltevm"]
-
-[sub_resource type="Resource" id="Resource_k2lie"]
-script = ExtResource("1_gd1wy")
-dialog_type = 0
-dialog_text = "Come get some breakfast
-
-I'm waiting at the kitchen"
-option_text = ""
-options = Array[ExtResource("1_gd1wy")]([])
-name = ""
-
-[sub_resource type="Resource" id="Resource_igvku"]
-script = ExtResource("1_gd1wy")
-dialog_type = 0
-dialog_text = "Not today exactly...
-
-but tomorrow"
-option_text = ""
-options = Array[ExtResource("1_gd1wy")]([])
-name = ""
-next = SubResource("Resource_k2lie")
-
-[sub_resource type="Resource" id="Resource_xdv5w"]
-script = ExtResource("1_gd1wy")
-dialog_type = 0
-dialog_text = "Today is a special day you know?"
-option_text = ""
-options = Array[ExtResource("1_gd1wy")]([])
-name = ""
-next = SubResource("Resource_igvku")
 
 [resource]
 script = ExtResource("1_gd1wy")
-dialog_type = 0
 dialog_text = "Averyyyy!!!!"
-option_text = ""
-options = Array[ExtResource("1_gd1wy")]([])
-name = ""
 portrait = ExtResource("1_6ey86")
 voice_set = ExtResource("3_ltevm")
-next = SubResource("Resource_xdv5w")

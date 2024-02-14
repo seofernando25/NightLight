@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://57f4sgtmtu7g"]
+[gd_scene load_steps=13 format=3 uid="uid://57f4sgtmtu7g"]
 
 [ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Assets/Sprites/UI/menu_bg.png" id="1_fkt7h"]
 [ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_gttxn"]
 [ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Assets/Sprites/UI/floating_girl.png" id="2_6g6wh"]
+[ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="2_yen7y"]
 [ext_resource type="StyleBox" uid="uid://mqa6iuwlwwnn" path="res://Scenes/Menu/menu_panel_outline.tres" id="4_gff1k"]
 [ext_resource type="AudioStream" uid="uid://dvhmsx8xnrl4a" path="res://Audio/AverySpecialSong/averyspecialsong.mp3" id="5_5x4cq"]
 [ext_resource type="PackedScene" uid="uid://dt5f8xihxxj7o" path="res://Components/UI/AutofocusOnReady/AutofocusOnReady.tscn" id="6_7v38g"]
@@ -10,6 +11,47 @@
 [sub_resource type="LabelSettings" id="LabelSettings_xh7ea"]
 font_size = 84
 font_color = Color(0.968734, 0.81973, 0.678553, 1)
+
+[sub_resource type="Animation" id="Animation_2qj3v"]
+resource_name = "continue_journey"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeRet:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"continue_journey"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuMusic:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -48.0]
+}
 
 [sub_resource type="Animation" id="Animation_ye1qc"]
 resource_name = "fade_in"
@@ -69,12 +111,14 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ega4"]
 _data = {
+"continue_journey": SubResource("Animation_2qj3v"),
 "fade_in": SubResource("Animation_ye1qc"),
 "new_journey": SubResource("Animation_k53n1")
 }
 
 [node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_gttxn")
+initial_scene = ExtResource("2_yen7y")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="MenuBg" type="Sprite2D" parent="."]

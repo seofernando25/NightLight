@@ -34,11 +34,11 @@ func _on_body_entered(body:Node2D):
 		print("TeleportZone: No teleport zone found with name: " + teleport_to)
 		return
 	if UIAnimationPlayer.instance:
-		PlayerMovement.controller_enabled = false
+		Player.instance.player_movement_enabled = false
 		UIAnimationPlayer.instance.play("fade_out")
 		await UIAnimationPlayer.instance.animation_finished
 		body.global_position = targetLocation.global_position
-		PlayerMovement.controller_enabled = true
+		Player.instance.player_movement_enabled = true
 		UIAnimationPlayer.instance.play("fade_in")
 	else:
 		print("TeleportZone: No UIAnimationPlayer found")

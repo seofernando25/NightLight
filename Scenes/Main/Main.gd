@@ -2,18 +2,15 @@ extends Node2D
 class_name GameRoot
 
 static var instance = null
-var current_scene = null
+
+  
+@export var current_scene: Node = null
 
 func _ready():
 	if instance != null:
 		push_error("GameRoot: Multiple instances detected")
 		return
 	instance = self
-
-
-	var menu_scene = preload("res://Scenes/Menu/menu.tscn")
-	current_scene = menu_scene.instantiate()
-	add_child(current_scene)
 
 func change_scene(scene: PackedScene):
 	if current_scene != null:
@@ -31,4 +28,3 @@ func _unhandled_input(event):
 	if event.is_action_pressed("debug_save"):
 		print("Debug save")
 		PlayerFlags.write_save()
-

@@ -15,15 +15,9 @@ func _ready():
 	# Toggle back
 	if PlayerFlags.get_scene_variable("house", "first_entered") != true:
 		PlayerFlags.set_scene_variable("house", "first_entered", true)
-		if PlayerSprite.instance:
-			PlayerSprite.instance.player_controlled = false
-			PlayerSprite.instance.face_left()
 		# Player alarm sound
 		animation_player.play("waking_up")
-		await animation_player.animation_finished
-		
-		if PlayerSprite.instance:
-			PlayerSprite.instance.player_controlled = true
+		await animation_player.animation_finished		
 	else:
 		var saved_position = PlayerFlags.get_saved_position()
 		if saved_position:

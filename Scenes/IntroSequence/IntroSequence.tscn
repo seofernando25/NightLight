@@ -1,45 +1,187 @@
 [gd_scene load_steps=12 format=3 uid="uid://h58vpf4gagvx"]
 
-[ext_resource type="Script" path="res://Scenes/IntroSequence/IntroSequence.gd" id="1_hngcd"]
-[ext_resource type="PackedScene" uid="uid://d34txy4282cyd" path="res://Components/UI/SimpleDialogSlide/simple_dialog_slide.tscn" id="2_grdrp"]
-[ext_resource type="SpriteFrames" uid="uid://ps1bkp8i1v58" path="res://Assets/Sprites/Intro/intro.aseprite" id="3_cdko5"]
-[ext_resource type="AudioStream" uid="uid://dhqdjeaqp5agg" path="res://Scenes/IntroSequence/afraid_of_the_dark.wav" id="4_b4l0l"]
-[ext_resource type="AudioStream" uid="uid://bg4dmd41wfku5" path="res://Scenes/IntroSequence/the_silence_bounces.wav" id="5_2cb7x"]
-[ext_resource type="SpriteFrames" uid="uid://3v5556obvegc" path="res://Assets/Sprites/Intro/intro_b.aseprite" id="5_g3srx"]
-[ext_resource type="SpriteFrames" uid="uid://b44i78ibrp0as" path="res://Assets/Sprites/Intro/intro_c.aseprite" id="7_bwioh"]
-[ext_resource type="AudioStream" uid="uid://cmgcuinhg6ijl" path="res://Scenes/IntroSequence/reverberating_of_my_skull.wav" id="7_lwy46"]
-[ext_resource type="SpriteFrames" uid="uid://c7x80680oa53q" path="res://Assets/Sprites/Intro/intro_d.aseprite" id="9_2ys6l"]
-[ext_resource type="AudioStream" uid="uid://olys7baa30q7" path="res://Scenes/IntroSequence/it_consumes_me.wav" id="10_o3iff"]
-[ext_resource type="AudioStream" uid="uid://bw7dpa8gltexg" path="res://Audio/Ambient3/ambient3.wav" id="11_l5ea2"]
+[ext_resource type="PackedScene" uid="uid://dms7r850ymwsf" path="res://Levels/strange_place/strange_place.tscn" id="1_432t2"]
+[ext_resource type="Shader" path="res://Shaders/Scanlines.gdshader" id="1_f02jf"]
+[ext_resource type="AudioStream" uid="uid://ux1ofot5wnpi" path="res://Audio/TheMission/themission.ogg" id="2_icm41"]
+[ext_resource type="AudioStream" uid="uid://clwnn1dwy2i4" path="res://Audio/Misc/lamp_off.mp3" id="2_ley11"]
+[ext_resource type="SpriteFrames" uid="uid://b0odi1rrrf2kr" path="res://Assets/Sprites/Intro/eye.aseprite" id="3_agp5s"]
+[ext_resource type="Script" path="res://Components/UI/Typewriter/Typewriter.gd" id="3_l4w71"]
 
-[node name="IntroSequence" type="Node2D" node_paths=PackedStringArray("slides")]
-script = ExtResource("1_hngcd")
-slides = [NodePath("DialogSlideA"), NodePath("DialogSlideB"), NodePath("DialogSlideC"), NodePath("DialogSlideD")]
+[sub_resource type="GDScript" id="GDScript_gq3am"]
+script/source = "extends Node2D
 
-[node name="DialogSlideA" parent="." instance=ExtResource("2_grdrp")]
-visible = false
-dialog_text = "I've always been afraid of the dark..."
-sprite_frames = ExtResource("3_cdko5")
-audio_stream = ExtResource("4_b4l0l")
+@export var next_scene: PackedScene = null
+# Called when the node enters the scene tree for the first time.
+func go_back_to_menu():
+	GameRoot.instance.change_scene(next_scene)
+"
 
-[node name="DialogSlideB" parent="." instance=ExtResource("2_grdrp")]
-visible = false
-dialog_text = "The silence bounces off the walls of my room..."
-sprite_frames = ExtResource("5_g3srx")
-audio_stream = ExtResource("5_2cb7x")
+[sub_resource type="Animation" id="Animation_ody18"]
+resource_name = "intro"
+length = 27.5
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_icm41")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Typewriter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.5, 10.1, 16.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["Avery still your trembling heart"],
+"method": &"type_text"
+}, {
+"args": ["They feast in the dark"],
+"method": &"type_text"
+}, {
+"args": ["Let me be..."],
+"method": &"type_text"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.8, 6, 10.1, 13.4, 16.7, 21),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [&"close", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"open", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"close", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"open", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"close", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"open", 2.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 21.3, 21.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(20, 20)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_ley11")
+}],
+"times": PackedFloat32Array(26.8)
+}
+tracks/4/use_blend = true
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(27.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"go_back_to_menu"
+}]
+}
 
-[node name="DialogSlideC" parent="." instance=ExtResource("2_grdrp")]
-visible = false
-dialog_text = "It echoes in the back of my brain,reverberating off my skull..."
-sprite_frames = ExtResource("7_bwioh")
-audio_stream = ExtResource("7_lwy46")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3txj7"]
+_data = {
+"intro": SubResource("Animation_ody18")
+}
 
-[node name="DialogSlideD" parent="." instance=ExtResource("2_grdrp")]
-dialog_text = "It Consumes me..."
-sprite_frames = ExtResource("9_2ys6l")
-audio_stream = ExtResource("10_o3iff")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6vth"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3fbv"]
+shader = ExtResource("1_f02jf")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.1
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.293
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+
+[node name="IntroSequence" type="Node2D"]
+script = SubResource("GDScript_gq3am")
+next_scene = ExtResource("1_432t2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_l5ea2")
-autoplay = true
-bus = &"BGM"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3txj7")
+}
+autoplay = "intro"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_r6vth")
+position = Vector2(320, 240)
+sprite_frames = ExtResource("3_agp5s")
+animation = &"close"
+
+[node name="Typewriter" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 344.0
+offset_right = 520.0
+offset_bottom = 464.0
+script = ExtResource("3_l4w71")
+char_delay = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_j3fbv")
+offset_right = 640.0
+offset_bottom = 480.0

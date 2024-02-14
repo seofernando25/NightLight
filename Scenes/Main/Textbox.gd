@@ -10,6 +10,9 @@ var current_dialog: Dialog
 var selected_option = 0
 static var in_dialog = false
 
+var active_selection_color = Color("#ffffff")
+var inactive_selection_color = Color("#1f1f1f")
+
 func _ready():
 	PlayerFlags.dialog_start.connect(_on_dialog_start)
 	typewriter.on_type_char.connect(_on_type_char)
@@ -40,38 +43,41 @@ signal req_end_current_dialog
 func _unhandled_input(event):
 	if not current_dialog:
 		return
-	if  event.is_action_pressed("ui_left"):
-		if current_dialog.options.size() == 0:
-			return
-		# Set modulation to white
-		for i in range(hbox.get_child_count()):
-			var label = hbox.get_child(i)
-			label.modulate = Color(1, 1, 1, 1)
-		selected_option -= 1
-		# Wrap around to the last option
-		if selected_option < 0:
-			selected_option = current_dialog.options.size() - 1
-		# Set the selected option's text to have an asterisk
-		var child = hbox.get_child(selected_option)
-		child.modulate = Color("#566154")
-		
 
-	if event.is_action_pressed("ui_right"):
-		if current_dialog.options.size() == 0:
-			return
-		for i in range(hbox.get_child_count()):
-			var label = hbox.get_child(i)
-			label.modulate = Color(1, 1, 1, 1)
-		selected_option += 1
-		if selected_option > current_dialog.options.size() - 1:
-			selected_option = 0
-		# Set the selected option's text to have an asterisk
-		var child = hbox.get_child(selected_option)
-		child.modulate = Color("#566154")
+	if current_dialog is ChoiceDialog:
+		if  event.is_action_pressed("ui_left"):
+			if current_dialog.choices.size() == 0:
+				return
+			# Set modulation to white
+			for i in range(hbox.get_child_count()):
+				var label = hbox.get_child(i)
+				label.modulate = inactive_selection_color
+			selected_option -= 1
+			# Wrap around to the last option
+			if selected_option < 0:
+				selected_option = current_dialog.choices.size() - 1
+			# Set the selected option's text to have an asterisk
+			var child = hbox.get_child(selected_option)
+			child.modulate = active_selection_color
+			
+
+		if event.is_action_pressed("ui_right"):
+			if current_dialog.choices.size() == 0:
+				return
+			for i in range(hbox.get_child_count()):
+				var label = hbox.get_child(i)
+				label.modulate = inactive_selection_color
+
+			selected_option += 1
+			if selected_option > current_dialog.choices.size() - 1:
+				selected_option = 0
+			# Set the selected option's text to have an asterisk
+			var child = hbox.get_child(selected_option)
+			child.modulate = active_selection_color
 
 	if event.is_action_pressed("ui_accept"):
 		if is_dialoging:
-			typewriter.set_char_delay(typewriter.char_delay * 0.5)
+			typewriter.char_delay *= 0.5
 		req_end_current_dialog.emit()	
 
 var is_dialoging = false
@@ -89,37 +95,37 @@ func _on_dialog_start(dialog: Dialog):
 
 
 	current_dialog = dialog
+	
 	# Kill all children of HBoxContainer
 	for child in hbox.get_children():
 		child.queue_free()
-	# Add label for each option
-	var n = 0
-	for option in dialog.options:
-		var label = Label.new()
-		label.text = option
-		if n == 0:
-			label.modulate = Color("#566154")
-		n += 1
-		hbox.add_child(label)
+
+	if dialog is ChoiceDialog:
+		print("ChoiceDialog")
+		var n = 0
+		for option in dialog.choices:
+			var label = Label.new()
+			label.text = option
+			if n == 0:
+				label.modulate = active_selection_color
+			else:
+				label.modulate = inactive_selection_color
+			n += 1
+			hbox.add_child(label)
+
+
+	# # Add label for each option
 	
 
 	is_dialoging = true
 	portrait.texture = dialog.portrait
 	visible = true
-	typewriter.text = ""
-	typewriter.to_type = dialog.dialog_text
-	typewriter.stop_typing()
-	typewriter.start_typing()
+	typewriter.char_delay = 0.05
+	typewriter.type_text(dialog.dialog_text)
 	await typewriter.typing_finished
 	await req_end_current_dialog
-	typewriter.set_char_delay(0.05)
 	visible = false
 	is_dialoging = false
-
-	# Check if the dialog.next is not null
-	if dialog.next:
-		_on_dialog_start(dialog.next)
-		return
 	in_dialog = false
 	PlayerFlags.dialog_end.emit(selected_option)
 

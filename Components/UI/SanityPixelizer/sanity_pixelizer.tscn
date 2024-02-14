@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckey6m1f84c15"]
+
+[ext_resource type="Shader" path="res://Shaders/Mosaic.gdshader" id="1_qdbjv"]
+[ext_resource type="Script" path="res://Components/UI/SanityPixelizer/sanity_pixelizer.gd" id="2_biw5k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h50x4"]
+shader = ExtResource("1_qdbjv")
+shader_parameter/size = Vector2(0.5, 0.5)
+
+[node name="SanityPixelizer" type="ColorRect"]
+material = SubResource("ShaderMaterial_h50x4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_biw5k")

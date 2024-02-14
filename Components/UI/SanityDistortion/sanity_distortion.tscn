@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5foxfxa1nj8a"]
+
+[ext_resource type="Shader" path="res://Shaders/Insanity.gdshader" id="1_oxqmx"]
+[ext_resource type="Texture2D" uid="uid://6cfcfjmt4e1v" path="res://Shaders/Displacements/posteffect_insanity_ampmap0.jpg" id="2_wigpg"]
+[ext_resource type="Texture2D" uid="uid://dnc4su2rovil" path="res://Shaders/Displacements/posteffect_insanity_ampmap1.jpg" id="3_xhcrw"]
+[ext_resource type="Texture2D" uid="uid://dl175l5exho8m" path="res://Shaders/Displacements/posteffect_insanity_zoom.jpg" id="4_te5lm"]
+[ext_resource type="Script" path="res://Components/UI/SanityDistortion/sanity_distortion.gd" id="5_d6k5c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y0nnx"]
+shader = ExtResource("1_oxqmx")
+shader_parameter/zoom_displacement_speed = 0.5
+shader_parameter/zoom_intensity = 0.0
+shader_parameter/wobble_speed = 0.25
+shader_parameter/wobble_intensity = 0.0
+shader_parameter/warp_speed = 0.25
+shader_parameter/warp_intensity = 0.0
+shader_parameter/displacement_amplitude = 0.0
+shader_parameter/afWaveAlpha = 0.0
+shader_parameter/ampMap0 = ExtResource("2_wigpg")
+shader_parameter/ampMap1 = ExtResource("3_xhcrw")
+shader_parameter/zoomMap = ExtResource("4_te5lm")
+
+[node name="SanityDistortion" type="ColorRect"]
+material = SubResource("ShaderMaterial_y0nnx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_d6k5c")
