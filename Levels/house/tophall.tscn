@@ -194,4 +194,4 @@ shape = SubResource("RectangleShape2D_jf32t")
 [node name="BedReminder" parent="." instance=ExtResource("10_5suwj")]
 dialog = SubResource("Resource_u8ccl")
 
-[connection signal="hit" from="AreaTriggerIfNotVariable" to="BedReminder" method="trigger_dialog"]
+[connection signal="hit" from="AreaTriggerIfNotVariable" to="BedReminder" method="_execute"]

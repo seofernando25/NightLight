@@ -1,8 +1,8 @@
-extends Node
+extends EventCommand
 
 @export var dialog: Dialog = null
 
-func trigger_dialog():
+func Execute():
 	print("Triggering dialog")
 	if dialog == null:
 		push_error("Dialog is not set")
@@ -11,6 +11,4 @@ func trigger_dialog():
 	PlayerFlags.dialog_start.emit(dialog)
 	await PlayerFlags.dialog_end
 
-	# Check children for dialog
-	for child_node in get_children():
-		child_node.trigger_dialog()
+	

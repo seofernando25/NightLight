@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://we13u3gvw2e2"]
 
 [ext_resource type="Script" path="res://Scenes/Main/Textbox.gd" id="1_6504f"]
-[ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Assets/Sprites/Portraits/avery.png" id="2_t0ybo"]
+[ext_resource type="Texture2D" uid="uid://w1lkhdvo70sy" path="res://Assets/Sprites/Portraits/unkown.aseprite" id="2_amqul"]
 [ext_resource type="PackedScene" uid="uid://c4jchtvapo4fx" path="res://Components/UI/Typewriter/Typewriter.tscn" id="3_oiahx"]
 
 [node name="Textbox" type="ColorRect"]
@@ -18,7 +18,7 @@ offset_top = -60.0
 offset_right = 100.0
 offset_bottom = 40.0
 scale = Vector2(2, 2)
-texture = ExtResource("2_t0ybo")
+texture = ExtResource("2_amqul")
 expand_mode = 1
 stretch_mode = 5
 
@@ -28,6 +28,7 @@ layout_mode = 0
 offset_left = 180.0
 offset_right = 640.0
 offset_bottom = 140.0
+text = "I will find you"
 autowrap_mode = 2
 char_delay = 0.05
 

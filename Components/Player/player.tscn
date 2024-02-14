@@ -388,7 +388,6 @@ libraries = {
 }
 
 [node name="sanity_timer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [connection signal="timeout" from="sanity_timer" to="." method="_on_sanity_timer_timeout"]

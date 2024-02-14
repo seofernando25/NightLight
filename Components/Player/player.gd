@@ -67,7 +67,7 @@ func _on_sanity_timer_timeout():
 	if PlayerFlags.player_in_light > 0:
 		PlayerFlags.sanity += PlayerFlags.player_in_light
 	else:
-		PlayerFlags.sanity -= 10
+		PlayerFlags.sanity -= 1
 
 	if PlayerFlags.sanity < 0:
 		PlayerFlags.sanity = 0
