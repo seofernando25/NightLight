@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlsenf8qpwuqp"]
+
+[ext_resource type="Script" path="res://Components/Events/ChangeSanityEvent/ChangeSanityEvent.gd" id="1_2pv0h"]
+
+[node name="ChangeSanityEvent" type="Node"]
+script = ExtResource("1_2pv0h")

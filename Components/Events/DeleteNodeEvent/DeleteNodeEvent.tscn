@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b30phhfltapp8"]
+
+[ext_resource type="Script" path="res://Components/Events/DeleteNodeEvent/DeleteNodeEvent.gd" id="1_ptr3u"]
+
+[node name="DeleteNodeEvent" type="Node"]
+script = ExtResource("1_ptr3u")

@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Main/Main.gd" id="1_51ueg"]
 [ext_resource type="PackedScene" uid="uid://57f4sgtmtu7g" path="res://Scenes/Menu/menu.tscn" id="2_iwve5"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("current_scene")]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_51ueg")
-current_scene = NodePath("Menu")
 
 [node name="Menu" parent="." instance=ExtResource("2_iwve5")]

@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://b4mnl7hbykxcp"
+path="res://.godot/imported/avery.aseprite-f577c9b435a09f1c0c460089d95903bb.res"
+
+[deps]
+
+source_file="res://Sprites/Portraits/avery.aseprite"
+dest_files=["res://.godot/imported/avery.aseprite-f577c9b435a09f1c0c460089d95903bb.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

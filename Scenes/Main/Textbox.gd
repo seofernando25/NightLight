@@ -128,4 +128,5 @@ func _on_dialog_start(dialog: Dialog):
 	is_dialoging = false
 	in_dialog = false
 	PlayerFlags.dialog_end.emit(selected_option)
+	print("Textbox Dialog ended")
 

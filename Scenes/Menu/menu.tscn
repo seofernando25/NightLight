@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://57f4sgtmtu7g"]
 
-[ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Assets/Sprites/UI/menu_bg.png" id="1_fkt7h"]
+[ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Sprites/UI/menu_bg.png" id="1_fkt7h"]
 [ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_gttxn"]
-[ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Assets/Sprites/UI/floating_girl.png" id="2_6g6wh"]
+[ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Sprites/UI/floating_girl.png" id="2_6g6wh"]
 [ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="2_yen7y"]
 [ext_resource type="StyleBox" uid="uid://mqa6iuwlwwnn" path="res://Scenes/Menu/menu_panel_outline.tres" id="4_gff1k"]
 [ext_resource type="AudioStream" uid="uid://dvhmsx8xnrl4a" path="res://Audio/AverySpecialSong/averyspecialsong.mp3" id="5_5x4cq"]

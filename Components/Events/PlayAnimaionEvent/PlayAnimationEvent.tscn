@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bngu7yjeutphv"]
+
+[ext_resource type="Script" path="res://Components/Events/PlayAnimaionEvent/PlayAnimationEvent.gd" id="1_2ortu"]
+
+[node name="PlayAnimationEvent" type="Node"]
+script = ExtResource("1_2ortu")

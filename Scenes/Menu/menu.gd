@@ -11,12 +11,14 @@ extends CanvasLayer
 
 func continue_journey():
 	var scene_instance = load(PlayerFlags.game_data.current_scene)
-	GameRoot.instance.change_scene(scene_instance)
+	GameRoot.instance.add_scene(scene_instance)
+	queue_free()
 	GameUI.instance.show()
 	
 
 func new_journey():
-	GameRoot.instance.change_scene(initial_scene)
+	GameRoot.instance.add_scene(initial_scene)
+	queue_free()
 		
 
 func _on_new_journey_pressed():

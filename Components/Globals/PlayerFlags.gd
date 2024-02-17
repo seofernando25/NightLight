@@ -16,28 +16,17 @@ func save_position():
 	if Player.instance == null:
 		return
 	var position = Player.instance.global_position
-	set_scene_variable("player", "position_x", position.x)
-	set_scene_variable("player", "position_y", position.y)
+	game_data.set_variable("player_position_x", position.x)
+	game_data.set_variable("player_position_y", position.y)
 
 func get_saved_position() -> Vector2:
-	var x = get_scene_variable("player", "position_x")
+	var x = game_data.get_variable("player_position_x")
 	if x == null:
 		x = 0
-	var y = get_scene_variable("player", "position_y")
+	var y = game_data.get_variable("player_position_y")
 	if y == null:
 		y = 0
 	return Vector2(x, y)
-
-func set_enable_movement(enable: bool):
-	set_scene_variable("player", "enable_movement", enable)
-	emit_signal("set_enable_movement", enable)
-
-
-func set_scene_variable(scene: String = "", variable: String = "", value = null):
-	game_data.set_variable(scene, variable, value)
-
-func get_scene_variable(scene: String = "", variable: String = "") :
-	return game_data.get_variable(scene, variable)
 
 func read_save():
 	print("Reading save file")

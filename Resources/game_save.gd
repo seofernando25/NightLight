@@ -1,6 +1,8 @@
 extends Resource
 class_name  GameSave
 
+signal variable_changed(key: String, value: Variant)
+
 # Miscellanous variables that can be used to store game state
 @export var variables = {}
 
@@ -22,14 +24,12 @@ func _init(p_variables: Dictionary = {},
 	player_position = p_player_position
 
 
-func set_variable(p_context: String, p_key: String, p_value: Variant):
-	if not variables.has(p_context):
-		variables[p_context] = {}
-	variables[p_context][p_key] = p_value
+func set_variable(p_key: String, p_value: Variant):
+	print("Setting variable: " + p_key + " to " + str(p_value))
+	variables[p_key] = p_value
+	variable_changed.emit(p_key, p_value)
 
-func get_variable(p_context: String, p_key: String) -> Variant:
-	if not variables.has(p_context):
+func get_variable(p_key: String) -> Variant:
+	if not variables.has(p_key):
 		return null
-	if not variables[p_context].has(p_key):
-		return null
-	return variables[p_context][p_key]
+	return variables[p_key]

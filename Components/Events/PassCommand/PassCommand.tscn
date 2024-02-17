@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3no0aqe75ek5"]
+
+[ext_resource type="Script" path="res://Components/Events/PassCommand/PassCommand.gd" id="1_ytsvm"]
+
+[node name="PassCommand" type="Node"]
+script = ExtResource("1_ytsvm")

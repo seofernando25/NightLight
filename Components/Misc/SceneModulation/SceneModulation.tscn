@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kybf72eqfilh"]
+
+[ext_resource type="Script" path="res://Components/Misc/SceneModulation/SceneModulation.gd" id="1_4hp2v"]
+
+[node name="SceneModulation" type="CanvasModulate"]
+script = ExtResource("1_4hp2v")

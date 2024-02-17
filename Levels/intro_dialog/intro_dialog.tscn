@@ -1,0 +1,140 @@
+[gd_scene load_steps=22 format=3 uid="uid://ct11qesr1fr2a"]
+
+[ext_resource type="Shader" path="res://Shaders/Scanlines.gdshader" id="1_b216l"]
+[ext_resource type="PackedScene" uid="uid://cbr0rgf1vkh5s" path="res://Components/Events/DialogEvent/DialogEvent.tscn" id="2_4qhj3"]
+[ext_resource type="PackedScene" uid="uid://c3no0aqe75ek5" path="res://Components/Events/PassCommand/PassCommand.tscn" id="2_gwhfx"]
+[ext_resource type="PackedScene" uid="uid://b3qhp77i1iewv" path="res://Components/Events/AudioTriggerEvent/AudioTriggerEvent.tscn" id="2_ok5mq"]
+[ext_resource type="Script" path="res://Resources/Dialog/dialog.gd" id="3_6pjrr"]
+[ext_resource type="Texture2D" uid="uid://b7wvrok8lcyuk" path="res://Sprites/Portraits/mom.png" id="4_xmrua"]
+[ext_resource type="AudioStream" uid="uid://dcrhakwfpdebt" path="res://Audio/Misc/info.mp3" id="5_xqfsn"]
+[ext_resource type="Resource" uid="uid://ckg7uhojvepab" path="res://Audio/CharacterBeeps/Avery/AveryVoice.tres" id="6_6feft"]
+[ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Sprites/Portraits/avery.png" id="7_xdudo"]
+[ext_resource type="PackedScene" uid="uid://cx4bpsnoapi5a" path="res://Components/Events/UIFadeEvent/UIFadeEvent.tscn" id="8_4j3xy"]
+[ext_resource type="PackedScene" uid="uid://bmakrukhf7yjj" path="res://Components/Events/AddSceneEvent/AddSceneEvent.tscn" id="8_f0qwy"]
+[ext_resource type="PackedScene" uid="uid://dms7r850ymwsf" path="res://Levels/strange_place/strange_place.tscn" id="9_xbj5n"]
+[ext_resource type="PackedScene" uid="uid://b30phhfltapp8" path="res://Components/Events/DeleteNodeEvent/DeleteNodeEvent.tscn" id="10_i1rub"]
+[ext_resource type="PackedScene" uid="uid://03altrfiolaq" path="res://Components/Events/DelayEvent/DelayEvent.tscn" id="11_0fj3f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mm3jx"]
+shader = ExtResource("1_b216l")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.1
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.293
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+
+[sub_resource type="Resource" id="Resource_0wn72"]
+script = ExtResource("3_6pjrr")
+dialog_text = "Knock, Knock.
+Aave, wake up."
+portrait = ExtResource("4_xmrua")
+voice_set = ExtResource("6_6feft")
+
+[sub_resource type="Resource" id="Resource_o54lm"]
+script = ExtResource("3_6pjrr")
+dialog_text = "... err, five more minutes"
+portrait = ExtResource("7_xdudo")
+voice_set = ExtResource("6_6feft")
+
+[sub_resource type="Resource" id="Resource_p5gjt"]
+script = ExtResource("3_6pjrr")
+dialog_text = "Don't make me come into your room!
+You know what day it is, right?"
+portrait = ExtResource("4_xmrua")
+voice_set = ExtResource("6_6feft")
+
+[sub_resource type="Resource" id="Resource_xc5ci"]
+script = ExtResource("3_6pjrr")
+dialog_text = "Hmm...
+                                            
+fine...                                                                 
+coming..."
+portrait = ExtResource("7_xdudo")
+voice_set = ExtResource("6_6feft")
+
+[sub_resource type="Animation" id="Animation_ddqk8"]
+resource_name = "default"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PassCommand")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_execute"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nggnq"]
+_data = {
+"default": SubResource("Animation_ddqk8")
+}
+
+[node name="IntroDialog" type="Node2D"]
+
+[node name="TV" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mm3jx")
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="Overlay" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(1, 1, 1, 0)
+
+[node name="PassCommand" parent="." instance=ExtResource("2_gwhfx")]
+
+[node name="DialogHolder" parent="PassCommand" instance=ExtResource("2_4qhj3")]
+dialog = SubResource("Resource_0wn72")
+
+[node name="DialogHolder2" parent="PassCommand/DialogHolder" instance=ExtResource("2_4qhj3")]
+dialog = SubResource("Resource_o54lm")
+
+[node name="DialogHolder3" parent="PassCommand/DialogHolder/DialogHolder2" instance=ExtResource("2_4qhj3")]
+dialog = SubResource("Resource_p5gjt")
+
+[node name="DialogHolder4" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3" instance=ExtResource("2_4qhj3")]
+dialog = SubResource("Resource_xc5ci")
+
+[node name="FadeOut" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4" instance=ExtResource("8_4j3xy")]
+fade_type = 1
+
+[node name="DelayEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut" instance=ExtResource("11_0fj3f")]
+t = 1.0
+
+[node name="AddSceneEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" instance=ExtResource("8_f0qwy")]
+scene = ExtResource("9_xbj5n")
+
+[node name="FadeIn" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" instance=ExtResource("8_4j3xy")]
+
+[node name="DeleteNodeEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" node_paths=PackedStringArray("node") instance=ExtResource("10_i1rub")]
+node = NodePath("../../../../../../../..")
+
+[node name="AudioTriggerEvent" parent="PassCommand" node_paths=PackedStringArray("audio_player") instance=ExtResource("2_ok5mq")]
+audio_player = NodePath("../../InfoAudio")
+
+[node name="InfoAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xqfsn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nggnq")
+}
+autoplay = "default"

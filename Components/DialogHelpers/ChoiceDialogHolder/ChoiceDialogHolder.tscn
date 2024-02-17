@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b10oft5dcq867"]
-
-[ext_resource type="Script" path="res://Components/DialogHelpers/ChoiceDialogHolder/ChoiceDialogHolder.gd" id="1_adn60"]
-
-[node name="ChoiceDialogHolder" type="Node"]
-script = ExtResource("1_adn60")

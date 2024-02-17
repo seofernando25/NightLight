@@ -4,7 +4,6 @@ class_name GameRoot
 static var instance = null
 
   
-@export var current_scene: Node = null
 
 func _ready():
 	if instance != null:
@@ -12,11 +11,10 @@ func _ready():
 		return
 	instance = self
 
-func change_scene(scene: PackedScene):
-	if current_scene != null:
-		current_scene.queue_free()
-	current_scene = scene.instantiate()
-	add_child(current_scene)
+func add_scene(scene: PackedScene):
+	var node = scene.instantiate()
+	add_child(node)
+	return node
 
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_fullscreen"):

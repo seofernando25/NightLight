@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://cf1mlp22cxh3i"
+path="res://.godot/imported/furniture_1.aseprite-a8fdf4101994ea208cec354064706e0b.res"
+
+[deps]
+
+source_file="res://Sprites/Tileset/furniture_1.aseprite"
+dest_files=["res://.godot/imported/furniture_1.aseprite-a8fdf4101994ea208cec354064706e0b.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

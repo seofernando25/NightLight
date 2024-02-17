@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdqtyi5adegf5"]
+
+[ext_resource type="Script" path="res://Components/Events/SetColliderDisabledEvent/SetColliderDisabledEvent.gd" id="1_liw46"]
+
+[node name="SetColliderDisabledEvent" type="Node"]
+script = ExtResource("1_liw46")

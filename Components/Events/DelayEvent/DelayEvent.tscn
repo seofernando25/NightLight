@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://03altrfiolaq"]
+
+[ext_resource type="Script" path="res://Components/Events/DelayEvent/DelayEvent.gd" id="1_kk31h"]
+
+[node name="DelayEvent" type="Node"]
+script = ExtResource("1_kk31h")
