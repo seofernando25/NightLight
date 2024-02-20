@@ -407,5 +407,5 @@ dialog = SubResource("Resource_h5gr8")
 position = Vector2(1698, 970)
 
 [node name="Player" parent="." instance=ExtResource("2_vqvvn")]
-position = Vector2(2267, 1014)
+position = Vector2(342, 254)
 initialHeading = 3
