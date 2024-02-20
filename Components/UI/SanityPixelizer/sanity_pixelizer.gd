@@ -7,7 +7,7 @@ func _process(_delta):
 	var pixel_size = 0.5
 
 	if sanity < 50:
-		pixel_size = 4
+		pixel_size = 2
 	
 
 	material.set("shader_parameter/size", Vector2(pixel_size, pixel_size))

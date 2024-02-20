@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciby6jrohu40q"]
+
+[ext_resource type="Script" path="res://Components/Events/SetPlayerMovementEnabledEvent/SetPlayerMovementEnabledEvent.gd" id="1_1y0vl"]
+
+[node name="SetPlayerMovementEnabledEvent" type="Node"]
+script = ExtResource("1_1y0vl")

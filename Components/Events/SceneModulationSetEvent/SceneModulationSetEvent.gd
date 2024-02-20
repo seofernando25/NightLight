@@ -7,7 +7,7 @@ func Execute():
 	if SceneModulation.instance == null:
 		push_error("SceneModulation node has not been instantiated")
 		return
-	
+	print("Modulating scene color to " + str(color) + " over " + str(t) + " seconds")
 	var end_time = Time.get_ticks_msec() + t * 1000
 	var start_color = SceneModulation.instance.color
 
@@ -17,4 +17,5 @@ func Execute():
 		SceneModulation.instance.color = start_color.lerp(color, percent)
 		await get_tree().process_frame
 	
+	print("Modulation complete")
 	SceneModulation.instance.color = color

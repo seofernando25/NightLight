@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://dtd6vp73kwf0s"]
+[gd_scene load_steps=28 format=3 uid="uid://dtd6vp73kwf0s"]
 
 [ext_resource type="SpriteFrames" uid="uid://dd7gyjdkfsxah" path="res://Sprites/Player/player.aseprite" id="1_e786p"]
 [ext_resource type="Script" path="res://Components/Player/player.gd" id="1_vuk5h"]
+[ext_resource type="AudioStream" uid="uid://bssb0cav6jek7" path="res://Audio/Misc/footstep.mp3" id="3_hee60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu4tc"]
 
@@ -297,46 +298,46 @@ _data = {
 "move_up": SubResource("Animation_we2eg")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8ctp"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8rsig"]
 animation = &"move_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1x1gt"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r6tu8"]
 animation = &"move_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_64ty0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5gam"]
 animation = &"move_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ujfbb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2v68a"]
 animation = &"move_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sf7mb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d6inm"]
 animation = &"idle_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pfp74"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nna70"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6jni"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fyw0b"]
 animation = &"idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_61cq3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q1f25"]
 animation = &"idle_up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7snil"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_y8ctp")
+blend_point_0/node = SubResource("AnimationNodeAnimation_8rsig")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_1x1gt")
+blend_point_1/node = SubResource("AnimationNodeAnimation_r6tu8")
 blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_64ty0")
+blend_point_2/node = SubResource("AnimationNodeAnimation_r5gam")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_ujfbb")
+blend_point_3/node = SubResource("AnimationNodeAnimation_2v68a")
 blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_sf7mb")
+blend_point_4/node = SubResource("AnimationNodeAnimation_d6inm")
 blend_point_4/pos = Vector2(0.3, 0)
-blend_point_5/node = SubResource("AnimationNodeAnimation_pfp74")
+blend_point_5/node = SubResource("AnimationNodeAnimation_nna70")
 blend_point_5/pos = Vector2(-0.3, 0)
-blend_point_6/node = SubResource("AnimationNodeAnimation_k6jni")
+blend_point_6/node = SubResource("AnimationNodeAnimation_fyw0b")
 blend_point_6/pos = Vector2(0, 0.3)
-blend_point_7/node = SubResource("AnimationNodeAnimation_61cq3")
+blend_point_7/node = SubResource("AnimationNodeAnimation_q1f25")
 blend_point_7/pos = Vector2(0, -0.3)
 blend_mode = 1
 
@@ -377,6 +378,7 @@ shape = SubResource("RectangleShape2D_xu4tc")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
 position = Vector2(0, -34)
 sprite_frames = ExtResource("1_e786p")
 animation = &"walk_forward"
@@ -401,14 +403,15 @@ libraries = {
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -33)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.25
-drag_top_margin = 0.25
-drag_right_margin = 0.25
-drag_bottom_margin = 0.25
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
 
 [node name="SelfAmbient" type="PointLight2D" parent="."]
 show_behind_parent = true
@@ -420,5 +423,10 @@ shadow_filter_smooth = 64.0
 shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_10ha1")
 texture_scale = 2.0
+
+[node name="FootstepSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_hee60")
+bus = &"SFX"
 
 [connection signal="timeout" from="sanity_timer" to="." method="_on_sanity_timer_timeout"]

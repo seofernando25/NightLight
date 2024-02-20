@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5u7l8yxy176y"]
+
+[ext_resource type="AudioStream" uid="uid://cftluqmxktipx" path="res://Audio/ItsOver/its_over.ogg" id="2_2oo6d"]
+[ext_resource type="Texture2D" uid="uid://dqpbe7frgcu87" path="res://Sprites/Entity/entity.aseprite" id="4_aff52"]
+
+[sub_resource type="Animation" id="Animation_1dpl0"]
+resource_name = "death_screen"
+length = 5.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_2oo6d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.4, 1.5, 1.6, 3, 3.2, 3.3, 3.5, 3.7, 4.2, 4.4, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.694118), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0.913725), Color(0, 0, 0, 0.952941), Color(0, 0, 0, 1), Color(0, 0, 0, 0.860963), Color(0, 0, 0, 0.917647), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_er5po"]
+_data = {
+"death_screen": SubResource("Animation_1dpl0")
+}
+
+[node name="DeathScreen" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 500)
+scale = Vector2(8.55003, 8.55003)
+texture = ExtResource("4_aff52")
+
+[node name="Overlay" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_er5po")
+}
+autoplay = "death_screen"

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bt2rjpx136cub" path="res://Sprites/UI/menu_bg.png" id="1_fkt7h"]
 [ext_resource type="Script" path="res://Scenes/Menu/menu.gd" id="1_gttxn"]
 [ext_resource type="Texture2D" uid="uid://8m2p7gjc6iqw" path="res://Sprites/UI/floating_girl.png" id="2_6g6wh"]
-[ext_resource type="PackedScene" uid="uid://h58vpf4gagvx" path="res://Scenes/IntroSequence/IntroSequence.tscn" id="2_yen7y"]
+[ext_resource type="PackedScene" uid="uid://ct11qesr1fr2a" path="res://Levels/intro_dialog/intro_dialog.tscn" id="2_er7lp"]
 [ext_resource type="StyleBox" uid="uid://mqa6iuwlwwnn" path="res://Scenes/Menu/menu_panel_outline.tres" id="4_gff1k"]
 [ext_resource type="AudioStream" uid="uid://dvhmsx8xnrl4a" path="res://Audio/AverySpecialSong/averyspecialsong.mp3" id="5_5x4cq"]
 [ext_resource type="PackedScene" uid="uid://dt5f8xihxxj7o" path="res://Components/UI/AutofocusOnReady/AutofocusOnReady.tscn" id="6_7v38g"]
@@ -106,7 +106,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -48.0]
+"values": [0.0, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ega4"]
@@ -118,35 +118,36 @@ _data = {
 
 [node name="Menu" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_gttxn")
-initial_scene = ExtResource("2_yen7y")
+initial_scene = ExtResource("2_er7lp")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="MenuBg" type="Sprite2D" parent="."]
+[node name="MenuBg" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_fkt7h")
-centered = false
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = -1
-anchor_left = 0.031
-anchor_top = 0.042
-anchor_right = 0.031
-anchor_bottom = 0.042
-offset_left = 0.16
-offset_top = -0.16
-offset_right = 600.16
-offset_bottom = 439.84
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("4_gff1k")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 2
-anchor_right = 0.967
-anchor_bottom = 0.955
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 19.8
-offset_bottom = 19.8
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -176,8 +177,8 @@ focus_neighbor_bottom = NodePath("../NewGameButton")
 text = "Gallery"
 
 [node name="FloatingGirl" type="Sprite2D" parent="."]
-position = Vector2(360, 280)
-scale = Vector2(0.572754, 0.572754)
+position = Vector2(380, 260)
+scale = Vector2(0.6538, 0.6538)
 texture = ExtResource("2_6g6wh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -192,8 +193,11 @@ autoplay = true
 bus = &"BGM"
 
 [node name="FadeRet" type="ColorRect" parent="."]
-offset_right = 640.0
-offset_bottom = 480.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 

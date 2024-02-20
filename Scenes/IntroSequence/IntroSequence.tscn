@@ -1,9 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://h58vpf4gagvx"]
+[gd_scene load_steps=17 format=3 uid="uid://h58vpf4gagvx"]
 
-[ext_resource type="Shader" path="res://Shaders/Scanlines.gdshader" id="1_f02jf"]
 [ext_resource type="Script" path="res://Scenes/IntroSequence/IntroSequence.gd" id="1_xa5ls"]
 [ext_resource type="AudioStream" uid="uid://ux1ofot5wnpi" path="res://Audio/TheMission/themission.ogg" id="2_icm41"]
-[ext_resource type="AudioStream" uid="uid://clwnn1dwy2i4" path="res://Audio/Misc/lamp_off.mp3" id="2_ley11"]
 [ext_resource type="PackedScene" uid="uid://ct11qesr1fr2a" path="res://Levels/intro_dialog/intro_dialog.tscn" id="2_wjjmt"]
 [ext_resource type="Script" path="res://Components/UI/Typewriter/Typewriter.gd" id="3_l4w71"]
 
@@ -71,32 +69,13 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1), Vector2(20, 20)]
 }
-tracks/3/type = "audio"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AudioStreamPlayer2")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("2_ley11")
-}],
-"times": PackedFloat32Array(-0.0365, 26.8)
-}
-tracks/3/use_blend = true
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(29.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -104,27 +83,13 @@ tracks/4/keys = {
 "method": &"goto_next_scene"
 }]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AudioStreamPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0.0],
-"method": &"play"
-}]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Overlay:color")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Overlay:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(26.9, 27),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -224,27 +189,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3fbv"]
-shader = ExtResource("1_f02jf")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.0
-shader_parameter/scanlines_width = 0.1
-shader_parameter/grille_opacity = 0.3
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = false
-shader_parameter/roll = false
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 0.0
-shader_parameter/roll_variation = 0.1
-shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.293
-shader_parameter/aberration = 0.01
-shader_parameter/brightness = 1.0
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 1.0
-
 [node name="IntroSequence" type="Node2D" node_paths=PackedStringArray("animation_player", "audio_player")]
 script = ExtResource("1_xa5ls")
 animation_player = NodePath("AnimationPlayer")
@@ -253,6 +197,7 @@ next_scene = ExtResource("2_wjjmt")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_icm41")
+bus = &"SFX"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 
@@ -275,11 +220,6 @@ offset_right = 520.0
 offset_bottom = 464.0
 script = ExtResource("3_l4w71")
 char_delay = 0.1
-
-[node name="TV" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_j3fbv")
-offset_right = 640.0
-offset_bottom = 480.0
 
 [node name="Overlay" type="ColorRect" parent="."]
 offset_right = 640.0

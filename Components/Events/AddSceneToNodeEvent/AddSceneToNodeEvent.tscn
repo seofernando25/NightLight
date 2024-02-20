@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1vrmgwpix51i"]
+
+[ext_resource type="Script" path="res://Components/Events/AddSceneToNodeEvent/AddSceneToNodeEvent.gd" id="1_s3m34"]
+
+[node name="AddSceneToNodeEvent" type="Node"]
+script = ExtResource("1_s3m34")

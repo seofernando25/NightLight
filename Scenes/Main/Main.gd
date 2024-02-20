@@ -12,6 +12,7 @@ func _ready():
 	instance = self
 
 func add_scene(scene: PackedScene):
+	print("Adding scene: ", scene.resource_path)
 	var node = scene.instantiate()
 	add_child(node)
 	return node

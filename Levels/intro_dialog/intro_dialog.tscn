@@ -1,6 +1,5 @@
-[gd_scene load_steps=22 format=3 uid="uid://ct11qesr1fr2a"]
+[gd_scene load_steps=23 format=3 uid="uid://ct11qesr1fr2a"]
 
-[ext_resource type="Shader" path="res://Shaders/Scanlines.gdshader" id="1_b216l"]
 [ext_resource type="PackedScene" uid="uid://cbr0rgf1vkh5s" path="res://Components/Events/DialogEvent/DialogEvent.tscn" id="2_4qhj3"]
 [ext_resource type="PackedScene" uid="uid://c3no0aqe75ek5" path="res://Components/Events/PassCommand/PassCommand.tscn" id="2_gwhfx"]
 [ext_resource type="PackedScene" uid="uid://b3qhp77i1iewv" path="res://Components/Events/AudioTriggerEvent/AudioTriggerEvent.tscn" id="2_ok5mq"]
@@ -14,27 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dms7r850ymwsf" path="res://Levels/strange_place/strange_place.tscn" id="9_xbj5n"]
 [ext_resource type="PackedScene" uid="uid://b30phhfltapp8" path="res://Components/Events/DeleteNodeEvent/DeleteNodeEvent.tscn" id="10_i1rub"]
 [ext_resource type="PackedScene" uid="uid://03altrfiolaq" path="res://Components/Events/DelayEvent/DelayEvent.tscn" id="11_0fj3f"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mm3jx"]
-shader = ExtResource("1_b216l")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.0
-shader_parameter/scanlines_width = 0.1
-shader_parameter/grille_opacity = 0.3
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = false
-shader_parameter/roll = false
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 0.0
-shader_parameter/roll_variation = 0.1
-shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.293
-shader_parameter/aberration = 0.01
-shader_parameter/brightness = 1.0
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 1.0
+[ext_resource type="PackedScene" uid="uid://bngu7yjeutphv" path="res://Components/Events/PlayAnimaionEvent/PlayAnimationEvent.tscn" id="13_sjpxn"]
+[ext_resource type="AudioStream" uid="uid://bvb7olbj3rx0i" path="res://Audio/Morning Bunny/morningbunny.ogg" id="15_0x70l"]
 
 [sub_resource type="Resource" id="Resource_0wn72"]
 script = ExtResource("3_6pjrr")
@@ -60,13 +40,14 @@ voice_set = ExtResource("6_6feft")
 script = ExtResource("3_6pjrr")
 dialog_text = "Hmm...
                                             
-fine...                                                                 
+fine...                  
 coming..."
 portrait = ExtResource("7_xdudo")
 voice_set = ExtResource("6_6feft")
 
 [sub_resource type="Animation" id="Animation_ddqk8"]
 resource_name = "default"
+length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -81,23 +62,94 @@ tracks/0/keys = {
 "method": &"_execute"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BGM")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BGM:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3pb2h"]
+resource_name = "end_scene"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BGM")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BGM:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -80.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FadeIn")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_execute"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nggnq"]
 _data = {
-"default": SubResource("Animation_ddqk8")
+"default": SubResource("Animation_ddqk8"),
+"end_scene": SubResource("Animation_3pb2h")
 }
 
 [node name="IntroDialog" type="Node2D"]
-
-[node name="TV" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_mm3jx")
-offset_right = 640.0
-offset_bottom = 480.0
 
 [node name="Overlay" type="ColorRect" parent="."]
 offset_right = 640.0
 offset_bottom = 480.0
 color = Color(1, 1, 1, 0)
+
+[node name="FadeIn" parent="." instance=ExtResource("8_4j3xy")]
+
+[node name="DeleteNodeEvent" parent="FadeIn" node_paths=PackedStringArray("node") instance=ExtResource("10_i1rub")]
+node = NodePath("../..")
 
 [node name="PassCommand" parent="." instance=ExtResource("2_gwhfx")]
 
@@ -122,16 +174,19 @@ t = 1.0
 [node name="AddSceneEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" instance=ExtResource("8_f0qwy")]
 scene = ExtResource("9_xbj5n")
 
-[node name="FadeIn" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" instance=ExtResource("8_4j3xy")]
-
-[node name="DeleteNodeEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" node_paths=PackedStringArray("node") instance=ExtResource("10_i1rub")]
-node = NodePath("../../../../../../../..")
+[node name="PlayAnimationEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" node_paths=PackedStringArray("animation_player") instance=ExtResource("13_sjpxn")]
+animation_player = NodePath("../../../../../../../../AnimationPlayer")
+animation_name = "end_scene"
 
 [node name="AudioTriggerEvent" parent="PassCommand" node_paths=PackedStringArray("audio_player") instance=ExtResource("2_ok5mq")]
 audio_player = NodePath("../../InfoAudio")
 
 [node name="InfoAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_xqfsn")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_0x70l")
+volume_db = -28.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

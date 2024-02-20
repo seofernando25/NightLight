@@ -23,16 +23,17 @@ func new_journey():
 
 func _on_new_journey_pressed():
 	PlayerFlags.game_data = GameSave.new()
-	animation_player.play("continue_journey")
+	animation_player.play("new_journey")
 
 
 func _on_continue_button_pressed():
-	animation_player.play("new_journey")
+	animation_player.play("continue_journey")
 
 # Save and load
 
 
 func _ready():
+	print(initial_scene.resource_path)
 	# If gameSave is empty dict, hide continue button
 	if PlayerFlags.game_data.variables == {}:
 		print("No save data")

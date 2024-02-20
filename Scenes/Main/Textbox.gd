@@ -28,6 +28,8 @@ func _on_type_char(character):
 		return
 
 	# Get a random index from voice_set
+	if current_dialog.voice_set.noises.size() == 0:
+		return
 	var index = randi() % current_dialog.voice_set.noises.size()
 
 	# Play the sound on the "TTS" channel

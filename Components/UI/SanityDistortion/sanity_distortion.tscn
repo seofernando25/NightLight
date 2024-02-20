@@ -8,14 +8,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y0nnx"]
 shader = ExtResource("1_oxqmx")
-shader_parameter/zoom_displacement_speed = 0.5
+shader_parameter/zoom_displacement_speed = 0.1
 shader_parameter/zoom_intensity = 0.0
 shader_parameter/wobble_speed = 0.25
 shader_parameter/wobble_intensity = 0.0
 shader_parameter/warp_speed = 0.25
 shader_parameter/warp_intensity = 0.0
 shader_parameter/displacement_amplitude = 0.0
-shader_parameter/afWaveAlpha = 0.0
 shader_parameter/ampMap0 = ExtResource("2_wigpg")
 shader_parameter/ampMap1 = ExtResource("3_xhcrw")
 shader_parameter/zoomMap = ExtResource("4_te5lm")

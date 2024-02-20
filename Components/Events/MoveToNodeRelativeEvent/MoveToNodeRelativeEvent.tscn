@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1h2tc7yiscjm"]
+
+[ext_resource type="Script" path="res://Components/Events/MoveToNodeRelativeEvent/MoveToNodeRelativeEvent.gd" id="1_ew52h"]
+
+[node name="MoveToNodeRelativeEvent" type="Node"]
+script = ExtResource("1_ew52h")

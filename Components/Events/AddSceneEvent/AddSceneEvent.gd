@@ -7,4 +7,9 @@ func Execute():
 		push_error("AddSceneEvent: No scene has been set.")
 		return
 	
-	GameRoot.instance.add_scene(scene)
+	if GameRoot.instance != null:
+		GameRoot.instance.add_scene(scene)
+	else:
+		push_error("AddSceneEvent: No GameRoot instance found.")
+		var instance = scene.instantiate()
+		get_tree().root.add_child(instance)

@@ -33,7 +33,6 @@ func _execute():
 	if variable_value != to_compare:
 		# Get the NEQ child
 		var NEQ = get_node_or_null("./NEQ")
-		print("NEQ Node is " + str(NEQ))
 		if NEQ != null:
 			await NEQ._execute()
 

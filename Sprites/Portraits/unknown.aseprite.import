@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://w1lkhdvo70sy"
+path="res://.godot/imported/unknown.aseprite-4c1a7217e497ed4646925098be95f41b.res"
+
+[deps]
+
+source_file="res://Sprites/Portraits/unknown.aseprite"
+dest_files=["res://.godot/imported/unknown.aseprite-4c1a7217e497ed4646925098be95f41b.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

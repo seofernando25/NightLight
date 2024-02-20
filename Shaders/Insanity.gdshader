@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 
 // Uniforms equivalent in Godot
 uniform sampler2D ampMap0;
@@ -21,7 +21,6 @@ uniform float warp_intensity = 0.1;
 
 
 uniform float displacement_amplitude = 0.5;
-uniform float afWaveAlpha;
 
 void fragment() {
 	vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 0));
@@ -32,7 +31,7 @@ void fragment() {
     
     vec2 vUV = SCREEN_UV;
     
-	vec2 zoom_displacement = (zoom_frag.xy - vec2(0.5)) * 0.6 * zoom_frag.y *  zoom_intensity;
+	vec2 zoom_displacement = (zoom_frag.rg - vec2(0.5)) * 0.6 * zoom_frag.b *  zoom_intensity;
 	
 	vUV += zoom_displacement * ( sin(TIME * zoom_displacement_speed) + 1.0);
 	
@@ -44,7 +43,7 @@ void fragment() {
     vUV += wobble_uv * 0.0025 * wobble_intensity;
 	
 	
- 	vec2 vSinUv = (vUV / screen_size.y) * 0.6;
+ 	vec2 vSinUv = (vUV / 640.0) * 0.6;
 	vec2 amp_displacement = vec2(
 		sin(warp_speed * TIME + vSinUv.y) * vAmp.x,
 		sin(warp_speed * TIME + vSinUv.x*1.83) * vAmp.y
@@ -53,6 +52,5 @@ void fragment() {
 	
     
    
-    COLOR =  texture(SCREEN_TEXTURE,  vUV  );
-	
+    COLOR =  textureLod(SCREEN_TEXTURE,  vUV, 0.0 );
 }
