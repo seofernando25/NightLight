@@ -2,21 +2,18 @@ extends CharacterBody2D
 class_name Player
 
 static var instance: Player = null
+@export var walk_sound: PackedScene = null
+@export var run_sound: PackedScene = null
+@export var animation_tree: AnimationTree = null
 
+@export var char_sprite: AnimatedSprite2D = null
+@export var camera: Camera2D = null
 
-@onready var char_sprite: AnimatedSprite2D  = %Sprite
-@onready var animation_tree: AnimationTree = %AnimationTree
-@onready var footstep_sound: AudioStreamPlayer = %FootstepSound
-@onready var camera: Camera2D = %Camera2D
-
-enum initial_heading {UP, DOWN, LEFT, RIGHT}
+enum initial_heading { UP, DOWN, LEFT, RIGHT }
 @export var initialHeading: initial_heading = initial_heading.DOWN
 @export var player_movement_enabled = true
 
-
-	
-@export var speed: float =  20 * 100
-
+@export var speed: float = 20 * 100
 
 var motion = Vector2.ZERO
 var running = false
@@ -24,18 +21,19 @@ var max_zoom = 3.0
 var min_zoom = 2.0
 var lerped_zoom = min_zoom
 
+# Array of [t, position] pairs for the player noise time until it fades out and the position of the noise
+var noises = []
+
+
 func _ready():
 	if instance == null:
 		instance = self
-		if MainCamera.instance != null:
-			MainCamera.instance.follow = self
-
 		# Get the texture of the color_bounds node
 	else:
 		print("There are two players instances in the scene. Removing the previous one.")
 		instance.queue_free()
 		instance = self
-	
+
 	# Set the initial heading
 	match initialHeading:
 		initial_heading.LEFT:
@@ -48,7 +46,7 @@ func _ready():
 		# If down set animation to down
 		initial_heading.DOWN:
 			animation_tree.set("parameters/MoveAnimations/blend_position", Vector2(0, 0.3))
-	
+
 	# Set up initial zoom
 	camera.zoom = Vector2(min_zoom, min_zoom)
 
@@ -63,11 +61,18 @@ func _process(delta):
 		return
 	running = Input.is_action_pressed("ui_accept")
 	if player_movement_enabled:
-		motion.x = Input.get_action_strength("direction_right") - Input.get_action_strength("direction_left")
-		motion.y = Input.get_action_strength("direction_down") - Input.get_action_strength("direction_up")
+		motion.x = (
+			Input.get_action_strength("direction_right")
+			- Input.get_action_strength("direction_left")
+		)
+		motion.y = (
+			Input.get_action_strength("direction_down") - Input.get_action_strength("direction_up")
+		)
+
 
 var last_motion = Vector2.ZERO
 var last_footstep_time = 0
+
 
 func _physics_process(delta):
 	var motion_norm = motion.normalized()
@@ -75,8 +80,6 @@ func _physics_process(delta):
 
 	# Sanity goes from 100 to 0 multiply velocity from 1 to 0.75 depending on the player's sanity
 	velocity *= (0.75) + (PlayerFlags.sanity / 100) * 0.25
-
-
 
 	if motion_norm != Vector2.ZERO:
 		animation_tree.set("parameters/MoveAnimations/blend_position", motion_norm)
@@ -86,16 +89,23 @@ func _physics_process(delta):
 		var running_interval = base_interval / 2.0
 		var footstep_interval = running_interval if running else base_interval
 		if last_footstep_time + footstep_interval < Time.get_ticks_msec():
-			print("Playing footstep sound")
-			footstep_sound.play()
-			footstep_sound.pitch_scale = 0.8 + randf() * 0.4
+			var sound_instance: Node = null
+			if running:
+				sound_instance = run_sound.instantiate()
+			else:
+				sound_instance = walk_sound.instantiate()
+			get_parent().add_child(sound_instance)
+			sound_instance.play()
+			sound_instance.global_position = global_position
+
 			last_footstep_time = Time.get_ticks_msec()
 	elif last_motion != Vector2.ZERO:
 		var last_motion_half = last_motion / 3
 		animation_tree.set("parameters/MoveAnimations/blend_position", last_motion_half)
-	
+
 	move_and_slide()
 	motion = Vector2.ZERO
+
 
 func _on_sanity_timer_timeout():
 	if PlayerFlags.sanity < 60:

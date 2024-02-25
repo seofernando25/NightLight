@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://d34txy4282cyd"]
 
 [ext_resource type="Script" path="res://Components/UI/SimpleDialogSlide/simple_dialog_slide.gd" id="1_gnq0j"]
-[ext_resource type="AudioStream" uid="uid://dhqdjeaqp5agg" path="res://Scenes/IntroSequence/afraid_of_the_dark.wav" id="2_pgnrr"]
-[ext_resource type="SpriteFrames" uid="uid://ps1bkp8i1v58" path="res://Assets/Sprites/Intro/intro.aseprite" id="3_huika"]
+[ext_resource type="AudioStream" path="res://Scenes/IntroSequence/afraid_of_the_dark.wav" id="2_pgnrr"]
+[ext_resource type="SpriteFrames" path="res://Assets/Sprites/Intro/intro.aseprite" id="3_huika"]
 [ext_resource type="PackedScene" uid="uid://c4jchtvapo4fx" path="res://Components/UI/Typewriter/Typewriter.tscn" id="4_318ia"]
 
 [node name="DialogSlide" type="Node2D"]

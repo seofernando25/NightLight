@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://h7iaw3qft1u1"]
+
+[ext_resource type="PackedScene" uid="uid://j3uabvyerlma" path="res://Levels/House/AveryRoom/avery_room.tscn" id="1_8t5gi"]
+[ext_resource type="PackedScene" uid="uid://nwhw4w7b4j2d" path="res://Levels/House/2FHall/2f_hall.tscn" id="2_dq5ah"]
+[ext_resource type="PackedScene" uid="uid://b2aq4ildcp3dr" path="res://Levels/House/AveryCloset/avery_closet.tscn" id="2_encqg"]
+[ext_resource type="PackedScene" uid="uid://cwwg30mkeu7os" path="res://Levels/House/2FCloset/2f_closet.tscn" id="5_80pli"]
+[ext_resource type="PackedScene" uid="uid://dtd6vp73kwf0s" path="res://Components/Player/player.tscn" id="6_8o1pf"]
+
+[node name="House" type="Node2D"]
+
+[node name="AveryCloset" parent="." instance=ExtResource("2_encqg")]
+position = Vector2(200, -420)
+
+[node name="2FHall" parent="." instance=ExtResource("2_dq5ah")]
+position = Vector2(840, 80)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[node name="AveryRoom" parent="." instance=ExtResource("1_8t5gi")]
+position = Vector2(400, 80)
+
+[node name="2FCloset" parent="." instance=ExtResource("5_80pli")]
+position = Vector2(880, -280)
+
+[node name="Player" parent="." instance=ExtResource("6_8o1pf")]
+position = Vector2(1259, 165)

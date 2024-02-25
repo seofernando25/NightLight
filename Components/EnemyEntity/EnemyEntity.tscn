@@ -1,9 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://drtn8haogge65"]
+[gd_scene load_steps=30 format=3 uid="uid://drtn8haogge65"]
 
 [ext_resource type="Script" path="res://Components/EnemyEntity/EnemyEntity.gd" id="1_v735r"]
 [ext_resource type="Texture2D" uid="uid://ctcp5a75ngwd" path="res://Sprites/Entity/entity.png" id="1_vn6vy"]
 [ext_resource type="PackedScene" uid="uid://c5u7l8yxy176y" path="res://Scenes/DeathScreen/DeathScreen.tscn" id="2_2i8wb"]
 [ext_resource type="AudioStream" uid="uid://c55xtth8r1eqf" path="res://Audio/INeedYourSoul/i_need_your_soul.ogg" id="3_0op61"]
+[ext_resource type="AudioStream" uid="uid://dq4piimpe5clx" path="res://Audio/Misc/stinger_a.ogg" id="3_5hn8l"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/EntityBlackboard.gd" id="5_76fw2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="6_p6fc5"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="7_rla7s"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="8_cusow"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/MoveTowardsPlayer.gd" id="10_tyea2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="12_laqxi"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_compare.gd" id="12_r1m54"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/InvestigateNoise.gd" id="13_lxh8x"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/LookAtPlayer.gd" id="14_175jl"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_set.gd" id="14_y8d5x"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/ShufflePatrolPoints.gd" id="15_2mesl"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/MoveToPatrolPoint.gd" id="15_xnuxc"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/LookAtLastNoise.gd" id="17_oydek"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="21_d6k77"]
+[ext_resource type="Script" path="res://Components/EnemyEntity/LookAtRandom.gd" id="21_qg4mo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lne4j"]
 size = Vector2(30, 33)
@@ -74,15 +90,40 @@ _data = {
 "start_music": SubResource("Animation_7spv0")
 }
 
-[node name="EnemyEntity" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_i00p2"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hjy12"]
+radius = 40.0
+
+[sub_resource type="Gradient" id="Gradient_r4u85"]
+offsets = PackedFloat32Array(0, 0.501577, 0.782334)
+colors = PackedColorArray(0.699196, 6.37732e-07, 2.88785e-07, 1, 0.831094, 0.438486, 0.438486, 0.561514, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mch3h"]
+gradient = SubResource("Gradient_r4u85")
+width = 150
+fill = 1
+fill_from = Vector2(0.472441, 0.541339)
+fill_to = Vector2(0.00262467, 0.54749)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30wor"]
+radius = 120.0
+
+[node name="EnemyEntity" type="CharacterBody2D" node_paths=PackedStringArray("vision_area", "animation_player", "stinger_player", "blackboard")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_v735r")
+vision_area = NodePath("Vision")
 animation_player = NodePath("AnimationPlayer")
 death_scene = ExtResource("2_2i8wb")
+stingers = Array[AudioStream]([ExtResource("3_5hn8l")])
+stinger_player = NodePath("StingerPlayer")
+blackboard = NodePath("Blackboard")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.5, -57.5)
+scale = Vector2(0.684067, 0.684067)
 texture = ExtResource("1_vn6vy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -103,5 +144,140 @@ libraries = {
 "": SubResource("AnimationLibrary_abfer")
 }
 
+[node name="Vision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+position = Vector2(60, 0)
+shape = SubResource("CircleShape2D_i00p2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Vision"]
+shape = SubResource("CircleShape2D_hjy12")
+
+[node name="PointLight2D" type="PointLight2D" parent="Vision"]
+position = Vector2(60, 9.53674e-07)
+scale = Vector2(1.025, 2.5)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_mch3h")
+
+[node name="Hearing" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hearing"]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_30wor")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource("5_76fw2")
+
+[node name="MovementBTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("6_p6fc5")
+blackboard = NodePath("../Blackboard")
+actor = NodePath("..")
+
+[node name="SelectorReactiveComposite" type="Node" parent="MovementBTree"]
+script = ExtResource("12_laqxi")
+
+[node name="MoveToPlayer" type="Node" parent="MovementBTree/SelectorReactiveComposite"]
+script = ExtResource("8_cusow")
+
+[node name="IfCanSeePlayer" type="Node" parent="MovementBTree/SelectorReactiveComposite/MoveToPlayer"]
+script = ExtResource("12_r1m54")
+left_operand = "get_value(\"can_see_player\")"
+right_operand = "true"
+
+[node name="MoveTowardsPlayer" type="Node" parent="MovementBTree/SelectorReactiveComposite/MoveToPlayer"]
+script = ExtResource("10_tyea2")
+
+[node name="ChaseCloseNoise" type="Node" parent="MovementBTree/SelectorReactiveComposite"]
+script = ExtResource("8_cusow")
+
+[node name="IfCanHear" type="Node" parent="MovementBTree/SelectorReactiveComposite/ChaseCloseNoise"]
+script = ExtResource("12_r1m54")
+left_operand = "get_value(\"hearing_bodies\").size()"
+operator = 2
+right_operand = "0"
+
+[node name="InvestigateNoise" type="Node" parent="MovementBTree/SelectorReactiveComposite/ChaseCloseNoise"]
+script = ExtResource("13_lxh8x")
+
+[node name="Patrol" type="Node" parent="MovementBTree/SelectorReactiveComposite"]
+script = ExtResource("7_rla7s")
+
+[node name="ShufflePatrolPoints" type="Node" parent="MovementBTree/SelectorReactiveComposite/Patrol"]
+script = ExtResource("15_2mesl")
+
+[node name="CooldownDecorator" type="Node" parent="MovementBTree/SelectorReactiveComposite/Patrol"]
+script = ExtResource("21_d6k77")
+wait_time = 5.0
+
+[node name="SequenceComposite" type="Node" parent="MovementBTree/SelectorReactiveComposite/Patrol/CooldownDecorator"]
+script = ExtResource("8_cusow")
+
+[node name="MoveToPatrolPoint" type="Node" parent="MovementBTree/SelectorReactiveComposite/Patrol/CooldownDecorator/SequenceComposite"]
+script = ExtResource("15_xnuxc")
+
+[node name="BlackboardSetAction" type="Node" parent="MovementBTree/SelectorReactiveComposite/Patrol/CooldownDecorator/SequenceComposite"]
+script = ExtResource("14_y8d5x")
+key = "\"next_patrol_index\""
+value = "get_value(\"next_patrol_index\", 0) + 1"
+
+[node name="VisionBTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("6_p6fc5")
+blackboard = NodePath("../Blackboard")
+actor = NodePath("..")
+
+[node name="Hunt" type="Node" parent="VisionBTree"]
+script = ExtResource("7_rla7s")
+
+[node name="DirectPlayerMovement" type="Node" parent="VisionBTree/Hunt"]
+script = ExtResource("8_cusow")
+
+[node name="IfCanSeePlayer" type="Node" parent="VisionBTree/Hunt/DirectPlayerMovement"]
+script = ExtResource("12_r1m54")
+left_operand = "get_value(\"can_see_player\")"
+right_operand = "true"
+
+[node name="LookAtPlayer" type="Node" parent="VisionBTree/Hunt/DirectPlayerMovement"]
+script = ExtResource("14_175jl")
+
+[node name="LastNoises" type="Node" parent="VisionBTree/Hunt"]
+script = ExtResource("8_cusow")
+
+[node name="IfCanHear" type="Node" parent="VisionBTree/Hunt/LastNoises"]
+script = ExtResource("12_r1m54")
+left_operand = "get_value(\"hearing_bodies\").size()"
+operator = 2
+right_operand = "0"
+
+[node name="LookAtLastNoise" type="Node" parent="VisionBTree/Hunt/LastNoises"]
+script = ExtResource("17_oydek")
+
+[node name="CooldownDecorator" type="Node" parent="VisionBTree/Hunt"]
+script = ExtResource("21_d6k77")
+wait_time = 0.5
+
+[node name="SequenceComposite" type="Node" parent="VisionBTree/Hunt/CooldownDecorator"]
+script = ExtResource("8_cusow")
+
+[node name="NoHear" type="Node" parent="VisionBTree/Hunt/CooldownDecorator/SequenceComposite"]
+script = ExtResource("12_r1m54")
+left_operand = "get_value(\"hearing_bodies\").size()"
+right_operand = "0"
+
+[node name="RandomLook" type="Node" parent="VisionBTree/Hunt/CooldownDecorator/SequenceComposite"]
+script = ExtResource("21_qg4mo")
+
+[node name="StingerPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
+[connection signal="area_entered" from="Hearing" to="." method="_on_hearing_area_entered"]
+[connection signal="area_exited" from="Hearing" to="." method="_on_hearing_area_exited"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://dtd6vp73kwf0s"]
+[gd_scene load_steps=31 format=3 uid="uid://dtd6vp73kwf0s"]
 
 [ext_resource type="SpriteFrames" uid="uid://dd7gyjdkfsxah" path="res://Sprites/Player/player.aseprite" id="1_e786p"]
 [ext_resource type="Script" path="res://Components/Player/player.gd" id="1_vuk5h"]
-[ext_resource type="AudioStream" uid="uid://bssb0cav6jek7" path="res://Audio/Misc/footstep.mp3" id="3_hee60"]
+[ext_resource type="PackedScene" uid="uid://cqm5wcno4b1dc" path="res://Components/Footsteps/FootstepLight.tscn" id="2_qhgnx"]
+[ext_resource type="PackedScene" uid="uid://wtno0lnhcpy8" path="res://Components/Footsteps/FootstepRun.tscn" id="3_ocl4c"]
+[ext_resource type="Script" path="res://Components/Player/PlayerCamera.gd" id="5_axypu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xu4tc"]
 
@@ -359,34 +361,45 @@ graph_offset = Vector2(187, -24.75)
 
 [sub_resource type="Gradient" id="Gradient_2im78"]
 interpolation_color_space = 1
-offsets = PackedFloat32Array(0, 0.639731)
+offsets = PackedFloat32Array(0, 0.511041)
 colors = PackedColorArray(1, 1, 0.662745, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_42psi"]
+gradient = SubResource("Gradient_2im78")
+width = 100
+height = 120
+fill = 1
+fill_from = Vector2(0.5, 0.4)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_10ha1"]
 gradient = SubResource("Gradient_2im78")
+width = 300
+height = 300
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree", "char_sprite", "camera")]
 collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_vuk5h")
+walk_sound = ExtResource("2_qhgnx")
+run_sound = ExtResource("3_ocl4c")
+animation_tree = NodePath("AnimationTree")
+char_sprite = NodePath("Sprite")
+camera = NodePath("Camera2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_xu4tc")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-unique_name_in_owner = true
-y_sort_enabled = true
-position = Vector2(0, -34)
+position = Vector2(0, -34.545)
 sprite_frames = ExtResource("1_e786p")
 animation = &"walk_forward"
 flip_h = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-unique_name_in_owner = true
-root_node = NodePath("%AnimationTree/..")
 libraries = {
 "": SubResource("AnimationLibrary_w8p74")
 }
@@ -403,8 +416,7 @@ libraries = {
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -33)
+position = Vector2(0, -51)
 zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -412,21 +424,26 @@ drag_left_margin = 0.1
 drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
+script = ExtResource("5_axypu")
 
 [node name="SelfAmbient" type="PointLight2D" parent="."]
 show_behind_parent = true
-light_mask = 0
-position = Vector2(-3, -30)
-scale = Vector2(1, 1.40625)
-energy = 0.1
+light_mask = 2
+position = Vector2(0, -19)
+energy = 0.05
+shadow_filter = 2
 shadow_filter_smooth = 64.0
-shadow_item_cull_mask = 2
-texture = SubResource("GradientTexture2D_10ha1")
-texture_scale = 2.0
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_42psi")
 
-[node name="FootstepSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("3_hee60")
-bus = &"SFX"
+[node name="SelfAmbient2" type="PointLight2D" parent="."]
+show_behind_parent = true
+light_mask = 0
+position = Vector2(0, -1)
+energy = 0.1
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 2.0
+texture = SubResource("GradientTexture2D_10ha1")
 
 [connection signal="timeout" from="sanity_timer" to="." method="_on_sanity_timer_timeout"]

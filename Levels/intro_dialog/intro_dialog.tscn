@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://w5bjy0easfnb" path="res://Sprites/Portraits/avery.png" id="7_xdudo"]
 [ext_resource type="PackedScene" uid="uid://cx4bpsnoapi5a" path="res://Components/Events/UIFadeEvent/UIFadeEvent.tscn" id="8_4j3xy"]
 [ext_resource type="PackedScene" uid="uid://bmakrukhf7yjj" path="res://Components/Events/AddSceneEvent/AddSceneEvent.tscn" id="8_f0qwy"]
-[ext_resource type="PackedScene" uid="uid://dms7r850ymwsf" path="res://Levels/strange_place/strange_place.tscn" id="9_xbj5n"]
 [ext_resource type="PackedScene" uid="uid://b30phhfltapp8" path="res://Components/Events/DeleteNodeEvent/DeleteNodeEvent.tscn" id="10_i1rub"]
 [ext_resource type="PackedScene" uid="uid://03altrfiolaq" path="res://Components/Events/DelayEvent/DelayEvent.tscn" id="11_0fj3f"]
+[ext_resource type="PackedScene" uid="uid://dms7r850ymwsf" path="res://Levels/strange_place/strange_place.tscn" id="11_ec1tn"]
 [ext_resource type="PackedScene" uid="uid://bngu7yjeutphv" path="res://Components/Events/PlayAnimaionEvent/PlayAnimationEvent.tscn" id="13_sjpxn"]
 [ext_resource type="AudioStream" uid="uid://bvb7olbj3rx0i" path="res://Audio/Morning Bunny/morningbunny.ogg" id="15_0x70l"]
 
@@ -172,7 +172,7 @@ fade_type = 1
 t = 1.0
 
 [node name="AddSceneEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" instance=ExtResource("8_f0qwy")]
-scene = ExtResource("9_xbj5n")
+scene = ExtResource("11_ec1tn")
 
 [node name="PlayAnimationEvent" parent="PassCommand/DialogHolder/DialogHolder2/DialogHolder3/DialogHolder4/FadeOut/DelayEvent" node_paths=PackedStringArray("animation_player") instance=ExtResource("13_sjpxn")]
 animation_player = NodePath("../../../../../../../../AnimationPlayer")

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0qw2vjrt6odj"]
-
-[ext_resource type="Script" path="res://Components/Camera/MainCamera/MainCamera.gd" id="1_7vfgk"]
-
-[node name="PixelCamera" type="Camera2D"]
-anchor_mode = 0
-script = ExtResource("1_7vfgk")

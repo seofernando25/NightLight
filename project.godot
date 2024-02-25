@@ -16,12 +16,14 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [audio]
 
-buses/default_bus_layout="res://Configurations/audio_bus.tres"
+buses/default_bus_layout="res://Resources/audio_bus.tres"
 
 [autoload]
 
 PlayerFlags="*res://Components/Globals/PlayerFlags.gd"
 Gameui="*res://Components/UI/GameUI/gameui.tscn"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [display]
 
@@ -32,11 +34,11 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/beehave/plugin.cfg")
 
 [gui]
 
-theme/custom="res://Configurations/theme.tres"
+theme/custom="res://Resources/theme.tres"
 theme/custom_font="res://Fonts/PearSoda.ttf"
 theme/default_font_antialiasing=0
 theme/default_font_hinting=0
@@ -120,6 +122,8 @@ prev_cam={
 2d_navigation/layer_1="Walkable"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemy"
+2d_physics/layer_4="noise"
+2d_physics/layer_5="level_zone"
 
 [physics]
 

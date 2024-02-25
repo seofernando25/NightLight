@@ -7,5 +7,3 @@
 script = ExtResource("1_51ueg")
 
 [node name="Menu" parent="." instance=ExtResource("2_iwve5")]
-offset_right = 960.0
-offset_bottom = 720.0
